@@ -1,4 +1,9 @@
-# Tempo Template
+<p align="center">
+  <img src="tempo.png" width="750">
+</p>
+
+
+# Tempo
 
 Use this repository as a starter pack for AI-assisted software projects.
 
