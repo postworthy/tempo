@@ -1,0 +1,16 @@
+---
+description: Tempo starter-pack onboarding and governance rule
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+Use this repository as a starter pack.
+
+Required actions before non-trivial code changes:
+1. Read `AGENTS.md` and `BOOTSTRAP.md`.
+2. If `PROJECT-BRIEF.md` is unfilled, ask the mandatory intake questions from `BOOTSTRAP.md`.
+3. Fill `PROJECT-BRIEF.md` and update `SPEC.md`.
+4. Propose the first implementation change and wait for approval.
+
+Always use `pnpm verify` as canonical verification.

@@ -96,6 +96,8 @@ The AI Agent `MUST` explicitly state:
 2. Work `MUST` be implemented against written acceptance criteria.
 3. Non-goals `MUST` be explicit.
 4. Risk level (`Low`, `Medium`, `High`, `Critical`) `MUST` be declared for each significant change.
+5. For starter-template repositories, an intake artifact (for example `PROJECT-BRIEF.md`) `MUST` be completed before non-trivial implementation.
+6. If intake data is incomplete, the AI Agent `MUST` ask clarifying questions and `MUST NOT` infer core product requirements.
 
 Minimum `SPEC.md` sections:
 
@@ -439,14 +441,15 @@ For each work unit:
 
 1. Select next smallest valuable item from roadmap.
 2. Classify risk (T0/T1/T2/T3).
-3. Create proposal if non-trivial.
-4. Obtain required approval.
-5. Implement only authorized scope.
-6. Execute canonical verification.
-7. Update status/decision docs.
-8. Commit atomically with conventional message.
-9. Prepare merge notes with evidence and rollback.
-10. Merge only when green.
+3. Complete required intake artifact(s) and update `SPEC.md` if scope is not yet concretely defined.
+4. Create proposal if non-trivial.
+5. Obtain required approval.
+6. Implement only authorized scope.
+7. Execute canonical verification.
+8. Update status/decision docs.
+9. Commit atomically with conventional message.
+10. Prepare merge notes with evidence and rollback.
+11. Merge only when green.
 
 If failure is reported:
 

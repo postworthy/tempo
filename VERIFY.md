@@ -13,6 +13,7 @@ This command runs complete repository checks:
 - formatting check (`format:check`)
 - lint (`lint`)
 - type checks (`typecheck`)
+- docs consistency checks (`check:docs`)
 - tests (`test`)
 - build (`build`)
 
@@ -37,6 +38,7 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Formatting policy is satisfied.
 - Static analysis and lint rules pass.
 - Type contracts hold.
+- Governance docs preserve required starter-pack invariants.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 

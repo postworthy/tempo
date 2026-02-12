@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C004 - docs(spec): write v1 product contract
+### [NEXT] C005 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -39,9 +39,18 @@ Acceptance met:
 - CI runs `pnpm verify`.
 - Pull requests and pushes to `main` execute verification workflow.
 
+### [DONE] C004 - docs(onboarding): enforce novice-first bootstrap flow
+
+Acceptance met:
+
+- `BOOTSTRAP.md` defines first-run contract and mandatory intake questions.
+- `PROJECT-BRIEF.md` exists for user-intent capture.
+- `AGENTS.md`, `README.md`, and `VERIFY.md` align on onboarding + verification behavior.
+- Assistant adapter files (`CLAUDE.md`, `CODEX.md`, Cursor rule) route to canonical instructions.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C005 - feat(app): ship thin end-to-end slice
+### [TODO] C006 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -54,7 +63,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C006 - harden(app): add guardrails from first slice learnings
+### [TODO] C007 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

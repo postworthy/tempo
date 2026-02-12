@@ -1,6 +1,6 @@
 # Tempo Template
 
-A clone-and-start template for human + AI software collaboration with built-in governance, verification, and CI.
+A clone-and-start template for human + AI software collaboration with built-in governance, onboarding, verification, and CI.
 
 ## 5-Minute Quickstart
 
@@ -12,6 +12,16 @@ pnpm verify
 ```
 
 If `pnpm verify` passes, your local setup is ready.
+
+## One Prompt for Any Coding Assistant
+
+Tell your coding assistant exactly this:
+
+```text
+Use this repo as my starter pack. Read AGENTS.md and BOOTSTRAP.md, ask me the required intake questions, then draft PROJECT-BRIEF.md and SPEC.md for approval before coding.
+```
+
+This is designed to work with assistants like Cursor, Claude Code, Codex, and similar tools.
 
 ## Governance Model Summary
 
@@ -30,31 +40,31 @@ Core operating rules:
 
 - Proposal-first for non-trivial work.
 - Canonical verification gate is `pnpm verify`.
+- First-run intake is mandatory when `PROJECT-BRIEF.md` is unfilled.
 - Update docs in the same change sequence as behavior changes.
 - Perform RCA before repeated fix attempts when a change fails.
+
+## First-Run Workflow (Novice-Friendly)
+
+1. Agent reads `AGENTS.md` and `BOOTSTRAP.md`.
+2. Agent asks intake questions from `BOOTSTRAP.md`.
+3. Agent fills `PROJECT-BRIEF.md`.
+4. Agent updates `SPEC.md` from the brief.
+5. You approve scope.
+6. Agent creates proposal and starts implementation.
 
 ## Start Your Own Project From This Template
 
 1. Clone this repository.
-2. Rename package metadata in `package.json` (`name`, `description`, optional author fields).
-3. Replace `SPEC.md` placeholders with your product objective, workflows, constraints, and acceptance criteria.
-4. Update `ROADMAP/COMMIT-PLAN.md` with your next smallest valuable commit.
-5. Run `pnpm verify` and confirm green before opening your first PR.
-
-## First Proposal Workflow
-
-Create a proposal before non-trivial implementation:
-
-1. Copy `PROPOSALS/TEMPLATE.md` to `PROPOSALS/YYYY-MM-DD--short-title.md`.
-2. Fill in objective, scope, acceptance criteria, verification plan, rollback plan, and risks.
-3. Get approval from the human partner/maintainer.
-4. Implement only the approved scope.
-5. Run `pnpm verify`.
-6. Update `STATUS.md`, `DECISIONS.md`, and `ROADMAP/COMMIT-PLAN.md`.
+2. Use the one-prompt text above with your coding assistant.
+3. Review and approve `PROJECT-BRIEF.md` and `SPEC.md`.
+4. Confirm the next commit in `ROADMAP/COMMIT-PLAN.md`.
+5. Run `pnpm verify` and confirm green before implementation PRs.
 
 ## Verification Commands
 
 - Full gate: `pnpm verify`
 - Fast local gate: `pnpm verify:fast`
+- Docs consistency: `pnpm check:docs`
 - Formatting write: `pnpm format`
 - Unit tests: `pnpm test`

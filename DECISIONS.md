@@ -48,3 +48,14 @@ CI and local verification parity reduces merge-time surprises and governance dri
 
 Consequences:
 Any verification regression blocks merges until resolved or explicitly approved through governance process.
+
+## 2026-02-12 - Mandatory First-Run Intake for Novice Projects
+
+Decision:
+Require assistants to complete an intake interview and fill `PROJECT-BRIEF.md` before non-trivial implementation when using this template.
+
+Rationale:
+Novices need a predictable, low-friction start that captures intent before code is generated.
+
+Consequences:
+`BOOTSTRAP.md` and `PROJECT-BRIEF.md` become first-run mandatory artifacts; assistants must prompt users instead of assuming scope.

@@ -12,7 +12,8 @@ docs(spec): write first project-specific spec from template
 - Added minimal source + test and canonical verification scripts.
 - Added clone-and-start documentation (`README.md`, `.env.example`, `LICENSE`).
 - Added CI verification workflow running `pnpm verify` on PRs and pushes to `main`.
-- Normalized governance references to `ROADMAP/COMMIT-PLAN.md` and aligned verification docs to actual commands.
+- Added mandatory first-run bootstrap and intake workflow (`BOOTSTRAP.md`, `PROJECT-BRIEF.md`, assistant adapters).
+- Added docs-consistency verification via `pnpm check:docs` inside canonical verify.
 
 ## In Progress
 
@@ -20,12 +21,12 @@ docs(spec): write first project-specific spec from template
 
 ## Blockers / Risks
 
-- `SPEC.md` still contains placeholders and must be completed before feature implementation.
+- `SPEC.md` still contains placeholders and must be completed before non-trivial product implementation.
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-12--public-template-readiness.md`.
-- Template readiness baseline implemented and validated with canonical verification.
+- Proposal created: `PROPOSALS/2026-02-12--novice-agent-bootstrap.md`.
+- First-run onboarding protocol made explicit across governance docs and README.
 
 ## Next Planned Changes
 
