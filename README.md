@@ -2,8 +2,8 @@
   <img src="tempo.png" width="750">
 </p>
 
+# Tempo
 
-# Tempo  
 ### Build what you imagine — keep the rhythm.
 
 **Tempo** is a vibe coding starter pack designed to help you turn imagination into working software — clearly, cleanly, and with momentum.
@@ -12,21 +12,20 @@ AI makes it possible to build from ideas alone. Tempo makes it sustainable.
 
 This repo gives you:
 
-- A clear structure from day one  
-- Guidance for AI agents to behave predictably  
-- Git workflows that turn history into progress  
-- A steady rhythm: plan → build → verify → commit → repeat  
+- A clear structure from day one
+- Guidance for AI agents to behave predictably
+- Git workflows that turn history into progress
+- A steady rhythm: plan → build → verify → commit → repeat
 
 Tempo isn’t a framework. It’s a beat.
 
 You describe what you want.  
 Your AI helps you build it.  
-Git keeps the story straight.  
+Git keeps the story straight.
 
 Whether you're a seasoned engineer or just curious about what you can create, Tempo helps you move fast without making a mess.
 
 Clone it. Start building. Keep the rhythm.
-
 
 ## Agent First Command
 
