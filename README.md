@@ -20,15 +20,3 @@ git clone https://github.com/postworthy/tempo.git && cd tempo && codex "Use this
 ```
 
 If you are not using `codex`, replace `codex` with your assistant CLI (`claude`, `opencode`, etc.) and keep the same prompt text.
-
-## What The Agent Does Next
-
-1. Reads `AGENTS.md` and `BOOTSTRAP.md`.
-2. Interviews you and fills `PROJECT-BRIEF.md`.
-3. Updates `SPEC.md` for your approval.
-4. Proposes implementation steps and runs `pnpm verify` before merge.
-
-## Verification
-
-- Canonical gate: `pnpm verify`
-- Fast local gate: `pnpm verify:fast`
