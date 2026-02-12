@@ -23,6 +23,44 @@ Use this repo as my starter pack. Read AGENTS.md and BOOTSTRAP.md, ask me the re
 
 This is designed to work with assistants like Cursor, Claude Code, Codex, and similar tools.
 
+## Copy/Paste Starter Commands
+
+Replace `<your-repo-url>` with your repository URL.
+
+```bash
+git clone <your-repo-url> tempo
+cd tempo
+pnpm install
+pnpm verify
+```
+
+Set the onboarding prompt once:
+
+```bash
+PROMPT="Use this repo as my starter pack. Read AGENTS.md and BOOTSTRAP.md, ask me the required intake questions, then draft PROJECT-BRIEF.md and SPEC.md for approval before coding."
+```
+
+Then run your assistant command:
+
+```bash
+# Codex CLI
+codex "$PROMPT"
+
+# Claude Code CLI
+claude "$PROMPT"
+
+# OpenCode CLI
+opencode "$PROMPT"
+```
+
+Cursor (GUI) flow:
+
+```bash
+cursor .
+```
+
+Open chat in Cursor and paste the same `PROMPT` text.
+
 ## Governance Model Summary
 
 Governance is document-first and enforced by precedence:
