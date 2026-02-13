@@ -56,12 +56,14 @@ If `ROADMAP/COMMIT-PLAN.md` does not exist, create it before feature work.
 
 0. Confirm the next smallest valuable change from `ROADMAP/COMMIT-PLAN.md`.
 1. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
-2. If `PROJECT-BRIEF.md` is unfilled, run intake interview questions from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
-3. For non-trivial work, create a proposal in `PROPOSALS/`.
-4. Implement only approved scope.
-5. Run verification (`pnpm verify`).
-6. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-7. Commit atomically with a conventional message.
+2. If `PROJECT-BRIEF.md` is unfilled, run discovery and intake from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
+3. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
+4. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
+5. For non-trivial work, create a proposal in `PROPOSALS/`.
+6. Implement only approved scope.
+7. Run verification (`pnpm verify`).
+8. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
+9. Commit atomically with a conventional message.
 
 Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
 
@@ -74,6 +76,7 @@ Proposal must include:
 - Rollback plan
 - Risks and mitigations
 - Compatibility or migration notes (if relevant)
+- Decomposition plan (required for `T1` / `T2` / `T3`)
 
 Exception: purely mechanical changes may skip a proposal.
 
@@ -111,6 +114,7 @@ Minimum required updates per non-trivial change:
 - A change is destructive or irreversible.
 - A production-impacting change lacks rollback.
 - `PROJECT-BRIEF.md` is incomplete for non-trivial work.
+- Discovery assumptions remain unresolved.
 
 ## RCA Rule
 
@@ -152,3 +156,14 @@ A change is done only when:
 - Change is merge-safe
 - Rollback path exists
 - Branch/merge policy is respected
+
+## Definition of Ready (Before Implementation)
+
+For `T1` / `T2` / `T3` work, implementation is ready only when:
+
+- `PROJECT-BRIEF.md` and `SPEC.md` are sufficiently concrete for scope,
+- risk class is declared,
+- decomposition exists (proposal or `ROADMAP/COMMIT-PLAN.md`) with ordered work units,
+- each planned unit includes verification notes and exit criteria,
+- thin-slice milestone is explicit,
+- unresolved unknowns and intentional deferrals are listed.

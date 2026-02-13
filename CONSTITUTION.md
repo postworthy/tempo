@@ -185,7 +185,43 @@ Proposal `MUST` include:
 - compatibility/migration notes,
 - open questions needing approval.
 
+For `T1` / `T2` / `T3`, proposal `MUST` also include a decomposition plan with ordered work units, per-unit verification notes, and exit criteria.
+
 The AI Agent `MUST NOT` implement beyond approved scope.
+
+---
+
+## Article V-A — Decomposition Before Development (Mandatory)
+
+### Section 1 — Decomposition Requirement
+
+For any `T1` / `T2` / `T3` work, the AI Agent `MUST` decompose the problem into a sequence of small, verifiable work units before implementation.
+
+Each work unit `MUST`:
+
+- be independently testable or demonstrably verifiable,
+- produce a reviewable change,
+- have explicit exit criteria (`done when ...`),
+- fit within the Atomic Change Law unless explicitly justified.
+
+### Section 2 — Decomposition Output (Minimum)
+
+The AI Agent `MUST` record decomposition in one of:
+
+- an approved proposal, or
+- updates to `ROADMAP/COMMIT-PLAN.md`.
+
+The decomposition `MUST` include:
+
+- a one-paragraph problem statement,
+- a thin vertical slice milestone (minimal end-to-end capability),
+- ordered work units with verification notes per unit,
+- dependencies and unknowns,
+- intentionally deferred scope.
+
+### Section 3 — No Big-Bang Changes
+
+If a change cannot be safely decomposed, the AI Agent `MUST` split it into multiple proposals or phases before implementation.
 
 ---
 
@@ -382,6 +418,21 @@ If any element is missing, the change is not done.
 
 ---
 
+## Article XV-A — Definition of Ready (Before Implementation)
+
+For `T1` / `T2` / `T3` work, implementation is ready to start only when:
+
+- scope intent is captured (`PROJECT-BRIEF.md` and `SPEC.md` when applicable),
+- risk class is declared,
+- decomposition exists and is approved (proposal or `ROADMAP/COMMIT-PLAN.md`),
+- each planned work unit has verification notes and exit criteria,
+- thin-slice milestone is defined,
+- unresolved unknowns and deferrals are explicitly listed.
+
+If these conditions are not met, implementation `MUST NOT` begin.
+
+---
+
 ## Article XVI — Amendment Process
 
 The constitution may evolve, but not implicitly.
@@ -442,14 +493,15 @@ For each work unit:
 1. Select next smallest valuable item from roadmap.
 2. Classify risk (T0/T1/T2/T3).
 3. Complete required intake artifact(s) and update `SPEC.md` if scope is not yet concretely defined.
-4. Create proposal if non-trivial.
-5. Obtain required approval.
-6. Implement only authorized scope.
-7. Execute canonical verification.
-8. Update status/decision docs.
-9. Commit atomically with conventional message.
-10. Prepare merge notes with evidence and rollback.
-11. Merge only when green.
+4. Decompose `T1` / `T2` / `T3` work into ordered, verifiable units with exit criteria.
+5. Create proposal if non-trivial.
+6. Obtain required approval.
+7. Implement only authorized scope.
+8. Execute canonical verification.
+9. Update status/decision docs.
+10. Commit atomically with conventional message.
+11. Prepare merge notes with evidence and rollback.
+12. Merge only when green.
 
 If failure is reported:
 
@@ -540,6 +592,17 @@ In scope:
 
 - Command: ...
 - Pass means: ...
+
+## Decomposition Plan (Required for T1/T2/T3)
+
+Work units (ordered):
+
+1. <unit> — Verify by: <command/evidence> — Exit criteria: <definition>
+2. ...
+
+Thin slice milestone:
+
+- <minimal end-to-end capability after unit N>
 
 ## Rollback Plan
 

@@ -1,3 +1,6 @@
+# Proposal: <title>
+
+Date: YYYY-MM-DD
 Owner: <human/agent name>
 Risk Class: T0 / T1 / T2 / T3
 Related Issue/Context: <optional>
@@ -6,14 +9,24 @@ Related Issue/Context: <optional>
 
 Describe the single outcome this change should produce.
 
+## Scope
+
+In scope:
+
 - <item 1>
 - <item 2>
-  Out of scope:
+
+Out of scope:
+
+- <item 1>
 - <item 2>
 
 ## Expected Files Touched
 
 - `path/to/file1`
+- `path/to/file2`
+
+## Acceptance Criteria
 
 - [ ] <observable result 1>
 - [ ] <observable result 2>
@@ -25,13 +38,42 @@ Commands:
 
 ```bash
 pnpm verify
+```
+
 Optional focused checks:
+
+```bash
 # example
 pnpm --filter <pkg> test
+```
+
 Pass means:
+
 - Canonical verification exits 0.
 - Acceptance criteria are demonstrably satisfied.
 
+## Decomposition Plan (Required for T1/T2/T3)
+
+Work units (ordered):
+
+1. <unit> — Verify by: <command/evidence> — Exit criteria: <definition> — Risk: <T0/T1/T2/T3> — Dependencies: <if any>
+2. <unit> — Verify by: <command/evidence> — Exit criteria: <definition> — Risk: <T0/T1/T2/T3> — Dependencies: <if any>
+
+Thin slice milestone:
+
+- <what minimal end-to-end capability exists after unit N>
+
+Dependencies and unknowns:
+
+- <dependency or unknown 1>
+- <dependency or unknown 2>
+
+Intentional deferrals:
+
+- <deferred item 1>
+- <deferred item 2>
+
+## Rollback Plan
 
 If this change causes regressions:
 
@@ -62,4 +104,3 @@ If this change causes regressions:
 - Requested from: <name/role>
 - Approval status: <pending/approved>
 - Approved at: <timestamp>
-```
