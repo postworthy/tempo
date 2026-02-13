@@ -92,3 +92,14 @@ Local-first governance must be executable without hosted platforms while preserv
 
 Consequences:
 Hosted external review surfaces are optional only; remotes/push/publish actions require explicit approval and `DECISIONS.md` recording.
+
+## 2026-02-13 - Canonical Bootstrap for Non-Git Toolchain Provisioning
+
+Decision:
+Require a canonical local bootstrap command (`./bootstrap`) and a repo-already-cloned onboarding guide (`GETTING_STARTED.md`) to provision non-git tooling safely.
+
+Rationale:
+Non-developer users need a deterministic setup path that does not assume preinstalled runtimes or package managers.
+
+Consequences:
+Bootstrap now validates tooling, provides safe install paths or explicit instructions, and aligns with canonical verification without managing `git` acquisition.
