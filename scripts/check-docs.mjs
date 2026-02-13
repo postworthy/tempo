@@ -22,6 +22,8 @@ const requiredAgentsSnippets = [
   'PROJECT-BRIEF.md',
   'at least 3 clarifying questions',
   'follow-up question',
+  'Definition of Ready (Before Implementation)',
+  'decompose work into small verifiable units',
 ];
 
 const requiredBootstrapSnippets = [
@@ -41,6 +43,19 @@ const requiredProjectBriefSnippets = [
 ];
 
 const requiredVerifySnippets = ['pnpm verify', 'check:docs'];
+
+const requiredConstitutionSnippets = [
+  'Article V-A — Decomposition Before Development (Mandatory)',
+  'Definition of Ready (Before Implementation)',
+  'decompose the problem into a sequence of small, verifiable work units',
+];
+
+const requiredProposalTemplateSnippets = [
+  '## Decomposition Plan (Required for T1/T2/T3)',
+  'Thin slice milestone:',
+  'Exit criteria:',
+  'Verify by:',
+];
 
 const forbiddenPathSnippets = ['ROADMAP/commit-plan.md'];
 
@@ -93,6 +108,24 @@ if (existsSync('VERIFY.md')) {
   for (const snippet of requiredVerifySnippets) {
     if (!content.includes(snippet)) {
       problems.push(`VERIFY.md missing required content: ${snippet}`);
+    }
+  }
+}
+
+if (existsSync('CONSTITUTION.md')) {
+  const content = readFileSync('CONSTITUTION.md', 'utf8');
+  for (const snippet of requiredConstitutionSnippets) {
+    if (!content.includes(snippet)) {
+      problems.push(`CONSTITUTION.md missing required content: ${snippet}`);
+    }
+  }
+}
+
+if (existsSync('PROPOSALS/TEMPLATE.md')) {
+  const content = readFileSync('PROPOSALS/TEMPLATE.md', 'utf8');
+  for (const snippet of requiredProposalTemplateSnippets) {
+    if (!content.includes(snippet)) {
+      problems.push(`PROPOSALS/TEMPLATE.md missing required content: ${snippet}`);
     }
   }
 }

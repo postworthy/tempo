@@ -15,6 +15,7 @@ docs(spec): write first project-specific spec from template
 - Added mandatory first-run bootstrap and intake workflow (`BOOTSTRAP.md`, `PROJECT-BRIEF.md`, assistant adapters).
 - Added docs-consistency verification via `pnpm check:docs` inside canonical verify.
 - Added mandatory discovery-first ideation flow with clarifying-question minimums and structured brief sections.
+- Added mandatory decomposition-before-development governance for T1/T2/T3 work, including a Definition of Ready gate.
 
 ## In Progress
 
@@ -26,8 +27,8 @@ docs(spec): write first project-specific spec from template
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-13--discovery-first-bootstrap.md`.
-- Onboarding now requires discovery/rubberducking before brief finalization.
+- Proposal created: `PROPOSALS/2026-02-13--decomposition-governance-gate.md`.
+- Constitution/proposal template now require decomposition plan with per-unit verification and exit criteria.
 
 ## Next Planned Changes
 

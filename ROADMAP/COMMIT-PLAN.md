@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C006 - docs(spec): write v1 product contract
+### [NEXT] C007 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -57,9 +57,18 @@ Acceptance met:
 - `AGENTS.md` enforces clarifying-question minimums during bootstrap.
 - `check:docs` validates discovery-specific onboarding sections.
 
+### [DONE] C006 - docs(governance): require decomposition before implementation
+
+Acceptance met:
+
+- `CONSTITUTION.md` includes decomposition-before-development requirements for T1/T2/T3 work.
+- Definition of Ready gate added for non-trivial work.
+- `PROPOSALS/TEMPLATE.md` includes decomposition plan section with per-unit verify/exit criteria.
+- `AGENTS.md` and docs checks enforce decomposition requirements.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C007 - feat(app): ship thin end-to-end slice
+### [TODO] C008 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -72,7 +81,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C008 - harden(app): add guardrails from first slice learnings
+### [TODO] C009 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

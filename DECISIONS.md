@@ -70,3 +70,14 @@ Early idea expansion reduces ambiguity, improves spec quality, and helps novice 
 
 Consequences:
 Bootstrap now includes minimum clarifying-question expectations, explicit assumption handling, and additional brief structure for alternatives, assumptions, and unknowns.
+
+## 2026-02-13 - Decomposition Gate Before Implementation
+
+Decision:
+Require decomposition planning for T1/T2/T3 work before implementation, including ordered work units with per-unit verification notes and exit criteria.
+
+Rationale:
+Decomposition improves reviewability, reduces big-bang changes, and makes progress measurable for human + AI collaboration.
+
+Consequences:
+Definition of Ready now includes decomposition approval; proposal template and governance checks enforce decomposition artifacts.
