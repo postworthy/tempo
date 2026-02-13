@@ -16,7 +16,7 @@ In scope:
 - Add baseline execution toolchain and scripts (`verify`, `verify:fast`, `format`, `format:check`, `lint`, `typecheck`, `test`, `build`).
 - Add minimal TypeScript source and one passing test.
 - Add template essentials (`README.md`, `LICENSE`, `.env.example`, `.gitignore`, `.editorconfig`).
-- Add CI workflow running `pnpm install` and `pnpm verify` for pushes to `main` and pull requests.
+- Add optional hosted CI workflow running `pnpm install` and `pnpm verify`.
 - Normalize governance and verification docs so paths and commands are internally consistent.
 - Update `STATUS.md`, `DECISIONS.md`, and `ROADMAP/COMMIT-PLAN.md` to reflect completed work and next steps.
 
@@ -54,7 +54,7 @@ Out of scope:
 
 - [ ] A fresh clone can run `pnpm install` and `pnpm verify` successfully.
 - [ ] Repository contains required baseline scripts/config and at least one passing real test.
-- [ ] CI workflow exists and runs `pnpm verify` on pull requests and pushes to `main`.
+- [ ] Optional hosted CI workflow exists and runs `pnpm verify`.
 - [ ] Governance and verification docs reference `ROADMAP/COMMIT-PLAN.md` consistently.
 - [ ] README explains quickstart, governance model, template usage, and first proposal workflow.
 - [ ] No generated artifacts/logs/caches are committed.

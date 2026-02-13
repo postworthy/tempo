@@ -52,6 +52,12 @@ Pass means:
 - Canonical verification exits 0.
 - Acceptance criteria are demonstrably satisfied.
 
+## Change Review Plan
+
+- Review Boundary: merge from `<feature-branch>` into `main`
+- Planned Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`
+- Reviewer/approver expectation: <name/role or criteria>
+
 ## Decomposition Plan (Required for T1/T2/T3)
 
 Work units (ordered):

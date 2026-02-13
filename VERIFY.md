@@ -1,6 +1,6 @@
 # VERIFY.md - Tempo Verification Contract
 
-All changes must be verified before merge to `main`.
+All changes must be verified before crossing the Review Boundary into `main`.
 
 ## Canonical Verification Gate (Required)
 
@@ -50,9 +50,17 @@ Review `.verify.log` on failure. Do not commit verification logs.
 4. If broader work is required, create a follow-up proposal.
 5. Re-run `pnpm verify` until green.
 
-## CI Requirement
+## Change Review Requirement
 
-CI must run `pnpm verify` on pull requests and block merge on failure.
+Before a Review Boundary merge into `main`, a Change Review must include:
+
+- passing `pnpm verify` evidence,
+- a Review Record at `REVIEWS/YYYY-MM-DD--short-title.md`,
+- rollback readiness.
+
+## Hosted CI (Optional Surface)
+
+Hosted CI workflows (for example GitHub/GitLab pipelines) are optional review surfaces. They may mirror local checks but do not replace local-first Change Review requirements.
 
 ## Environment Notes
 

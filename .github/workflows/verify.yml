@@ -1,5 +1,7 @@
 name: Verify
 
+# Optional hosted review surface.
+# Local-first Change Review at the Review Boundary remains authoritative.
 on:
   push:
     branches:

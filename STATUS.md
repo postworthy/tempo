@@ -11,11 +11,12 @@ docs(spec): write first project-specific spec from template
 - Added public-template baseline execution layer (`package.json`, TypeScript, ESLint, Prettier, Vitest).
 - Added minimal source + test and canonical verification scripts.
 - Added clone-and-start documentation (`README.md`, `.env.example`, `LICENSE`).
-- Added CI verification workflow running `pnpm verify` on PRs and pushes to `main`.
+- Added optional hosted CI workflow that mirrors canonical verification.
 - Added mandatory first-run bootstrap and intake workflow (`BOOTSTRAP.md`, `PROJECT-BRIEF.md`, assistant adapters).
 - Added docs-consistency verification via `pnpm check:docs` inside canonical verify.
 - Added mandatory discovery-first ideation flow with clarifying-question minimums and structured brief sections.
 - Added mandatory decomposition-before-development governance for T1/T2/T3 work, including a Definition of Ready gate.
+- Added local-first Change Review model with Review Boundary and Review Record requirements.
 
 ## In Progress
 
@@ -27,8 +28,8 @@ docs(spec): write first project-specific spec from template
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-13--decomposition-governance-gate.md`.
-- Constitution/proposal template now require decomposition plan with per-unit verification and exit criteria.
+- Proposal created: `PROPOSALS/2026-02-13--local-first-review-discipline.md`.
+- Governance now treats hosted external review surfaces as optional while requiring in-repo Review Records.
 
 ## Next Planned Changes
 
