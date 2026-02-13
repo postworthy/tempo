@@ -47,11 +47,25 @@ Document precedence (highest to lowest):
 4. `DECISIONS.md`
 5. `ROADMAP/COMMIT-PLAN.md`
 6. `PROPOSALS/*`
-7. `RCA/*`
-8. `STATUS.md`
-9. Local process notes
+7. `REVIEWS/*`
+8. `RCA/*`
+9. `STATUS.md`
+10. Local process notes
 
 No lower-precedence file may weaken a higher-precedence requirement.
+
+---
+
+## Article I-A — Workflow Definitions
+
+Terms used across this constitution:
+
+- Change Review: the act of evaluating a proposed change against scope, risks, verification evidence, and rollback readiness.
+- Review Boundary: the local merge event from a feature branch into `main`.
+- Review Record: an in-repo artifact at `REVIEWS/YYYY-MM-DD--short-title.md` capturing review evidence and decision.
+- Pull Request (PR): an optional hosted platform surface for discussion only; it is not required and is never assumed by default workflow.
+
+Default workflow is local-first. Hosted PR/MR systems `MAY` be used as optional surfaces, but governance requirements are satisfied only by in-repo artifacts and local review boundary controls.
 
 ---
 
@@ -237,18 +251,21 @@ If a change cannot be safely decomposed, the AI Agent `MUST` split it into multi
 
 ---
 
-## Article VII — Branching, Review, and Merge Discipline
+## Article VII — Local-First Review and Merge Discipline
 
 1. Work `MUST` occur on a feature branch.
 2. `main` `MUST` remain merge-only and releasable.
-3. Merge requires:
+3. Every non-trivial merge `MUST` have a Change Review and Review Record.
+4. Review Records `MUST` be stored at:
+   - `REVIEWS/YYYY-MM-DD--short-title.md`
+5. Review Boundary merge requires:
    - proposal-to-implementation alignment,
    - verification evidence,
    - documentation updates,
    - rollback readiness,
-   - safety review (for T2/T3).
-
-If no remote PR system exists, a local merge commit `MUST` serve as the review boundary.
+   - risk class declaration,
+   - safety review (for T2/T3),
+   - approval captured in the Review Record.
 
 ---
 
@@ -286,6 +303,7 @@ The following are constitutional artifacts:
 - `DECISIONS.md`
 - `ROADMAP/COMMIT-PLAN.md`
 - `PROPOSALS/*`
+- `REVIEWS/*`
 - `RCA/*`
 
 Rules:
@@ -315,6 +333,7 @@ The AI Agent `MUST`:
 - keep secrets outside source control,
 - use safe simulations for risky domains,
 - treat security/privacy requirements as acceptance criteria.
+- avoid adding git remotes or executing external `push`/`publish` actions unless explicitly approved and recorded in `DECISIONS.md`.
 
 Exceptions require:
 
@@ -411,6 +430,7 @@ A change is done only when it is:
 - implemented,
 - verified with evidence,
 - documented,
+- reviewed with a Review Record at the Review Boundary,
 - merge-safe,
 - reversible.
 
@@ -427,6 +447,7 @@ For `T1` / `T2` / `T3` work, implementation is ready to start only when:
 - decomposition exists and is approved (proposal or `ROADMAP/COMMIT-PLAN.md`),
 - each planned work unit has verification notes and exit criteria,
 - thin-slice milestone is defined,
+- review boundary plan exists (including expected Review Record path),
 - unresolved unknowns and deferrals are explicitly listed.
 
 If these conditions are not met, implementation `MUST NOT` begin.
@@ -499,9 +520,9 @@ For each work unit:
 7. Implement only authorized scope.
 8. Execute canonical verification.
 9. Update status/decision docs.
-10. Commit atomically with conventional message.
-11. Prepare merge notes with evidence and rollback.
-12. Merge only when green.
+10. Prepare Change Review and Review Record.
+11. Commit atomically with conventional message.
+12. Merge at the Review Boundary only when green and approved.
 
 If failure is reported:
 
@@ -660,10 +681,61 @@ Severity: Low/Medium/High/Critical
 - Proposal and implementation align.
 - Acceptance criteria satisfied.
 - Verification evidence attached.
+- Review Record exists and includes approvals.
 - Rollback path is clear.
 - Docs updated (`STATUS`, `DECISIONS`, roadmap/proposal as needed).
 - No secrets or prohibited artifacts committed.
 - No unintended scope expansion.
+
+---
+
+## Appendix 4 — Review Record Template (Minimum)
+
+Recommended path: `REVIEWS/YYYY-MM-DD--short-title.md`
+
+```md
+# Review Record: <short-title>
+
+Date: YYYY-MM-DD
+Review Boundary: merge from <feature-branch> into main
+Risk Class: T0/T1/T2/T3
+Related Proposal(s): <path(s)>
+
+## Branch
+
+- Source branch: <feature-branch>
+- Target branch: main
+
+## Commits in Scope
+
+- <hash> <summary>
+
+## Acceptance Checklist
+
+- [ ] Scope aligns
+- [ ] Verification evidence present
+- [ ] Rollback path clear
+- [ ] Docs updated
+
+## Verification Evidence
+
+- Command(s): ...
+- Result(s): ...
+
+## Rollback Plan
+
+- ...
+
+## Approvals
+
+- Reviewer: ...
+- Status: approved/rejected/pending
+- Timestamp: ...
+
+## Follow-Ups
+
+- ...
+```
 
 ---
 

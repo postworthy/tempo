@@ -12,8 +12,9 @@ If documents conflict, apply this order (highest first):
 4. `DECISIONS.md`
 5. `ROADMAP/COMMIT-PLAN.md`
 6. `PROPOSALS/*`
-7. `RCA/*`
-8. `STATUS.md`
+7. `REVIEWS/*`
+8. `RCA/*`
+9. `STATUS.md`
 
 No lower-priority file may weaken a higher-priority rule.
 
@@ -29,12 +30,21 @@ No lower-priority file may weaken a higher-priority rule.
 8. Never commit secrets, generated artifacts, caches, or local logs.
 9. Prefer reversible changes with explicit rollback plans.
 10. If a requested change did not work, perform RCA comparing request, implementation, and observed output before further fixes. Store RCA files at `RCA/YYYY-MM-DD--short-title.md`.
+11. Do not add git remotes or execute external `push`/`publish` actions unless explicitly approved and recorded in `DECISIONS.md`.
 
 ## Project Invariants
 
 - Canonical verification command: `pnpm verify`
 - Primary branch: `main`
 - First-run onboarding contract: `BOOTSTRAP.md`
+- Local-first Review Boundary: merge from feature branch into `main` with Review Record
+
+## Review Definitions
+
+- Change Review: evaluation of scope, verification, risk, and rollback readiness.
+- Review Boundary: local merge from a feature branch into `main`.
+- Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`.
+- Hosted change-request surfaces are optional only; never assumed.
 
 ## Pre-Edit Read Checklist
 
@@ -63,7 +73,8 @@ If `ROADMAP/COMMIT-PLAN.md` does not exist, create it before feature work.
 6. Implement only approved scope.
 7. Run verification (`pnpm verify`).
 8. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-9. Commit atomically with a conventional message.
+9. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
+10. Commit atomically with a conventional message.
 
 Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
 
@@ -106,6 +117,8 @@ Minimum required updates per non-trivial change:
   - `chore/<short-name>`
 - Include proposal reference in commit body:
   - `Proposal: PROPOSALS/YYYY-MM-DD--short-title.md`
+- Non-trivial merges require a Review Record:
+  - `Review: REVIEWS/YYYY-MM-DD--short-title.md`
 
 ## Pause-and-Ask Conditions
 
@@ -153,6 +166,7 @@ A change is done only when:
 - Implementation matches approved scope
 - Verification passes
 - Docs are updated
+- Required Review Record exists (for non-trivial changes)
 - Change is merge-safe
 - Rollback path exists
 - Branch/merge policy is respected
@@ -166,4 +180,5 @@ For `T1` / `T2` / `T3` work, implementation is ready only when:
 - decomposition exists (proposal or `ROADMAP/COMMIT-PLAN.md`) with ordered work units,
 - each planned unit includes verification notes and exit criteria,
 - thin-slice milestone is explicit,
+- review boundary plan is explicit (including Review Record path),
 - unresolved unknowns and intentional deferrals are listed.

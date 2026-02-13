@@ -38,16 +38,16 @@ These tools are widely adopted, lightweight for fresh projects, and provide mean
 Consequences:
 Template consumers inherit this baseline and can tighten or replace it later through explicit proposal-driven changes.
 
-## 2026-02-12 - CI Uses Canonical Verify
+## 2026-02-12 - Hosted CI as Optional Verification Surface
 
 Decision:
-GitHub Actions workflow runs `pnpm install` and `pnpm verify` on pull requests and pushes to `main`.
+Use a hosted CI workflow that runs `pnpm install` and `pnpm verify` as an optional review surface.
 
 Rationale:
-CI and local verification parity reduces merge-time surprises and governance drift.
+Hosted automation provides additional signal, but local-first governance should not depend on external platforms.
 
 Consequences:
-Any verification regression blocks merges until resolved or explicitly approved through governance process.
+Hosted CI may aid confidence; authoritative merge readiness remains in local Change Review evidence.
 
 ## 2026-02-12 - Mandatory First-Run Intake for Novice Projects
 
@@ -81,3 +81,14 @@ Decomposition improves reviewability, reduces big-bang changes, and makes progre
 
 Consequences:
 Definition of Ready now includes decomposition approval; proposal template and governance checks enforce decomposition artifacts.
+
+## 2026-02-13 - Local-First Review Boundary and Review Records
+
+Decision:
+Define Change Review as local-first and require Review Records at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial merges into `main`.
+
+Rationale:
+Local-first governance must be executable without hosted platforms while preserving auditable review evidence.
+
+Consequences:
+Hosted external review surfaces are optional only; remotes/push/publish actions require explicit approval and `DECISIONS.md` recording.

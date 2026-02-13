@@ -8,22 +8,22 @@ const requiredFiles = [
   'VERIFY.md',
   'ROADMAP/COMMIT-PLAN.md',
   'README.md',
+  'PROPOSALS/TEMPLATE.md',
+  'REVIEWS/TEMPLATE.md',
 ];
 
 const requiredReadmeSnippets = [
   'Use this repo as my starter pack.',
   'BOOTSTRAP.md',
   'PROJECT-BRIEF.md',
-  'discovery mode',
 ];
 
 const requiredAgentsSnippets = [
-  'BOOTSTRAP.md',
-  'PROJECT-BRIEF.md',
-  'at least 3 clarifying questions',
-  'follow-up question',
   'Definition of Ready (Before Implementation)',
   'decompose work into small verifiable units',
+  'Review Boundary',
+  'Review Record',
+  'Do not add git remotes or execute external `push`/`publish` actions',
 ];
 
 const requiredBootstrapSnippets = [
@@ -42,12 +42,21 @@ const requiredProjectBriefSnippets = [
   'Biggest Unknowns / Open Questions',
 ];
 
-const requiredVerifySnippets = ['pnpm verify', 'check:docs'];
+const requiredVerifySnippets = [
+  'pnpm verify',
+  'check:docs',
+  'Change Review Requirement',
+  'Hosted CI (Optional Surface)',
+];
 
 const requiredConstitutionSnippets = [
+  'Article I-A — Workflow Definitions',
+  'Pull Request (PR): an optional hosted platform surface',
   'Article V-A — Decomposition Before Development (Mandatory)',
+  'Article VII — Local-First Review and Merge Discipline',
   'Definition of Ready (Before Implementation)',
-  'decompose the problem into a sequence of small, verifiable work units',
+  'REVIEWS/*',
+  'Review Record',
 ];
 
 const requiredProposalTemplateSnippets = [
@@ -55,9 +64,34 @@ const requiredProposalTemplateSnippets = [
   'Thin slice milestone:',
   'Exit criteria:',
   'Verify by:',
+  '## Change Review Plan',
+  'Planned Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`',
+];
+
+const requiredReviewTemplateSnippets = [
+  'Review Boundary: merge from `<feature-branch>` into `main`',
+  '## Commits in Scope',
+  '## Acceptance Checklist',
+  '## Verification Evidence',
+  '## Rollback Plan',
+  '## Approvals',
+  '## Follow-Ups',
 ];
 
 const forbiddenPathSnippets = ['ROADMAP/commit-plan.md'];
+
+const filesWherePRMustNotAppear = [
+  'AGENTS.md',
+  'VERIFY.md',
+  'ROADMAP/COMMIT-PLAN.md',
+  'STATUS.md',
+  'DECISIONS.md',
+  'PROPOSALS/TEMPLATE.md',
+  'BOOTSTRAP.md',
+  'README.md',
+];
+
+const forbiddenPRPatterns = [/\bPR\b/, /pull request/i, /merge request/i];
 
 const problems = [];
 
@@ -67,68 +101,27 @@ for (const file of requiredFiles) {
   }
 }
 
-if (existsSync('README.md')) {
-  const content = readFileSync('README.md', 'utf8');
-  for (const snippet of requiredReadmeSnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`README.md missing required content: ${snippet}`);
-    }
+const hasAllSnippets = (file, snippets) => {
+  if (!existsSync(file)) {
+    return;
   }
-}
 
-if (existsSync('AGENTS.md')) {
-  const content = readFileSync('AGENTS.md', 'utf8');
-  for (const snippet of requiredAgentsSnippets) {
+  const content = readFileSync(file, 'utf8');
+  for (const snippet of snippets) {
     if (!content.includes(snippet)) {
-      problems.push(`AGENTS.md missing required content: ${snippet}`);
+      problems.push(`${file} missing required content: ${snippet}`);
     }
   }
-}
+};
 
-if (existsSync('BOOTSTRAP.md')) {
-  const content = readFileSync('BOOTSTRAP.md', 'utf8');
-  for (const snippet of requiredBootstrapSnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`BOOTSTRAP.md missing required content: ${snippet}`);
-    }
-  }
-}
-
-if (existsSync('PROJECT-BRIEF.md')) {
-  const content = readFileSync('PROJECT-BRIEF.md', 'utf8');
-  for (const snippet of requiredProjectBriefSnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`PROJECT-BRIEF.md missing required content: ${snippet}`);
-    }
-  }
-}
-
-if (existsSync('VERIFY.md')) {
-  const content = readFileSync('VERIFY.md', 'utf8');
-  for (const snippet of requiredVerifySnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`VERIFY.md missing required content: ${snippet}`);
-    }
-  }
-}
-
-if (existsSync('CONSTITUTION.md')) {
-  const content = readFileSync('CONSTITUTION.md', 'utf8');
-  for (const snippet of requiredConstitutionSnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`CONSTITUTION.md missing required content: ${snippet}`);
-    }
-  }
-}
-
-if (existsSync('PROPOSALS/TEMPLATE.md')) {
-  const content = readFileSync('PROPOSALS/TEMPLATE.md', 'utf8');
-  for (const snippet of requiredProposalTemplateSnippets) {
-    if (!content.includes(snippet)) {
-      problems.push(`PROPOSALS/TEMPLATE.md missing required content: ${snippet}`);
-    }
-  }
-}
+hasAllSnippets('README.md', requiredReadmeSnippets);
+hasAllSnippets('AGENTS.md', requiredAgentsSnippets);
+hasAllSnippets('BOOTSTRAP.md', requiredBootstrapSnippets);
+hasAllSnippets('PROJECT-BRIEF.md', requiredProjectBriefSnippets);
+hasAllSnippets('VERIFY.md', requiredVerifySnippets);
+hasAllSnippets('CONSTITUTION.md', requiredConstitutionSnippets);
+hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
+hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
 
 for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
   if (!existsSync(file)) {
@@ -140,6 +133,28 @@ for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
     if (content.includes(forbidden)) {
       problems.push(`${file} contains forbidden path variant: ${forbidden}`);
     }
+  }
+}
+
+for (const file of filesWherePRMustNotAppear) {
+  if (!existsSync(file)) {
+    continue;
+  }
+
+  const content = readFileSync(file, 'utf8');
+  for (const pattern of forbiddenPRPatterns) {
+    if (pattern.test(content)) {
+      problems.push(
+        `${file} contains PR-centric term (${pattern.toString()}) outside Constitution definitions`,
+      );
+    }
+  }
+}
+
+if (existsSync('.github/workflows/verify.yml')) {
+  const content = readFileSync('.github/workflows/verify.yml', 'utf8');
+  if (!content.includes('Optional hosted review surface.')) {
+    problems.push('.github/workflows/verify.yml missing optional-hosted-surface marker comment');
   }
 }
 
