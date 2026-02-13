@@ -374,6 +374,74 @@ Agents `SHOULD` prefer instrumentation over repeated speculative fixes.
 
 ---
 
+## Article XII-A — Bootstrapping and Toolchain Provisioning (Mandatory)
+
+### Section 0 — Preconditions
+
+Bootstrap workflow assumes the repository is already obtained via `git` and present on disk.
+Installing or acquiring `git` is out of scope for this constitution and bootstrap flow.
+
+### Section 1 — Bootstrap Goal
+
+Projects `MUST` provide a single canonical bootstrap entrypoint that provisions and validates required tooling other than `git`.
+
+Canonical bootstrap entrypoint `MUST` be one of:
+
+- `./bootstrap` (preferred), or
+- `make setup`, or
+- `task setup`.
+
+### Section 2 — Required Bootstrap Artifacts
+
+Repositories `MUST` include:
+
+- `GETTING_STARTED.md` with human-friendly setup instructions (starting from `repo already cloned`),
+- at least one pinned toolchain manifest for required runtimes/tools (`.tool-versions`, `mise.toml`, `.nvmrc`, `package.json` `engines`, etc.),
+- canonical verification command defined in `VERIFY.md`.
+
+### Section 3 — Bootstrap Responsibilities (Non-Git)
+
+Bootstrap `MUST`:
+
+- check for required tools and versions,
+- install missing tools only where safe and supported,
+- otherwise provide explicit install instructions,
+- be idempotent (safe to run repeatedly),
+- avoid destructive actions without explicit approval,
+- avoid privileged installation/escalation without explicit approval,
+- conclude by running canonical verification or explicitly instructing to run it.
+
+Bootstrap validation `MUST` include at minimum:
+
+- language runtime version requirements,
+- package manager tooling requirements,
+- build/test tooling required by `VERIFY.md`.
+
+### Section 4 — Non-Engineer Success Criteria
+
+From a fresh machine with repository already cloned, verified state `MUST` be reachable via:
+
+1. one bootstrap command, then
+2. one verification command if bootstrap does not run verification automatically.
+
+### Section 5 — Agent Behavior
+
+AI Agent `MUST NOT` assume non-git tooling is preinstalled.
+
+If required tooling is missing, AI Agent `MUST`:
+
+- detect and report what is missing,
+- choose safest supported installation path,
+- update `GETTING_STARTED.md` when setup gaps are discovered.
+
+Adding new required tooling `MUST` include:
+
+- tool/version pinning updates,
+- bootstrap entrypoint updates,
+- verification updates where applicable.
+
+---
+
 ## Article XIII — Debugging and RCA
 
 When change behavior fails, do not stack guesses.

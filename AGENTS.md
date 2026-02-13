@@ -35,6 +35,7 @@ No lower-priority file may weaken a higher-priority rule.
 ## Project Invariants
 
 - Canonical verification command: `pnpm verify`
+- Canonical bootstrap command: `./bootstrap`
 - Primary branch: `main`
 - First-run onboarding contract: `BOOTSTRAP.md`
 - Local-first Review Boundary: merge from feature branch into `main` with Review Record
@@ -57,6 +58,7 @@ Before making code changes, read:
 - `SPEC.md`
 - `STATUS.md`
 - `DECISIONS.md`
+- `GETTING_STARTED.md`
 - `VERIFY.md`
 - `ROADMAP/COMMIT-PLAN.md`
 
@@ -65,16 +67,17 @@ If `ROADMAP/COMMIT-PLAN.md` does not exist, create it before feature work.
 ## Mandatory Work Loop (Per Change)
 
 0. Confirm the next smallest valuable change from `ROADMAP/COMMIT-PLAN.md`.
-1. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
-2. If `PROJECT-BRIEF.md` is unfilled, run discovery and intake from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
-3. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
-4. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
-5. For non-trivial work, create a proposal in `PROPOSALS/`.
-6. Implement only approved scope.
-7. Run verification (`pnpm verify`).
-8. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-9. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
-10. Commit atomically with a conventional message.
+1. For fresh/unfamiliar environments, run `./bootstrap --no-verify` before other work to validate local toolchain.
+2. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
+3. If `PROJECT-BRIEF.md` is unfilled, run discovery and intake from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
+4. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
+5. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
+6. For non-trivial work, create a proposal in `PROPOSALS/`.
+7. Implement only approved scope.
+8. Run verification (`pnpm verify`).
+9. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
+10. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
+11. Commit atomically with a conventional message.
 
 Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
 
@@ -98,6 +101,15 @@ Exception: purely mechanical changes may skip a proposal.
   - expected output
   - failure interpretation
   - next steps
+
+## Bootstrap Rules
+
+- Bootstrap assumes repository is already cloned locally.
+- Installing or acquiring `git` is out of scope.
+- Do not assume Node.js/pnpm/tooling are preinstalled.
+- Use canonical bootstrap command `./bootstrap` unless an approved alternative setup command exists.
+- Avoid privileged installation/escalation without explicit approval.
+- If bootstrap gaps are found, update `GETTING_STARTED.md` in the same change sequence.
 
 ## Documentation Rules
 

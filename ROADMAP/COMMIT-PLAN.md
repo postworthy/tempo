@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C008 - docs(spec): write v1 product contract
+### [NEXT] C009 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -74,9 +74,19 @@ Acceptance met:
 - Review Records required at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial merges.
 - Hosted external review surfaces marked optional and non-authoritative.
 
+### [DONE] C008 - docs(onboarding): add bootstrap and toolchain provisioning baseline
+
+Acceptance met:
+
+- Canonical local bootstrap entrypoint `./bootstrap` added.
+- `GETTING_STARTED.md` added for repo-already-cloned setup flow.
+- Toolchain pin artifact (`.nvmrc`) added with runtime requirement.
+- `CONSTITUTION.md`, `AGENTS.md`, and `VERIFY.md` updated with bootstrap policy and constraints.
+- docs checks enforce required bootstrap artifacts and language.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C009 - feat(app): ship thin end-to-end slice
+### [TODO] C010 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -89,7 +99,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C010 - harden(app): add guardrails from first slice learnings
+### [TODO] C011 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

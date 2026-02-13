@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
+RUN_VERIFY=1
+if [[ "${1:-}" == "--no-verify" ]]; then
+  RUN_VERIFY=0
+fi
+
+echo "[bootstrap] Tempo local bootstrap starting..."
+echo "[bootstrap] Assumes repository is already cloned. Installing git is out of scope."
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "[bootstrap] Node.js is missing."
+  echo "[bootstrap] Install Node.js 20+ (for example from https://nodejs.org/) and rerun ./bootstrap."
+  exit 1
+fi
+
+if ! command -v pnpm >/dev/null 2>&1; then
+  if command -v corepack >/dev/null 2>&1; then
+    PM_VERSION="$(node -p "require('./package.json').packageManager")"
+    echo "[bootstrap] pnpm not found. Attempting safe user-level activation via corepack ($PM_VERSION)."
+    corepack enable
+    corepack prepare "$PM_VERSION" --activate
+  else
+    echo "[bootstrap] pnpm is missing and corepack is unavailable."
+    echo "[bootstrap] Install pnpm 9.x (for example: npm install -g pnpm@9) and rerun ./bootstrap."
+    exit 1
+  fi
+fi
+
+node scripts/bootstrap-check.mjs
+
+echo "[bootstrap] Installing dependencies..."
+pnpm install
+
+if [[ "$RUN_VERIFY" -eq 1 ]]; then
+  echo "[bootstrap] Running canonical verification (pnpm verify)..."
+  pnpm verify
+else
+  echo "[bootstrap] Skipping verification (--no-verify). Run 'pnpm verify' next."
+fi
+
+echo "[bootstrap] Done."

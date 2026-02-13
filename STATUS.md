@@ -17,6 +17,7 @@ docs(spec): write first project-specific spec from template
 - Added mandatory discovery-first ideation flow with clarifying-question minimums and structured brief sections.
 - Added mandatory decomposition-before-development governance for T1/T2/T3 work, including a Definition of Ready gate.
 - Added local-first Change Review model with Review Boundary and Review Record requirements.
+- Added canonical local toolchain bootstrap (`./bootstrap`) and `GETTING_STARTED.md` for non-technical onboarding.
 
 ## In Progress
 
@@ -28,8 +29,8 @@ docs(spec): write first project-specific spec from template
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-13--local-first-review-discipline.md`.
-- Governance now treats hosted external review surfaces as optional while requiring in-repo Review Records.
+- Proposal created: `PROPOSALS/2026-02-13--bootstrap-toolchain-provisioning.md`.
+- Bootstrap policy now requires a repo-already-cloned setup path with explicit non-git scope.
 
 ## Next Planned Changes
 

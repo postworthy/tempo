@@ -2,6 +2,16 @@
 
 All changes must be verified before crossing the Review Boundary into `main`.
 
+## Bootstrap Precondition
+
+For fresh machines or missing tooling, run canonical bootstrap first:
+
+```bash
+./bootstrap --no-verify
+```
+
+Bootstrap assumes repository is already cloned locally and does not manage `git` installation.
+
 ## Canonical Verification Gate (Required)
 
 ```bash

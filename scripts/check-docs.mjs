@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 
 const requiredFiles = [
   'AGENTS.md',
@@ -10,6 +10,8 @@ const requiredFiles = [
   'README.md',
   'PROPOSALS/TEMPLATE.md',
   'REVIEWS/TEMPLATE.md',
+  'GETTING_STARTED.md',
+  'bootstrap',
 ];
 
 const requiredReadmeSnippets = [
@@ -24,6 +26,9 @@ const requiredAgentsSnippets = [
   'Review Boundary',
   'Review Record',
   'Do not add git remotes or execute external `push`/`publish` actions',
+  'Canonical bootstrap command: `./bootstrap`',
+  'Bootstrap Rules',
+  'Installing or acquiring `git` is out of scope',
 ];
 
 const requiredBootstrapSnippets = [
@@ -31,6 +36,14 @@ const requiredBootstrapSnippets = [
   'Question minimums',
   'at least 3 clarifying questions',
   'Assumptions and unresolved questions list',
+];
+
+const requiredGettingStartedSnippets = [
+  'repository is already cloned locally',
+  'Installing or acquiring `git` is out of scope',
+  './bootstrap',
+  'pnpm verify',
+  'idempotent',
 ];
 
 const requiredProjectBriefSnippets = [
@@ -47,6 +60,7 @@ const requiredVerifySnippets = [
   'check:docs',
   'Change Review Requirement',
   'Hosted CI (Optional Surface)',
+  './bootstrap --no-verify',
 ];
 
 const requiredConstitutionSnippets = [
@@ -57,6 +71,9 @@ const requiredConstitutionSnippets = [
   'Definition of Ready (Before Implementation)',
   'REVIEWS/*',
   'Review Record',
+  'Article XII-A — Bootstrapping and Toolchain Provisioning (Mandatory)',
+  'Installing or acquiring `git` is out of scope',
+  './bootstrap',
 ];
 
 const requiredProposalTemplateSnippets = [
@@ -89,6 +106,7 @@ const filesWherePRMustNotAppear = [
   'PROPOSALS/TEMPLATE.md',
   'BOOTSTRAP.md',
   'README.md',
+  'GETTING_STARTED.md',
 ];
 
 const forbiddenPRPatterns = [/\bPR\b/, /pull request/i, /merge request/i];
@@ -117,6 +135,7 @@ const hasAllSnippets = (file, snippets) => {
 hasAllSnippets('README.md', requiredReadmeSnippets);
 hasAllSnippets('AGENTS.md', requiredAgentsSnippets);
 hasAllSnippets('BOOTSTRAP.md', requiredBootstrapSnippets);
+hasAllSnippets('GETTING_STARTED.md', requiredGettingStartedSnippets);
 hasAllSnippets('PROJECT-BRIEF.md', requiredProjectBriefSnippets);
 hasAllSnippets('VERIFY.md', requiredVerifySnippets);
 hasAllSnippets('CONSTITUTION.md', requiredConstitutionSnippets);
@@ -156,6 +175,35 @@ if (existsSync('.github/workflows/verify.yml')) {
   if (!content.includes('Optional hosted review surface.')) {
     problems.push('.github/workflows/verify.yml missing optional-hosted-surface marker comment');
   }
+}
+
+if (existsSync('bootstrap')) {
+  const isExecutable = (statSync('bootstrap').mode & 0o111) !== 0;
+  if (!isExecutable) {
+    problems.push('bootstrap exists but is not executable');
+  }
+}
+
+const hasPinnedToolchainManifest =
+  existsSync('.nvmrc') ||
+  existsSync('.tool-versions') ||
+  existsSync('mise.toml') ||
+  (() => {
+    if (!existsSync('package.json')) {
+      return false;
+    }
+    try {
+      const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+      return Boolean(pkg.engines);
+    } catch {
+      return false;
+    }
+  })();
+
+if (!hasPinnedToolchainManifest) {
+  problems.push(
+    'No pinned toolchain manifest found (.nvmrc/.tool-versions/mise.toml/package.json engines)',
+  );
 }
 
 if (problems.length > 0) {
