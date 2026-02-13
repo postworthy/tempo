@@ -14,9 +14,31 @@ const requiredReadmeSnippets = [
   'Use this repo as my starter pack.',
   'BOOTSTRAP.md',
   'PROJECT-BRIEF.md',
+  'discovery mode',
 ];
 
-const requiredAgentsSnippets = ['BOOTSTRAP.md', 'PROJECT-BRIEF.md'];
+const requiredAgentsSnippets = [
+  'BOOTSTRAP.md',
+  'PROJECT-BRIEF.md',
+  'at least 3 clarifying questions',
+  'follow-up question',
+];
+
+const requiredBootstrapSnippets = [
+  'Discovery Phase (Mandatory)',
+  'Question minimums',
+  'at least 3 clarifying questions',
+  'Assumptions and unresolved questions list',
+];
+
+const requiredProjectBriefSnippets = [
+  'Problem Statement (In User Words)',
+  'Why Now / Motivation',
+  'Alternatives Considered',
+  'Chosen V1 Scope and Why',
+  'Top Assumptions to Validate',
+  'Biggest Unknowns / Open Questions',
+];
 
 const requiredVerifySnippets = ['pnpm verify', 'check:docs'];
 
@@ -44,6 +66,24 @@ if (existsSync('AGENTS.md')) {
   for (const snippet of requiredAgentsSnippets) {
     if (!content.includes(snippet)) {
       problems.push(`AGENTS.md missing required content: ${snippet}`);
+    }
+  }
+}
+
+if (existsSync('BOOTSTRAP.md')) {
+  const content = readFileSync('BOOTSTRAP.md', 'utf8');
+  for (const snippet of requiredBootstrapSnippets) {
+    if (!content.includes(snippet)) {
+      problems.push(`BOOTSTRAP.md missing required content: ${snippet}`);
+    }
+  }
+}
+
+if (existsSync('PROJECT-BRIEF.md')) {
+  const content = readFileSync('PROJECT-BRIEF.md', 'utf8');
+  for (const snippet of requiredProjectBriefSnippets) {
+    if (!content.includes(snippet)) {
+      problems.push(`PROJECT-BRIEF.md missing required content: ${snippet}`);
     }
   }
 }

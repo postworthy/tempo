@@ -30,7 +30,7 @@ Clone it. Start building. Keep the rhythm.
 ## Agent First Command
 
 ```bash
-codex "Please clone and use the tempo vibe coding starter pack via `git clone https://github.com/postworthy/tempo.git` and use it as the basis for my project."
+codex "Please clone and use the tempo vibe coding starter pack via `git clone https://github.com/postworthy/tempo.git` and use it as the basis for my project. Start in discovery mode: help me brainstorm, ask clarifying questions, propose 2-3 v1 scope options with trade-offs, then draft PROJECT-BRIEF.md and SPEC.md for my approval before coding."
 ```
 
 ## Alternative Method

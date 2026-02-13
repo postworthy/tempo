@@ -59,3 +59,14 @@ Novices need a predictable, low-friction start that captures intent before code 
 
 Consequences:
 `BOOTSTRAP.md` and `PROJECT-BRIEF.md` become first-run mandatory artifacts; assistants must prompt users instead of assuming scope.
+
+## 2026-02-13 - Discovery-First Ideation During Bootstrap
+
+Decision:
+Require assistants to run a short discovery/rubberduck phase with clarifying questions and scoped option trade-offs before finalizing the project brief.
+
+Rationale:
+Early idea expansion reduces ambiguity, improves spec quality, and helps novice users articulate a buildable v1 scope.
+
+Consequences:
+Bootstrap now includes minimum clarifying-question expectations, explicit assumption handling, and additional brief structure for alternatives, assumptions, and unknowns.

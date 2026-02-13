@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C005 - docs(spec): write v1 product contract
+### [NEXT] C006 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -48,9 +48,18 @@ Acceptance met:
 - `AGENTS.md`, `README.md`, and `VERIFY.md` align on onboarding + verification behavior.
 - Assistant adapter files (`CLAUDE.md`, `CODEX.md`, Cursor rule) route to canonical instructions.
 
+### [DONE] C005 - docs(onboarding): add discovery-first idea shaping flow
+
+Acceptance met:
+
+- `BOOTSTRAP.md` requires discovery/rubberduck conversation before brief finalization.
+- `PROJECT-BRIEF.md` captures motivation, alternatives, assumptions, and unknowns.
+- `AGENTS.md` enforces clarifying-question minimums during bootstrap.
+- `check:docs` validates discovery-specific onboarding sections.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C006 - feat(app): ship thin end-to-end slice
+### [TODO] C007 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -63,7 +72,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C007 - harden(app): add guardrails from first slice learnings
+### [TODO] C008 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

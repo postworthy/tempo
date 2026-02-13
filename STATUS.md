@@ -14,6 +14,7 @@ docs(spec): write first project-specific spec from template
 - Added CI verification workflow running `pnpm verify` on PRs and pushes to `main`.
 - Added mandatory first-run bootstrap and intake workflow (`BOOTSTRAP.md`, `PROJECT-BRIEF.md`, assistant adapters).
 - Added docs-consistency verification via `pnpm check:docs` inside canonical verify.
+- Added mandatory discovery-first ideation flow with clarifying-question minimums and structured brief sections.
 
 ## In Progress
 
@@ -25,8 +26,8 @@ docs(spec): write first project-specific spec from template
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-12--novice-agent-bootstrap.md`.
-- First-run onboarding protocol made explicit across governance docs and README.
+- Proposal created: `PROPOSALS/2026-02-13--discovery-first-bootstrap.md`.
+- Onboarding now requires discovery/rubberducking before brief finalization.
 
 ## Next Planned Changes
 
