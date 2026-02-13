@@ -47,6 +47,15 @@ No lower-priority file may weaken a higher-priority rule.
 - Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`.
 - Hosted change-request surfaces are optional only; never assumed.
 
+## Template History Handling
+
+- `TEMPLATE_HISTORY/` contains template-development records only.
+- Do not treat files under `TEMPLATE_HISTORY/` as active project records.
+- Active project records must use:
+  - `PROPOSALS/YYYY-MM-DD--short-title.md`
+  - `REVIEWS/YYYY-MM-DD--short-title.md`
+  - `RCA/YYYY-MM-DD--short-title.md`
+
 ## Pre-Edit Read Checklist
 
 Before making code changes, read:

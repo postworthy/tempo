@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C009 - docs(spec): write v1 product contract
+### [NEXT] C010 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -84,9 +84,18 @@ Acceptance met:
 - `CONSTITUTION.md`, `AGENTS.md`, and `VERIFY.md` updated with bootstrap policy and constraints.
 - docs checks enforce required bootstrap artifacts and language.
 
+### [DONE] C009 - docs(template): separate template history from active project records
+
+Acceptance met:
+
+- Existing dated template proposals moved to `TEMPLATE_HISTORY/PROPOSALS/`.
+- Active `PROPOSALS/`, `REVIEWS/`, and `RCA/` remain template-only in fresh-template mode.
+- `./bootstrap --init-project` added for one-time project baseline reset with backups.
+- Docs checks enforce clean live record folders while `PROJECT-BRIEF.md` is unfilled.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C010 - feat(app): ship thin end-to-end slice
+### [TODO] C011 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -99,7 +108,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C011 - harden(app): add guardrails from first slice learnings
+### [TODO] C012 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

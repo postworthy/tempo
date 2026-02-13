@@ -19,11 +19,34 @@ What this does:
 - installs dependencies,
 - runs canonical verification (`pnpm verify`).
 
-## If You Need Setup Without Full Verify
+## Template History vs Your Project History
+
+Tempo ships with historical governance records in `TEMPLATE_HISTORY/`.
+
+These are reference artifacts for how the template was built.
+They are not active project records.
+
+Active record folders should start clean for new projects:
+
+- `PROPOSALS/` contains only `TEMPLATE.md`
+- `REVIEWS/` contains only `TEMPLATE.md`
+- `RCA/` contains only `TEMPLATE.md`
+
+## One-Time Project Initialization
+
+If you want a clean baseline for your own project records:
 
 ```bash
-./bootstrap --no-verify
+./bootstrap --init-project --no-verify
 ```
+
+This resets:
+
+- `PROJECT-BRIEF.md` to unfilled baseline,
+- `STATUS.md` to starter baseline,
+- `ROADMAP/COMMIT-PLAN.md` to starter next-commit plan.
+
+A backup is created under `.template-init-backup/<timestamp>/` before changes.
 
 Then run:
 

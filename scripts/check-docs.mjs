@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 
 const requiredFiles = [
   'AGENTS.md',
@@ -12,6 +12,7 @@ const requiredFiles = [
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
   'bootstrap',
+  'TEMPLATE_HISTORY/README.md',
 ];
 
 const requiredReadmeSnippets = [
@@ -29,6 +30,8 @@ const requiredAgentsSnippets = [
   'Canonical bootstrap command: `./bootstrap`',
   'Bootstrap Rules',
   'Installing or acquiring `git` is out of scope',
+  'Template History Handling',
+  'Do not treat files under `TEMPLATE_HISTORY/` as active project records',
 ];
 
 const requiredBootstrapSnippets = [
@@ -44,6 +47,7 @@ const requiredGettingStartedSnippets = [
   './bootstrap',
   'pnpm verify',
   'idempotent',
+  'Template History vs Your Project History',
 ];
 
 const requiredProjectBriefSnippets = [
@@ -95,6 +99,14 @@ const requiredReviewTemplateSnippets = [
   '## Follow-Ups',
 ];
 
+const requiredTemplateHistorySnippets = [
+  'TEMPLATE_HISTORY',
+  'not active project records',
+  'PROPOSALS/',
+  'REVIEWS/',
+  'RCA/',
+];
+
 const forbiddenPathSnippets = ['ROADMAP/commit-plan.md'];
 
 const filesWherePRMustNotAppear = [
@@ -141,6 +153,7 @@ hasAllSnippets('VERIFY.md', requiredVerifySnippets);
 hasAllSnippets('CONSTITUTION.md', requiredConstitutionSnippets);
 hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
 hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
+hasAllSnippets('TEMPLATE_HISTORY/README.md', requiredTemplateHistorySnippets);
 
 for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
   if (!existsSync(file)) {
@@ -204,6 +217,32 @@ if (!hasPinnedToolchainManifest) {
   problems.push(
     'No pinned toolchain manifest found (.nvmrc/.tool-versions/mise.toml/package.json engines)',
   );
+}
+
+const projectBriefIsUnfilled =
+  existsSync('PROJECT-BRIEF.md') &&
+  readFileSync('PROJECT-BRIEF.md', 'utf8').includes('Status: UNFILLED');
+
+if (projectBriefIsUnfilled) {
+  const liveRecordFolders = [
+    ['PROPOSALS', 'TEMPLATE.md'],
+    ['REVIEWS', 'TEMPLATE.md'],
+    ['RCA', 'TEMPLATE.md'],
+  ];
+
+  for (const [folder, templateFile] of liveRecordFolders) {
+    if (!existsSync(folder)) {
+      continue;
+    }
+
+    const files = readdirSync(folder).filter((name) => name.endsWith('.md'));
+    const nonTemplate = files.filter((name) => name !== templateFile);
+    if (nonTemplate.length > 0) {
+      problems.push(
+        `${folder}/ contains non-template records in fresh-template mode: ${nonTemplate.join(', ')}`,
+      );
+    }
+  }
 }
 
 if (problems.length > 0) {
