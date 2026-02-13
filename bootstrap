@@ -5,9 +5,33 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
 RUN_VERIFY=1
-if [[ "${1:-}" == "--no-verify" ]]; then
-  RUN_VERIFY=0
-fi
+INIT_PROJECT=0
+
+for arg in "$@"; do
+  case "$arg" in
+    --no-verify)
+      RUN_VERIFY=0
+      ;;
+    --init-project)
+      INIT_PROJECT=1
+      ;;
+    --help|-h)
+      cat <<'HELP'
+Usage: ./bootstrap [--no-verify] [--init-project]
+
+Options:
+  --no-verify    Skip pnpm verify at the end.
+  --init-project Reset project records to a clean starter baseline.
+HELP
+      exit 0
+      ;;
+    *)
+      echo "[bootstrap] Unknown argument: $arg"
+      echo "[bootstrap] Use ./bootstrap --help"
+      exit 1
+      ;;
+  esac
+done
 
 echo "[bootstrap] Tempo local bootstrap starting..."
 echo "[bootstrap] Assumes repository is already cloned. Installing git is out of scope."
@@ -32,6 +56,11 @@ if ! command -v pnpm >/dev/null 2>&1; then
 fi
 
 node scripts/bootstrap-check.mjs
+
+if [[ "$INIT_PROJECT" -eq 1 ]]; then
+  echo "[bootstrap] Initializing project records to starter baseline..."
+  ./scripts/init-project.sh
+fi
 
 echo "[bootstrap] Installing dependencies..."
 pnpm install

@@ -18,6 +18,7 @@ docs(spec): write first project-specific spec from template
 - Added mandatory decomposition-before-development governance for T1/T2/T3 work, including a Definition of Ready gate.
 - Added local-first Change Review model with Review Boundary and Review Record requirements.
 - Added canonical local toolchain bootstrap (`./bootstrap`) and `GETTING_STARTED.md` for non-technical onboarding.
+- Separated template-development history into `TEMPLATE_HISTORY/` while keeping active project record folders clean by default.
 
 ## In Progress
 
@@ -29,8 +30,8 @@ docs(spec): write first project-specific spec from template
 
 ## Recent Changes
 
-- Proposal created: `PROPOSALS/2026-02-13--bootstrap-toolchain-provisioning.md`.
-- Bootstrap policy now requires a repo-already-cloned setup path with explicit non-git scope.
+- Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
+- Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 
 ## Next Planned Changes
 

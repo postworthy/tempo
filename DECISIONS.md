@@ -103,3 +103,14 @@ Non-developer users need a deterministic setup path that does not assume preinst
 
 Consequences:
 Bootstrap now validates tooling, provides safe install paths or explicit instructions, and aligns with canonical verification without managing `git` acquisition.
+
+## 2026-02-13 - Template History Separation from Active Project Records
+
+Decision:
+Move template-development governance records into `TEMPLATE_HISTORY/` and keep active project record folders clean by default for fresh clones.
+
+Rationale:
+Users starting new projects should inherit process templates, not historical project-specific records.
+
+Consequences:
+Fresh-template mode enforces template-only live record folders while `PROJECT-BRIEF.md` remains unfilled; `./bootstrap --init-project` provides a one-time baseline reset with backups.
