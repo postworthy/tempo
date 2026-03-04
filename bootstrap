@@ -6,32 +6,65 @@ cd "$ROOT_DIR"
 
 RUN_VERIFY=1
 INIT_PROJECT=0
+MODE="auto"
+RUN_INTAKE_SCAN="auto"
 
-for arg in "$@"; do
-  case "$arg" in
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
     --no-verify)
       RUN_VERIFY=0
+      shift
       ;;
     --init-project)
       INIT_PROJECT=1
+      shift
+      ;;
+    --mode)
+      if [[ "$#" -lt 2 ]]; then
+        echo "[bootstrap] Missing value for --mode (expected: auto|greenfield|adopt-existing)"
+        exit 1
+      fi
+      MODE="$2"
+      shift 2
+      ;;
+    --mode=*)
+      MODE="${1#*=}"
+      shift
+      ;;
+    --intake-scan)
+      RUN_INTAKE_SCAN=1
+      shift
+      ;;
+    --no-intake-scan)
+      RUN_INTAKE_SCAN=0
+      shift
       ;;
     --help|-h)
       cat <<'HELP'
-Usage: ./bootstrap [--no-verify] [--init-project]
+Usage: ./bootstrap [--no-verify] [--init-project] [--mode <auto|greenfield|adopt-existing>] [--intake-scan|--no-intake-scan]
 
 Options:
   --no-verify    Skip pnpm verify at the end.
   --init-project Reset project records to a clean starter baseline.
+  --mode         Onboarding mode. Defaults to auto-detect.
+  --intake-scan  Force running repository intake scan.
+  --no-intake-scan
+                 Disable intake scan even in adopt-existing mode.
 HELP
       exit 0
       ;;
     *)
-      echo "[bootstrap] Unknown argument: $arg"
+      echo "[bootstrap] Unknown argument: $1"
       echo "[bootstrap] Use ./bootstrap --help"
       exit 1
       ;;
   esac
 done
+
+if [[ "$MODE" != "auto" && "$MODE" != "greenfield" && "$MODE" != "adopt-existing" ]]; then
+  echo "[bootstrap] Invalid mode '$MODE' (expected: auto|greenfield|adopt-existing)"
+  exit 1
+fi
 
 echo "[bootstrap] Tempo local bootstrap starting..."
 echo "[bootstrap] Assumes repository is already cloned. Installing git is out of scope."
@@ -62,6 +95,13 @@ fi
 
 node scripts/bootstrap-check.mjs
 
+if [[ "$MODE" == "auto" ]]; then
+  MODE="$(node scripts/intake-scan.mjs --mode-only)"
+  echo "[bootstrap] Auto-detected onboarding mode: $MODE"
+else
+  echo "[bootstrap] Onboarding mode override: $MODE"
+fi
+
 if [[ "$INIT_PROJECT" -eq 1 ]]; then
   echo "[bootstrap] Initializing project records to starter baseline..."
   ./scripts/init-project.sh
@@ -69,6 +109,11 @@ fi
 
 echo "[bootstrap] Installing dependencies..."
 pnpm install
+
+if [[ "$RUN_INTAKE_SCAN" == "1" || ( "$RUN_INTAKE_SCAN" == "auto" && "$MODE" == "adopt-existing" ) ]]; then
+  echo "[bootstrap] Running repository intake scan..."
+  pnpm intake:scan -- --write
+fi
 
 if [[ "$RUN_VERIFY" -eq 1 ]]; then
   echo "[bootstrap] Running canonical verification (pnpm verify)..."

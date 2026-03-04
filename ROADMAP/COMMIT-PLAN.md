@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C011 - docs(spec): write v1 product contract
+### [NEXT] C012 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -103,9 +103,20 @@ Acceptance met:
 - Added repository-local hooks (`.githooks/pre-commit`, `commit-msg`, `pre-push`) and bootstrap hook-path setup.
 - `check:docs` now enforces presence of git policy artifacts and hook executability.
 
+### [DONE] C011 - docs(bootstrap): support adopt-existing onboarding mode
+
+Acceptance met:
+
+- `BOOTSTRAP.md` now defines `greenfield` and `adopt-existing` onboarding modes with mode selection and delta-question intake guidance.
+- `AGENTS.md` mandatory work loop now requires mode selection and repository discovery before intake in adopt-existing mode.
+- Added repository discovery scanner (`scripts/intake-scan.mjs`) and npm script (`pnpm intake:scan`).
+- `bootstrap` now supports `--mode` and auto-mode detection; it can run intake scan artifacts in adopt-existing mode.
+- `PROJECT-BRIEF.md` now captures inferred-vs-confirmed facts for existing-codebase onboarding.
+- `GETTING_STARTED.md` includes an explicit existing-repo adoption path.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C012 - feat(app): ship thin end-to-end slice
+### [TODO] C013 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -118,7 +129,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C013 - harden(app): add guardrails from first slice learnings
+### [TODO] C014 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

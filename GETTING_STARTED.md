@@ -20,6 +20,14 @@ What this does:
 - installs dependencies,
 - runs canonical verification (`pnpm verify`).
 
+## Onboarding Modes
+
+Tempo supports:
+
+- `greenfield`: new project startup flow.
+- `adopt-existing`: apply Tempo governance to a codebase that already has implementation history.
+- `auto`: infer mode from repository signals (default bootstrap behavior).
+
 ## Template History vs Your Project History
 
 Tempo ships with historical governance records in `TEMPLATE_HISTORY/`.
@@ -54,6 +62,22 @@ Then run:
 ```bash
 pnpm verify
 ```
+
+## Adopt Tempo in an Existing Repository
+
+From an existing repository root:
+
+```bash
+./bootstrap --mode adopt-existing --no-verify
+```
+
+Then run repository discovery to generate an intake snapshot:
+
+```bash
+pnpm intake:scan -- --write
+```
+
+Use the generated discovery findings as hypotheses, and ask only delta questions that code review cannot answer.
 
 ## If Bootstrap Reports Missing Tools
 

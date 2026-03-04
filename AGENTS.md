@@ -95,15 +95,18 @@ Rules:
 1. Run git preflight (`git rev-parse --abbrev-ref HEAD` and `git status --short`).
 2. For fresh/unfamiliar environments, run `./bootstrap --no-verify` before other work to validate local toolchain.
 3. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
-4. If `PROJECT-BRIEF.md` is unfilled, run discovery and intake from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
-5. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
-6. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
-7. For non-trivial work, create a proposal in `PROPOSALS/`.
-8. Implement only approved scope.
-9. Run verification (`pnpm verify`).
-10. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-11. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
-12. Commit atomically with a conventional message and required trailers.
+4. If `PROJECT-BRIEF.md` is unfilled, select onboarding mode (`greenfield` or `adopt-existing`) from `BOOTSTRAP.md`.
+5. For `adopt-existing` mode, run repository discovery (`pnpm intake:scan`) and treat findings as hypotheses until user-confirmed.
+6. Run discovery and intake from `BOOTSTRAP.md`, then update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
+7. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
+8. For `adopt-existing` mode, prefer delta questions about product intent and constraints not discoverable via code review.
+9. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
+10. For non-trivial work, create a proposal in `PROPOSALS/`.
+11. Implement only approved scope.
+12. Run verification (`pnpm verify`).
+13. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
+14. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
+15. Commit atomically with a conventional message and required trailers.
 
 Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
 
@@ -134,6 +137,10 @@ Exception: purely mechanical changes may skip a proposal.
 - Installing or acquiring `git` is out of scope.
 - Do not assume Node.js/pnpm/tooling are preinstalled.
 - Use canonical bootstrap command `./bootstrap` unless an approved alternative setup command exists.
+- Use onboarding mode:
+  - `--mode greenfield` for net-new projects,
+  - `--mode adopt-existing` for pre-existing codebases,
+  - `--mode auto` to infer mode from repository signals.
 - Avoid privileged installation/escalation without explicit approval.
 - If bootstrap gaps are found, update `GETTING_STARTED.md` in the same change sequence.
 
