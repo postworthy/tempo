@@ -4,7 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C010 - docs(spec): write v1 product contract
+### [NEXT] C011 - docs(spec): write v1 product contract
 
 Goal:
 
@@ -93,9 +93,19 @@ Acceptance met:
 - `./bootstrap --init-project` added for one-time project baseline reset with backups.
 - Docs checks enforce clean live record folders while `PROJECT-BRIEF.md` is unfilled.
 
+### [DONE] C010 - chore(governance): enforce git execution controls and policy checks
+
+Acceptance met:
+
+- `CONSTITUTION.md`, `AGENTS.md`, `VERIFY.md`, and templates specify git preflight, branch naming, trailers, and merge method controls.
+- Adapter files (`CODEX.md`, `CLAUDE.md`, Cursor rule) include compact git non-negotiables for context compression resilience.
+- Added `pnpm check:git-policy` and integrated it into canonical verify.
+- Added repository-local hooks (`.githooks/pre-commit`, `commit-msg`, `pre-push`) and bootstrap hook-path setup.
+- `check:docs` now enforces presence of git policy artifacts and hook executability.
+
 ## Milestone M1 - First Vertical Slice
 
-### [TODO] C011 - feat(app): ship thin end-to-end slice
+### [TODO] C012 - feat(app): ship thin end-to-end slice
 
 Goal:
 
@@ -108,7 +118,7 @@ Acceptance:
 - Verification passes.
 - Docs updated (`STATUS.md`, `DECISIONS.md`, proposal notes).
 
-### [TODO] C012 - harden(app): add guardrails from first slice learnings
+### [TODO] C013 - harden(app): add guardrails from first slice learnings
 
 Goal:
 

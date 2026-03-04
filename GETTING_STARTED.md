@@ -16,6 +16,7 @@ What this does:
 
 - checks required Node.js and pnpm versions,
 - activates pnpm via corepack when safe and available,
+- configures repository-local git hooks under `.githooks/`,
 - installs dependencies,
 - runs canonical verification (`pnpm verify`).
 
@@ -59,3 +60,13 @@ pnpm verify
 Follow the exact install instructions printed by `./bootstrap`, then run `./bootstrap` again.
 
 The bootstrap process is idempotent and safe to rerun.
+
+## Push Safety
+
+Tempo blocks `git push` by default using a local pre-push hook.
+
+Only push when explicitly approved and recorded in `DECISIONS.md`, then run the push command with:
+
+```bash
+TEMPO_PUSH_APPROVED=1 git push
+```

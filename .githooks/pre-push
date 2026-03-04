@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${TEMPO_PUSH_APPROVED:-0}" != "1" ]]; then
+  echo "[tempo pre-push] Push blocked by default."
+  echo "[tempo pre-push] Set TEMPO_PUSH_APPROVED=1 only after explicit approval and DECISIONS.md recording."
+  exit 1
+fi
+
+echo "[tempo pre-push] Running pnpm check:git-policy ..."
+pnpm check:git-policy

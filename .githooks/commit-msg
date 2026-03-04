@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MSG_FILE="${1:-}"
+if [[ -z "$MSG_FILE" || ! -f "$MSG_FILE" ]]; then
+  echo "[tempo commit-msg] Missing commit message file argument."
+  exit 1
+fi
+
+SUBJECT="$(sed -n '/^[[:space:]]*#/d;/^[[:space:]]*$/d;1p' "$MSG_FILE")"
+BODY="$(cat "$MSG_FILE")"
+
+if [[ -z "$SUBJECT" ]]; then
+  echo "[tempo commit-msg] Commit subject cannot be empty."
+  exit 1
+fi
+
+if [[ "$SUBJECT" =~ ^Merge[[:space:]] ]]; then
+  exit 0
+fi
+
+if ! grep -Eq '^(feat|fix|docs|chore|refactor|test|ci|build|perf|revert)(\([^)]+\))?:[[:space:]].+' <<<"$SUBJECT"; then
+  echo "[tempo commit-msg] Subject must follow conventional format: <type>(<scope>): <summary>"
+  echo "[tempo commit-msg] Received: $SUBJECT"
+  exit 1
+fi
+
+if ! grep -Eq '^Roadmap: ROADMAP/COMMIT-PLAN\.md#C[0-9]{3}[A-Z]?$' <<<"$BODY"; then
+  echo "[tempo commit-msg] Missing trailer: Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx"
+  exit 1
+fi
+
+if ! grep -Eq '^Proposal: (PROPOSALS/[0-9]{4}-[0-9]{2}-[0-9]{2}--[a-z0-9-]+\.md|PROPOSALS/TEMPLATE\.md|N/A \(T0\))$' <<<"$BODY"; then
+  echo "[tempo commit-msg] Missing/invalid Proposal trailer."
+  echo "[tempo commit-msg] Use one of:"
+  echo "  Proposal: PROPOSALS/YYYY-MM-DD--short-title.md"
+  echo "  Proposal: PROPOSALS/TEMPLATE.md"
+  echo "  Proposal: N/A (T0)"
+  exit 1
+fi

@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-docs(spec): write first project-specific spec from template
+C011 docs(spec): write first project-specific spec from template
 
 ## Done (High-Level)
 
@@ -19,6 +19,7 @@ docs(spec): write first project-specific spec from template
 - Added local-first Change Review model with Review Boundary and Review Record requirements.
 - Added canonical local toolchain bootstrap (`./bootstrap`) and `GETTING_STARTED.md` for non-technical onboarding.
 - Separated template-development history into `TEMPLATE_HISTORY/` while keeping active project record folders clean by default.
+- Hardened git governance with mandatory preflight checks, branch naming rules, commit trailer requirements, and local hook enforcement.
 
 ## In Progress
 
@@ -32,6 +33,8 @@ docs(spec): write first project-specific spec from template
 
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
+- Added `pnpm check:git-policy` and integrated it into canonical verification.
+- Added `.githooks` (`pre-commit`, `commit-msg`, `pre-push`) and wired hook setup into `./bootstrap`.
 
 ## Next Planned Changes
 

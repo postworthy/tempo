@@ -15,10 +15,11 @@
     "typecheck": "tsc --noEmit",
     "bootstrap:check": "node scripts/bootstrap-check.mjs",
     "check:docs": "node scripts/check-docs.mjs",
+    "check:git-policy": "node scripts/check-git-policy.mjs",
     "test": "vitest run",
     "build": "tsc -p tsconfig.json",
     "verify:fast": "pnpm format:check && pnpm lint && pnpm typecheck",
-    "verify": "pnpm verify:fast && pnpm check:docs && pnpm test && pnpm build"
+    "verify": "pnpm verify:fast && pnpm check:docs && pnpm check:git-policy && pnpm test && pnpm build"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PRIMARY_BRANCH="${TEMPO_PRIMARY_BRANCH:-main}"
+BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
+BRANCH_PATTERN='^(feat|fix|docs|chore|refactor|test|ci|hotfix)/c[0-9]{3}-[a-z0-9-]+$'
+
+if [[ "$BRANCH" == "$PRIMARY_BRANCH" ]]; then
+  echo "[tempo pre-commit] Direct commits to '$PRIMARY_BRANCH' are prohibited."
+  echo "[tempo pre-commit] Create a feature branch first (example: git switch -c chore/c010-<short-name>)."
+  exit 1
+fi
+
+if [[ -n "$BRANCH" ]] && ! [[ "$BRANCH" =~ $BRANCH_PATTERN ]]; then
+  echo "[tempo pre-commit] Branch '$BRANCH' does not match required pattern:"
+  echo "  $BRANCH_PATTERN"
+  exit 1
+fi
+
+if [[ "${TEMPO_SKIP_HOOK_VERIFY_FAST:-0}" == "1" ]]; then
+  echo "[tempo pre-commit] Skipping verify:fast (TEMPO_SKIP_HOOK_VERIFY_FAST=1)."
+  exit 0
+fi
+
+echo "[tempo pre-commit] Running pnpm verify:fast ..."
+pnpm verify:fast

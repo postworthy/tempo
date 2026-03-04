@@ -36,6 +36,11 @@ done
 echo "[bootstrap] Tempo local bootstrap starting..."
 echo "[bootstrap] Assumes repository is already cloned. Installing git is out of scope."
 
+if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "[bootstrap] Configuring repository-local git hooks (.githooks)..."
+  git config core.hooksPath .githooks
+fi
+
 if ! command -v node >/dev/null 2>&1; then
   echo "[bootstrap] Node.js is missing."
   echo "[bootstrap] Install Node.js 20+ (for example from https://nodejs.org/) and rerun ./bootstrap."

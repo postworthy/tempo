@@ -246,8 +246,12 @@ If a change cannot be safely decomposed, the AI Agent `MUST` split it into multi
    - 300 lines changed or fewer,
    - 10 files touched or fewer.
 3. Larger changes `MUST` be justified in proposal and split when possible.
-4. Commit messages `MUST` follow conventional format.
-5. Direct commits to `main` are prohibited.
+4. Commit subject lines `MUST` follow conventional format: `<type>(<scope>): <summary>`.
+5. Commit bodies `MUST` include:
+   - `Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx`
+   - `Proposal: PROPOSALS/YYYY-MM-DD--short-title.md`
+   - for approved T0/mechanical changes without proposal, `Proposal: N/A (T0)`.
+6. Direct commits to `main` are prohibited.
 
 ---
 
@@ -266,6 +270,27 @@ If a change cannot be safely decomposed, the AI Agent `MUST` split it into multi
    - risk class declaration,
    - safety review (for T2/T3),
    - approval captured in the Review Record.
+6. Feature branches `MUST` match:
+   - `^(feat|fix|docs|chore|refactor|test|ci|hotfix)/c[0-9]{3}-[a-z0-9-]+$`
+7. If a repository uses a primary branch name other than `main`, that exception `MUST` be recorded in `DECISIONS.md` and mirrored in `AGENTS.md`.
+8. Review Boundary merge method `MUST` be declared in proposal/review artifacts and executed consistently.
+
+---
+
+## Article VII-A — Git Execution Controls
+
+Before edits, AI Agent `MUST` run git preflight:
+
+- `git rev-parse --abbrev-ref HEAD`
+- `git status --porcelain`
+
+Required behavior:
+
+1. If current branch is `main`, create/switch to a feature branch before editing.
+2. If worktree contains unrelated changes, pause and ask before proceeding.
+3. Destructive git operations (`reset --hard`, `clean -fd`, `checkout --`, `restore --source`, history rewrite) require explicit human approval.
+4. External remote actions (`push`/`publish`/remote add/remove) require explicit approval and `DECISIONS.md` record.
+5. Review Records `MUST` enumerate exact commits in scope.
 
 ---
 

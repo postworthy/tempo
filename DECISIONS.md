@@ -114,3 +114,14 @@ Users starting new projects should inherit process templates, not historical pro
 
 Consequences:
 Fresh-template mode enforces template-only live record folders while `PROJECT-BRIEF.md` remains unfilled; `./bootstrap --init-project` provides a one-time baseline reset with backups.
+
+## 2026-03-04 - Git Policy Enforcement Baseline
+
+Decision:
+Adopt mandatory git preflight, branch naming, commit trailer, and local hook enforcement (`.githooks`) with `pnpm check:git-policy` integrated into canonical verification.
+
+Rationale:
+Instruction-only controls degrade under long context windows. Lightweight executable guardrails reduce drift and keep git history conformant.
+
+Consequences:
+Bootstrap now configures repository-local hooks; local development is blocked on direct-to-main commits, non-conventional commit messages, and missing roadmap/proposal trailers.

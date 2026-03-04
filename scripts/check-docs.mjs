@@ -12,6 +12,10 @@ const requiredFiles = [
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
   'bootstrap',
+  '.githooks/pre-commit',
+  '.githooks/commit-msg',
+  '.githooks/pre-push',
+  'scripts/check-git-policy.mjs',
   'TEMPLATE_HISTORY/README.md',
 ];
 
@@ -22,6 +26,7 @@ const requiredReadmeSnippets = [
 ];
 
 const requiredAgentsSnippets = [
+  'Git Preflight Checklist (Mandatory Before Edits)',
   'Definition of Ready (Before Implementation)',
   'decompose work into small verifiable units',
   'Review Boundary',
@@ -30,6 +35,8 @@ const requiredAgentsSnippets = [
   'Canonical bootstrap command: `./bootstrap`',
   'Bootstrap Rules',
   'Installing or acquiring `git` is out of scope',
+  'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
+  'Proposal: N/A (T0)',
   'Template History Handling',
   'Do not treat files under `TEMPLATE_HISTORY/` as active project records',
 ];
@@ -46,6 +53,7 @@ const requiredGettingStartedSnippets = [
   'Installing or acquiring `git` is out of scope',
   './bootstrap',
   'pnpm verify',
+  '.githooks',
   'idempotent',
   'Template History vs Your Project History',
 ];
@@ -62,6 +70,8 @@ const requiredProjectBriefSnippets = [
 const requiredVerifySnippets = [
   'pnpm verify',
   'check:docs',
+  'check:git-policy',
+  'Git Policy Gate (Required)',
   'Change Review Requirement',
   'Hosted CI (Optional Surface)',
   './bootstrap --no-verify',
@@ -72,6 +82,8 @@ const requiredConstitutionSnippets = [
   'Pull Request (PR): an optional hosted platform surface',
   'Article V-A — Decomposition Before Development (Mandatory)',
   'Article VII — Local-First Review and Merge Discipline',
+  'Article VII-A — Git Execution Controls',
+  'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
   'Definition of Ready (Before Implementation)',
   'REVIEWS/*',
   'Review Record',
@@ -81,17 +93,22 @@ const requiredConstitutionSnippets = [
 ];
 
 const requiredProposalTemplateSnippets = [
+  'Roadmap Item: Cxxx',
+  'Planned Branch:',
   '## Decomposition Plan (Required for T1/T2/T3)',
   'Thin slice milestone:',
   'Exit criteria:',
   'Verify by:',
   '## Change Review Plan',
+  '## Git Plan',
   'Planned Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`',
 ];
 
 const requiredReviewTemplateSnippets = [
   'Review Boundary: merge from `<feature-branch>` into `main`',
+  'Merge Method: `git merge --no-ff <feature-branch>`',
   '## Commits in Scope',
+  '## Git Conformance Checklist',
   '## Acceptance Checklist',
   '## Verification Evidence',
   '## Rollback Plan',
@@ -194,6 +211,16 @@ if (existsSync('bootstrap')) {
   const isExecutable = (statSync('bootstrap').mode & 0o111) !== 0;
   if (!isExecutable) {
     problems.push('bootstrap exists but is not executable');
+  }
+}
+
+for (const hook of ['.githooks/pre-commit', '.githooks/commit-msg', '.githooks/pre-push']) {
+  if (!existsSync(hook)) {
+    continue;
+  }
+  const isExecutable = (statSync(hook).mode & 0o111) !== 0;
+  if (!isExecutable) {
+    problems.push(`${hook} exists but is not executable`);
   }
 }
 

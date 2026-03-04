@@ -4,6 +4,9 @@ Date: YYYY-MM-DD
 Owner: <human/agent name>
 Risk Class: T0 / T1 / T2 / T3
 Related Issue/Context: <optional>
+Roadmap Item: Cxxx
+Planned Branch: <type>/cxxx-<short-name>
+Expected Commit Count: <n>
 
 ## Objective
 
@@ -57,6 +60,15 @@ Pass means:
 - Review Boundary: merge from `<feature-branch>` into `main`
 - Planned Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`
 - Reviewer/approver expectation: <name/role or criteria>
+
+## Git Plan
+
+- Branch command: `git switch -c <type>/cxxx-<short-name>`
+- Commit subject pattern: `<type>(<scope>): <summary>`
+- Required commit trailers:
+  - `Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx`
+  - `Proposal: PROPOSALS/YYYY-MM-DD--short-title.md` (or `Proposal: N/A (T0)` where approved)
+- Planned merge method: `git merge --no-ff <feature-branch>`
 
 ## Decomposition Plan (Required for T1/T2/T3)
 
