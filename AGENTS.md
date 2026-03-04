@@ -73,20 +73,40 @@ Before making code changes, read:
 
 If `ROADMAP/COMMIT-PLAN.md` does not exist, create it before feature work.
 
+## Git Preflight Checklist (Mandatory Before Edits)
+
+Run:
+
+```bash
+git rev-parse --abbrev-ref HEAD
+git status --short
+```
+
+Rules:
+
+- If branch is `main`, switch first:
+  - `git switch -c <type>/cXXX-<short-name>`
+- If unrelated dirty files exist, pause and ask.
+- Do not stage or commit `.verify.log`, caches, generated artifacts, or local logs.
+
 ## Mandatory Work Loop (Per Change)
 
 0. Confirm the next smallest valuable change from `ROADMAP/COMMIT-PLAN.md`.
-1. For fresh/unfamiliar environments, run `./bootstrap --no-verify` before other work to validate local toolchain.
-2. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
-3. If `PROJECT-BRIEF.md` is unfilled, run discovery and intake from `BOOTSTRAP.md` and update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
-4. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
-5. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
-6. For non-trivial work, create a proposal in `PROPOSALS/`.
-7. Implement only approved scope.
-8. Run verification (`pnpm verify`).
-9. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-10. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
-11. Commit atomically with a conventional message.
+1. Run git preflight (`git rev-parse --abbrev-ref HEAD` and `git status --short`).
+2. For fresh/unfamiliar environments, run `./bootstrap --no-verify` before other work to validate local toolchain.
+3. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
+4. If `PROJECT-BRIEF.md` is unfilled, select onboarding mode (`greenfield` or `adopt-existing`) from `BOOTSTRAP.md`.
+5. For `adopt-existing` mode, run repository discovery (`pnpm intake:scan`) and treat findings as hypotheses until user-confirmed.
+6. Run discovery and intake from `BOOTSTRAP.md`, then update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
+7. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
+8. For `adopt-existing` mode, prefer delta questions about product intent and constraints not discoverable via code review.
+9. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
+10. For non-trivial work, create a proposal in `PROPOSALS/`.
+11. Implement only approved scope.
+12. Run verification (`pnpm verify`).
+13. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
+14. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
+15. Commit atomically with a conventional message and required trailers.
 
 Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
 
@@ -117,6 +137,10 @@ Exception: purely mechanical changes may skip a proposal.
 - Installing or acquiring `git` is out of scope.
 - Do not assume Node.js/pnpm/tooling are preinstalled.
 - Use canonical bootstrap command `./bootstrap` unless an approved alternative setup command exists.
+- Use onboarding mode:
+  - `--mode greenfield` for net-new projects,
+  - `--mode adopt-existing` for pre-existing codebases,
+  - `--mode auto` to infer mode from repository signals.
 - Avoid privileged installation/escalation without explicit approval.
 - If bootstrap gaps are found, update `GETTING_STARTED.md` in the same change sequence.
 
@@ -133,13 +157,18 @@ Minimum required updates per non-trivial change:
 - One coherent change per commit.
 - Prefer <= 300 changed lines per commit.
 - If above limits, justify in proposal and split when possible.
-- Branch naming:
-  - `feat/<short-name>`
-  - `chore/<short-name>`
-- Include proposal reference in commit body:
+- Branch naming must match:
+  - `^(feat|fix|docs|chore|refactor|test|ci|hotfix)/c[0-9]{3}-[a-z0-9-]+$`
+- Commit subject must be conventional:
+  - `<type>(<scope>): <summary>`
+- Include roadmap/proposal references in commit body:
+  - `Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx`
   - `Proposal: PROPOSALS/YYYY-MM-DD--short-title.md`
+  - or `Proposal: N/A (T0)` for approved T0/mechanical changes
 - Non-trivial merges require a Review Record:
   - `Review: REVIEWS/YYYY-MM-DD--short-title.md`
+- Review Boundary merge method defaults to:
+  - `git merge --no-ff <feature-branch>` unless approved alternative is documented
 
 ## Pause-and-Ask Conditions
 

@@ -12,6 +12,12 @@ const requiredFiles = [
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
   'bootstrap',
+  '.githooks/pre-commit',
+  '.githooks/commit-msg',
+  '.githooks/pre-push',
+  'scripts/check-git-policy.mjs',
+  'scripts/intake-scan.mjs',
+  'DISCOVERY/TEMPLATE.md',
   'TEMPLATE_HISTORY/README.md',
 ];
 
@@ -22,6 +28,7 @@ const requiredReadmeSnippets = [
 ];
 
 const requiredAgentsSnippets = [
+  'Git Preflight Checklist (Mandatory Before Edits)',
   'Definition of Ready (Before Implementation)',
   'decompose work into small verifiable units',
   'Review Boundary',
@@ -30,12 +37,20 @@ const requiredAgentsSnippets = [
   'Canonical bootstrap command: `./bootstrap`',
   'Bootstrap Rules',
   'Installing or acquiring `git` is out of scope',
+  'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
+  'Proposal: N/A (T0)',
+  'select onboarding mode',
+  'pnpm intake:scan',
   'Template History Handling',
   'Do not treat files under `TEMPLATE_HISTORY/` as active project records',
 ];
 
 const requiredBootstrapSnippets = [
+  'Onboarding Modes',
+  'adopt-existing',
   'Discovery Phase (Mandatory)',
+  'Repository Discovery for Adopt-Existing Mode',
+  'pnpm intake:scan',
   'Question minimums',
   'at least 3 clarifying questions',
   'Assumptions and unresolved questions list',
@@ -46,13 +61,20 @@ const requiredGettingStartedSnippets = [
   'Installing or acquiring `git` is out of scope',
   './bootstrap',
   'pnpm verify',
+  'Onboarding Modes',
+  'Adopt Tempo in an Existing Repository',
+  '--mode adopt-existing',
+  '.githooks',
   'idempotent',
   'Template History vs Your Project History',
 ];
 
 const requiredProjectBriefSnippets = [
+  'Onboarding Mode',
   'Problem Statement (In User Words)',
   'Why Now / Motivation',
+  'Inferred from Codebase (Hypotheses, Adopt-Existing Mode)',
+  'Confirmed Facts vs Corrected Inferences',
   'Alternatives Considered',
   'Chosen V1 Scope and Why',
   'Top Assumptions to Validate',
@@ -62,6 +84,8 @@ const requiredProjectBriefSnippets = [
 const requiredVerifySnippets = [
   'pnpm verify',
   'check:docs',
+  'check:git-policy',
+  'Git Policy Gate (Required)',
   'Change Review Requirement',
   'Hosted CI (Optional Surface)',
   './bootstrap --no-verify',
@@ -72,6 +96,8 @@ const requiredConstitutionSnippets = [
   'Pull Request (PR): an optional hosted platform surface',
   'Article V-A — Decomposition Before Development (Mandatory)',
   'Article VII — Local-First Review and Merge Discipline',
+  'Article VII-A — Git Execution Controls',
+  'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
   'Definition of Ready (Before Implementation)',
   'REVIEWS/*',
   'Review Record',
@@ -81,17 +107,22 @@ const requiredConstitutionSnippets = [
 ];
 
 const requiredProposalTemplateSnippets = [
+  'Roadmap Item: Cxxx',
+  'Planned Branch:',
   '## Decomposition Plan (Required for T1/T2/T3)',
   'Thin slice milestone:',
   'Exit criteria:',
   'Verify by:',
   '## Change Review Plan',
+  '## Git Plan',
   'Planned Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`',
 ];
 
 const requiredReviewTemplateSnippets = [
   'Review Boundary: merge from `<feature-branch>` into `main`',
+  'Merge Method: `git merge --no-ff <feature-branch>`',
   '## Commits in Scope',
+  '## Git Conformance Checklist',
   '## Acceptance Checklist',
   '## Verification Evidence',
   '## Rollback Plan',
@@ -154,6 +185,7 @@ hasAllSnippets('CONSTITUTION.md', requiredConstitutionSnippets);
 hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
 hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
 hasAllSnippets('TEMPLATE_HISTORY/README.md', requiredTemplateHistorySnippets);
+hasAllSnippets('DISCOVERY/TEMPLATE.md', ['PROJECT-INVENTORY', 'Delta Intake Questions']);
 
 for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
   if (!existsSync(file)) {
@@ -197,6 +229,16 @@ if (existsSync('bootstrap')) {
   }
 }
 
+for (const hook of ['.githooks/pre-commit', '.githooks/commit-msg', '.githooks/pre-push']) {
+  if (!existsSync(hook)) {
+    continue;
+  }
+  const isExecutable = (statSync(hook).mode & 0o111) !== 0;
+  if (!isExecutable) {
+    problems.push(`${hook} exists but is not executable`);
+  }
+}
+
 const hasPinnedToolchainManifest =
   existsSync('.nvmrc') ||
   existsSync('.tool-versions') ||
@@ -217,6 +259,17 @@ if (!hasPinnedToolchainManifest) {
   problems.push(
     'No pinned toolchain manifest found (.nvmrc/.tool-versions/mise.toml/package.json engines)',
   );
+}
+
+if (existsSync('package.json')) {
+  try {
+    const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+    if (!pkg.scripts || !pkg.scripts['intake:scan']) {
+      problems.push('package.json missing required script: intake:scan');
+    }
+  } catch {
+    problems.push('package.json is invalid JSON');
+  }
 }
 
 const projectBriefIsUnfilled =

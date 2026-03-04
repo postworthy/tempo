@@ -16,8 +16,17 @@ What this does:
 
 - checks required Node.js and pnpm versions,
 - activates pnpm via corepack when safe and available,
+- configures repository-local git hooks under `.githooks/`,
 - installs dependencies,
 - runs canonical verification (`pnpm verify`).
+
+## Onboarding Modes
+
+Tempo supports:
+
+- `greenfield`: new project startup flow.
+- `adopt-existing`: apply Tempo governance to a codebase that already has implementation history.
+- `auto`: infer mode from repository signals (default bootstrap behavior).
 
 ## Template History vs Your Project History
 
@@ -54,8 +63,34 @@ Then run:
 pnpm verify
 ```
 
+## Adopt Tempo in an Existing Repository
+
+From an existing repository root:
+
+```bash
+./bootstrap --mode adopt-existing --no-verify
+```
+
+Then run repository discovery to generate an intake snapshot:
+
+```bash
+pnpm intake:scan -- --write
+```
+
+Use the generated discovery findings as hypotheses, and ask only delta questions that code review cannot answer.
+
 ## If Bootstrap Reports Missing Tools
 
 Follow the exact install instructions printed by `./bootstrap`, then run `./bootstrap` again.
 
 The bootstrap process is idempotent and safe to rerun.
+
+## Push Safety
+
+Tempo blocks `git push` by default using a local pre-push hook.
+
+Only push when explicitly approved and recorded in `DECISIONS.md`, then run the push command with:
+
+```bash
+TEMPO_PUSH_APPROVED=1 git push
+```

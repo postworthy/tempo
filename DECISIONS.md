@@ -114,3 +114,25 @@ Users starting new projects should inherit process templates, not historical pro
 
 Consequences:
 Fresh-template mode enforces template-only live record folders while `PROJECT-BRIEF.md` remains unfilled; `./bootstrap --init-project` provides a one-time baseline reset with backups.
+
+## 2026-03-04 - Git Policy Enforcement Baseline
+
+Decision:
+Adopt mandatory git preflight, branch naming, commit trailer, and local hook enforcement (`.githooks`) with `pnpm check:git-policy` integrated into canonical verification.
+
+Rationale:
+Instruction-only controls degrade under long context windows. Lightweight executable guardrails reduce drift and keep git history conformant.
+
+Consequences:
+Bootstrap now configures repository-local hooks; local development is blocked on direct-to-main commits, non-conventional commit messages, and missing roadmap/proposal trailers.
+
+## 2026-03-04 - Dual-Mode Onboarding for Existing Repositories
+
+Decision:
+Support onboarding in two modes: `greenfield` for new projects and `adopt-existing` for repositories with existing implementation, including a repository intake scan before discovery questions in adopt-existing mode.
+
+Rationale:
+Tempo should remain focused on startup projects while being deployable into active repositories where standard blank-slate intake questions are inefficient and miss context available from code.
+
+Consequences:
+Bootstrap now supports mode selection/auto-detection and intake scan execution; onboarding artifacts include inferred-vs-confirmed project context and emphasize delta questions over generic startup prompts in existing codebases.

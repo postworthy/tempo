@@ -2,6 +2,7 @@
 
 Date: YYYY-MM-DD
 Review Boundary: merge from `<feature-branch>` into `main`
+Merge Method: `git merge --no-ff <feature-branch>`
 Risk Class: T0 / T1 / T2 / T3
 Related Proposal(s): <path(s)>
 
@@ -14,6 +15,14 @@ Related Proposal(s): <path(s)>
 
 - <commit hash> <summary>
 - <commit hash> <summary>
+
+## Git Conformance Checklist
+
+- [ ] Source branch matches naming policy
+- [ ] No direct commit to `main`
+- [ ] Commit subjects are conventional
+- [ ] Commit trailers include `Roadmap` and `Proposal`
+- [ ] Commits in scope match approved proposal/decomposition
 
 ## Change Summary
 

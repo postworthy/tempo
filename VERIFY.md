@@ -24,6 +24,7 @@ This command runs complete repository checks:
 - lint (`lint`)
 - type checks (`typecheck`)
 - docs consistency checks (`check:docs`)
+- git policy checks (`check:git-policy`)
 - tests (`test`)
 - build (`build`)
 
@@ -60,11 +61,25 @@ Review `.verify.log` on failure. Do not commit verification logs.
 4. If broader work is required, create a follow-up proposal.
 5. Re-run `pnpm verify` until green.
 
+## Git Policy Gate (Required)
+
+```bash
+pnpm check:git-policy
+```
+
+This check enforces:
+
+- local branch is not `main` during active development,
+- feature branch naming policy,
+- conventional commit subjects,
+- required commit trailers (`Roadmap`, `Proposal`) for commits in scope.
+
 ## Change Review Requirement
 
 Before a Review Boundary merge into `main`, a Change Review must include:
 
 - passing `pnpm verify` evidence,
+- passing `pnpm check:git-policy` evidence,
 - a Review Record at `REVIEWS/YYYY-MM-DD--short-title.md`,
 - rollback readiness.
 

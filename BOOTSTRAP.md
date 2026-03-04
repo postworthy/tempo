@@ -4,7 +4,10 @@ This file defines the required first-run workflow for any AI coding assistant us
 
 ## Purpose
 
-Ensure a new project starts with clarified user intent before implementation.
+Ensure project intent is clarified before implementation for both:
+
+- new (greenfield) projects, and
+- existing repositories adopting Tempo governance.
 
 ## Required Read Order
 
@@ -20,17 +23,32 @@ Before proposing or coding, the agent must read these files in order:
 8. `VERIFY.md`
 9. `ROADMAP/COMMIT-PLAN.md`
 
+## Onboarding Modes
+
+Tempo supports two onboarding modes:
+
+- `greenfield`: repository is new or still template-baseline with unfilled project intent.
+- `adopt-existing`: repository already has meaningful implementation history and Tempo is being introduced after development started.
+
+Mode selection:
+
+1. Use explicit bootstrap mode override when provided (`--mode greenfield` or `--mode adopt-existing`).
+2. Otherwise use auto-detection signals from repository discovery.
+3. If signals conflict, pause and ask the user to confirm mode.
+
 ## First-Run Requirements
 
-If `PROJECT-BRIEF.md` contains placeholders, the agent must:
+If `PROJECT-BRIEF.md` contains placeholders, the agent must determine mode before intake:
 
-1. Run the Mandatory Intake Questions.
-2. Run the Discovery Phase.
-3. Fill `PROJECT-BRIEF.md` with approved answers.
-4. Generate/update `SPEC.md` from the approved brief.
-5. Ask for explicit approval before any non-trivial implementation.
+1. Select onboarding mode (`greenfield` or `adopt-existing`).
+2. If mode is `adopt-existing`, run repository discovery first and record findings.
+3. Run Mandatory Intake Questions using mode-appropriate prompts.
+4. Run the Discovery Phase.
+5. Fill `PROJECT-BRIEF.md` with approved answers.
+6. Generate/update `SPEC.md` from the approved brief.
+7. Ask for explicit approval before any non-trivial implementation.
 
-The agent must not implement beyond trivial mechanical setup until steps 1-5 are complete.
+The agent must not implement beyond trivial mechanical setup until steps 1-7 are complete.
 
 ## Discovery Phase (Mandatory)
 
@@ -53,6 +71,8 @@ Tone guidance:
 
 ## Mandatory Intake Questions
 
+### Greenfield Intake (default)
+
 Ask these questions in plain language:
 
 1. What are you trying to build, in one sentence?
@@ -64,17 +84,55 @@ Ask these questions in plain language:
 7. Any tools/stack preferences or exclusions?
 8. What does "done" look like for v1?
 
+### Adopt-Existing Intake (delta-focused)
+
+Before asking questions, summarize inferred repository findings as hypotheses and ask the user to confirm/correct them.
+
+Then ask questions that code review alone cannot answer:
+
+1. Which inferred workflows are actually production-critical?
+2. Which behaviors are legacy constraints and must remain backward-compatible?
+3. What pain points are not obvious from code structure or tests?
+4. Which areas are intentionally deferred vs accidentally incomplete?
+5. What reliability/security/compliance requirements are known but not encoded yet?
+6. What would count as a successful first Tempo-guided change here?
+
 Question minimums:
 
 - Ask at least 3 clarifying questions when the brief is unfilled.
 - Ask at least 1 follow-up question for each ambiguous answer.
 - If uncertainty remains, list explicit assumptions and request approval.
 
+## Repository Discovery for Adopt-Existing Mode
+
+When mode is `adopt-existing`, run a repository discovery pass before intake:
+
+```bash
+pnpm intake:scan
+```
+
+or to save an artifact:
+
+```bash
+pnpm intake:scan -- --write
+```
+
+Discovery output should capture:
+
+- inferred stack/runtime/tooling,
+- codebase shape and major entrypoints,
+- tests/verification posture,
+- probable risk areas,
+- unknowns requiring human confirmation.
+
+All inferred items must be treated as hypotheses until confirmed by the user.
+
 ## Discovery Output Contract
 
 After discovery and intake, produce:
 
 - Completed `PROJECT-BRIEF.md`
+- Discovery artifact or equivalent inference summary (required for `adopt-existing` mode)
 - Assumptions and unresolved questions list
 - Updated `SPEC.md` aligned to the brief
 - A proposal for the first non-trivial implementation change
