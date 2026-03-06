@@ -37,6 +37,8 @@ C012 docs(spec): write first project-specific spec from template
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
 - Added `.githooks` (`pre-commit`, `commit-msg`, `pre-push`) and wired hook setup into `./bootstrap`.
 - Added `pnpm intake:scan` discovery tooling and `adopt-existing` onboarding flow guidance.
+- Added canonical prompt guidance in `PROMPTING.md` and aligned starter/onboarding docs to explicit output contracts and approval-stop behavior.
+- Added lightweight prompt review guidance in `VERIFY.md` and enforcement for `PROMPTING.md` in `pnpm check:docs`.
 
 ## Next Planned Changes
 

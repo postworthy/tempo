@@ -44,7 +44,7 @@ const conventionalSubject =
   /^(feat|fix|docs|chore|refactor|test|ci|build|perf|revert)(\([^)]+\))?: .+/;
 const roadmapTrailer = /^Roadmap:\s+ROADMAP\/COMMIT-PLAN\.md#C[0-9]{3}[A-Z]?$/m;
 const proposalTrailer =
-  /^Proposal:\s+(PROPOSALS\/[0-9]{4}-[0-9]{2}-[0-9]{2}--[a-z0-9-]+\.md|PROPOSALS\/TEMPLATE\.md|N\/A \(T0\))$/m;
+  /^Proposal:\s+(PROPOSALS\/[0-9]{4}-[0-9]{2}-[0-9]{2}--[a-z0-9-]+\.md|PROPOSALS\/TEMPLATE\.md|TEMPLATE_HISTORY\/PROPOSALS\/[0-9]{4}-[0-9]{2}-[0-9]{2}--[a-z0-9-]+\.md|N\/A \(T0\))$/m;
 
 const commitsToCheck = [];
 

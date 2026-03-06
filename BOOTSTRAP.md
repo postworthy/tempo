@@ -69,6 +69,13 @@ Tone guidance:
 - Do not overpromise capabilities.
 - Keep guidance practical and concrete.
 
+Response contract guidance:
+
+- Tell the user what the next response will contain.
+- Return outputs in a stable order.
+- State explicit stop conditions before any file edits or implementation.
+- Keep discovery separate from implementation approval.
+
 ## Mandatory Intake Questions
 
 ### Greenfield Intake (default)
@@ -103,6 +110,85 @@ Question minimums:
 - Ask at least 1 follow-up question for each ambiguous answer.
 - If uncertainty remains, list explicit assumptions and request approval.
 
+## Few-Shot Examples
+
+Use these as concise behavior examples, not rigid scripts.
+
+### Example 1 - Discovery response
+
+User prompt:
+
+```text
+Use this repo as my starter pack. Read AGENTS.md, BOOTSTRAP.md, and PROMPTING.md first. Start in discovery mode.
+```
+
+Good first response shape:
+
+```text
+Summary:
+- You want a starter-pack-guided project kickoff with discovery before coding.
+
+Clarifying questions:
+1. What are you trying to build in one sentence?
+2. Who is the first version for?
+3. What should this version explicitly not do?
+
+V1 options:
+1. Small: define brief + spec only.
+2. Medium: define brief + spec + first thin slice proposal.
+3. Larger: define brief + spec + proposal + begin implementation after approval.
+
+Recommendation:
+- Start with the medium option to lock scope before code.
+
+Stop:
+- Waiting for your answers and scope choice before drafting files.
+```
+
+### Example 2 - `PROJECT-BRIEF.md` drafting
+
+Prompt pattern:
+
+```text
+Use my answers to draft PROJECT-BRIEF.md only. Return the draft in markdown. Do not draft SPEC.md yet. Stop after the draft and ask for approval.
+```
+
+Good response shape:
+
+```text
+PROJECT-BRIEF draft:
+- includes only confirmed facts and clearly labeled assumptions
+- preserves out-of-scope items
+- ends with explicit open questions
+
+Stop:
+- Waiting for approval or corrections before drafting SPEC.md.
+```
+
+### Example 3 - `SPEC.md` drafting
+
+Prompt pattern:
+
+```text
+Draft SPEC.md from the approved PROJECT-BRIEF.md. Return only the sections that need approval. Do not implement anything.
+```
+
+Good response shape:
+
+```text
+SPEC draft sections:
+1. Product objective
+2. Users and workflows
+3. Constraints
+4. Non-goals
+5. Acceptance criteria
+6. Risk model
+7. Verification reference
+
+Stop:
+- Waiting for approval before proposing implementation work.
+```
+
 ## Repository Discovery for Adopt-Existing Mode
 
 When mode is `adopt-existing`, run a repository discovery pass before intake:
@@ -136,6 +222,7 @@ After discovery and intake, produce:
 - Assumptions and unresolved questions list
 - Updated `SPEC.md` aligned to the brief
 - A proposal for the first non-trivial implementation change
+- Outputs that follow the response-contract patterns from `PROMPTING.md`
 
 ## Safety Rules
 

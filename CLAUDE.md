@@ -4,8 +4,10 @@ Use this repository as a starter pack by following canonical instructions in:
 
 1. `AGENTS.md`
 2. `BOOTSTRAP.md`
+3. `PROMPTING.md`
 
 Do not begin non-trivial implementation until `PROJECT-BRIEF.md` is filled and `SPEC.md` is updated/approved.
+Use `PROMPTING.md` for reusable output contracts, stop conditions, and scoped task updates.
 
 Git non-negotiables:
 

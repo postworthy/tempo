@@ -36,6 +36,7 @@ No lower-priority file may weaken a higher-priority rule.
 
 - Canonical verification command: `pnpm verify`
 - Canonical bootstrap command: `./bootstrap`
+- Canonical prompt contract: `PROMPTING.md`
 - Primary branch: `main`
 - First-run onboarding contract: `BOOTSTRAP.md`
 - Local-first Review Boundary: merge from feature branch into `main` with Review Record
@@ -63,6 +64,7 @@ Before making code changes, read:
 - `AGENTS.md`
 - `CONSTITUTION.md`
 - `BOOTSTRAP.md`
+- `PROMPTING.md`
 - `PROJECT-BRIEF.md`
 - `SPEC.md`
 - `STATUS.md`
@@ -137,6 +139,7 @@ Exception: purely mechanical changes may skip a proposal.
 - Installing or acquiring `git` is out of scope.
 - Do not assume Node.js/pnpm/tooling are preinstalled.
 - Use canonical bootstrap command `./bootstrap` unless an approved alternative setup command exists.
+- Use `PROMPTING.md` for reusable prompt patterns such as output contracts, stop conditions, and scoped task updates.
 - Use onboarding mode:
   - `--mode greenfield` for net-new projects,
   - `--mode adopt-existing` for pre-existing codebases,
@@ -151,6 +154,7 @@ Minimum required updates per non-trivial change:
 
 - `STATUS.md`: what changed, what is next, follow-ups
 - `ROADMAP/COMMIT-PLAN.md`: keep next target accurate
+- Prompt-facing behavior changes should update `PROMPTING.md`, related starter prompts, and any affected examples in the same change sequence.
 
 ## Commit and Branch Rules
 

@@ -114,6 +114,24 @@ Acceptance met:
 - `PROJECT-BRIEF.md` now captures inferred-vs-confirmed facts for existing-codebase onboarding.
 - `GETTING_STARTED.md` includes an explicit existing-repo adoption path.
 
+### [TODO] C012 - docs(spec): write v1 product contract
+
+Goal:
+
+- Define first usable `SPEC.md` with project-specific scope and acceptance criteria.
+
+Acceptance:
+
+- `SPEC.md` includes objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, and verification reference.
+
+### [DONE] C015 - docs(prompting): align starter prompts with canonical prompt guidance
+
+Acceptance met:
+
+- `PROMPTING.md` defines instruction layers, output contracts, stop conditions, and scoped task updates.
+- `README.md`, `BOOTSTRAP.md`, and adapter docs reference the prompt contract.
+- Prompt-facing docs include few-shot examples and lightweight prompt review guidance.
+
 ## Milestone M1 - First Vertical Slice
 
 ### [TODO] C013 - feat(app): ship thin end-to-end slice
