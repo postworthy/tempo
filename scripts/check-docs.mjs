@@ -5,6 +5,7 @@ const requiredFiles = [
   'BOOTSTRAP.md',
   'PROJECT-BRIEF.md',
   'CONSTITUTION.md',
+  'PROMPTING.md',
   'VERIFY.md',
   'ROADMAP/COMMIT-PLAN.md',
   'README.md',
@@ -35,6 +36,7 @@ const requiredAgentsSnippets = [
   'Review Record',
   'Do not add git remotes or execute external `push`/`publish` actions',
   'Canonical bootstrap command: `./bootstrap`',
+  'Canonical prompt contract: `PROMPTING.md`',
   'Bootstrap Rules',
   'Installing or acquiring `git` is out of scope',
   'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
@@ -54,6 +56,16 @@ const requiredBootstrapSnippets = [
   'Question minimums',
   'at least 3 clarifying questions',
   'Assumptions and unresolved questions list',
+  'Few-Shot Examples',
+];
+
+const requiredPromptingSnippets = [
+  'Instruction Layers',
+  'Output Contract Pattern',
+  'Starter Prompt Pattern',
+  'Few-Shot Example Guidance',
+  'Scoped Task Updates',
+  'Lightweight Prompt Eval',
 ];
 
 const requiredGettingStartedSnippets = [
@@ -89,6 +101,7 @@ const requiredVerifySnippets = [
   'Change Review Requirement',
   'Hosted CI (Optional Surface)',
   './bootstrap --no-verify',
+  'Prompt Change Review',
 ];
 
 const requiredConstitutionSnippets = [
@@ -178,6 +191,7 @@ const hasAllSnippets = (file, snippets) => {
 hasAllSnippets('README.md', requiredReadmeSnippets);
 hasAllSnippets('AGENTS.md', requiredAgentsSnippets);
 hasAllSnippets('BOOTSTRAP.md', requiredBootstrapSnippets);
+hasAllSnippets('PROMPTING.md', requiredPromptingSnippets);
 hasAllSnippets('GETTING_STARTED.md', requiredGettingStartedSnippets);
 hasAllSnippets('PROJECT-BRIEF.md', requiredProjectBriefSnippets);
 hasAllSnippets('VERIFY.md', requiredVerifySnippets);

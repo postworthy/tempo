@@ -136,3 +136,14 @@ Tempo should remain focused on startup projects while being deployable into acti
 
 Consequences:
 Bootstrap now supports mode selection/auto-detection and intake scan execution; onboarding artifacts include inferred-vs-confirmed project context and emphasize delta questions over generic startup prompts in existing codebases.
+
+## 2026-03-06 - Canonical Prompt Contract for Prompt-Facing Docs
+
+Decision:
+Add `PROMPTING.md` as the canonical prompt-design document for reusable output contracts, stop conditions, scoped task updates, and lightweight prompt review.
+
+Rationale:
+Governance-heavy docs improve safety and process control, but assistants also need prompt-native structure to behave consistently across different hosts and model versions.
+
+Consequences:
+Starter prompts, onboarding docs, and adapter docs should reference `PROMPTING.md`; prompt-facing documentation changes should include a lightweight manual prompt review.

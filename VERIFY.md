@@ -53,6 +53,23 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 
+## Prompt Change Review (Required for Prompt-Facing Docs)
+
+When changing `PROMPTING.md`, `README.md`, onboarding prompts, or adapter prompt docs, include a lightweight prompt review.
+
+Minimum manual eval scenarios:
+
+1. Fresh greenfield onboarding request.
+2. Adopt-existing onboarding request.
+3. Mid-task scope change after discovery.
+
+Pass means:
+
+- the response follows the requested output order,
+- the assistant does not skip directly to coding,
+- approval boundaries are explicit,
+- repository context is treated as grounded input rather than guessed requirements.
+
 ## If Verification Fails
 
 1. Stop adding new features.

@@ -4,10 +4,12 @@ Canonical operating instructions are in:
 
 1. `AGENTS.md`
 2. `BOOTSTRAP.md`
+3. `PROMPTING.md`
 
 First-run requirement:
 
 - If `PROJECT-BRIEF.md` is unfilled, run intake interview questions from `BOOTSTRAP.md`, then update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
+- Follow `PROMPTING.md` for reusable output contracts, stop conditions, and scoped task updates.
 
 Git non-negotiables:
 
