@@ -13,14 +13,14 @@ Related Proposal(s): `TEMPLATE_HISTORY/PROPOSALS/2026-03-06--prompt-guidance-ali
 
 ## Commits in Scope
 
-- Pending local commit(s)
+- `c912386` `docs(prompting): align starter guidance`
 
 ## Git Conformance Checklist
 
 - [x] Source branch matches naming policy
 - [x] No direct commit to `main`
-- [ ] Commit subjects are conventional
-- [ ] Commit trailers include `Roadmap` and `Proposal`
+- [x] Commit subjects are conventional
+- [x] Commit trailers include `Roadmap` and `Proposal`
 - [x] Commits in scope match approved proposal/decomposition
 
 ## Change Summary
@@ -56,9 +56,9 @@ Results:
 ## Approvals
 
 - Reviewer: human partner
-- Approval status: pending
-- Timestamp: pending
+- Approval status: approved
+- Timestamp: 2026-03-06
 
 ## Follow-Ups
 
-- Update commits-in-scope and verification result after commit and local verification.
+- None.
