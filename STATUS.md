@@ -25,7 +25,7 @@ C017 refactor(governance): create concise kernel and goal state
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Preparing the T2 proposal and approval boundary for the concise kernel and living goal model.
+- Awaiting explicit approval of the C017 T2 proposal and constitutional amendment.
 
 ## Blockers / Risks
 
@@ -52,7 +52,7 @@ C017 refactor(governance): create concise kernel and goal state
 ## Next Planned Changes
 
 - Prepare the T2 proposal for the concise kernel and living goal model.
-- Pause for explicit approval before implementing that broad governance refactor.
+- After approval, implement its ordered amendment, kernel, goal, and consolidation units.
 
 ## Notes
 

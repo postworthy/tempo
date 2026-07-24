@@ -178,11 +178,11 @@ Acceptance:
 
 Evidence:
 
-- `pnpm verify` passed on the compliant feature branch on 2026-07-24.
+- `pnpm verify` passed on the compliant feature branch and an isolated clean `main` at commit `8ef1f06` on 2026-07-24.
 - Focused temporary-repository tests cover read-only `main` verification and hook rejection.
 - `./bootstrap --no-verify` completed non-interactively with the frozen lockfile.
 
-### [TODO] C017 - refactor(governance): create concise kernel and goal state
+### [PENDING APPROVAL] C017 - refactor(governance): create concise kernel and goal state
 
 Goal:
 
@@ -193,6 +193,11 @@ Acceptance:
 - `AGENTS.md` is no more than 120 lines unless an evidence-backed exception is recorded.
 - A fresh-context agent can identify and resume the active goal.
 - Authority, pause, evidence, retry, and completion rules are explicit.
+
+Approval boundary:
+
+- T2 proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`
+- Explicit human approval is required before implementation.
 
 ### [TODO] C018 - feat(skills): add focused Tempo skill bundle
 
