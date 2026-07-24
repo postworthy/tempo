@@ -111,6 +111,13 @@ Pass means:
 
 The governance and goal commits remain separate so either capability can be reverted independently. Any commit above the normal line or file targets must be justified in this proposal before it is created.
 
+The living-goal commit intentionally exceeds the normal 300-line/10-file target:
+the lifecycle, template, validator, type declaration, active goal, verification
+contract, and positive/negative fixtures form one self-validating thin slice.
+Splitting schema from enforcement or evidence would create an intermediate commit
+that claims a goal contract without proving it. The implementation remains
+isolated from the concise-kernel and constitutional commits for rollback.
+
 ## Decomposition Plan
 
 Work units (ordered):

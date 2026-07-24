@@ -13,6 +13,7 @@ import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { validateContracts } from '../scripts/validate-contracts.mjs';
+import { validateGoals } from '../scripts/validate-goal.mjs';
 
 const repositoryRoot = resolve(process.cwd());
 const gitPolicyScript = join(repositoryRoot, 'scripts/check-git-policy.mjs');
@@ -125,5 +126,57 @@ describe('project initialization', () => {
     expect(readFileSync(join(root, 'PROJECT-BRIEF.md'), 'utf8')).toContain('Status: UNFILLED');
     expect(readFileSync(join(root, 'SPEC.md'), 'utf8')).toContain('Status: Draft');
     expect(result.stdout).toContain('Backups saved to: .template-init-backup/');
+  });
+});
+
+describe('living goal validation', () => {
+  function goalRoot(...fixtures: string[]) {
+    const root = mkdtempSync(join(tmpdir(), 'tempo-goals-'));
+    mkdirSync(join(root, 'GOALS'));
+    fixtures.forEach((fixture, index) => {
+      copyFileSync(
+        join(repositoryRoot, 'test/fixtures/goals', fixture),
+        join(root, 'GOALS', `${index + 1}-${fixture}`),
+      );
+    });
+    return root;
+  }
+
+  it('selects one active goal and its recorded next action', () => {
+    const result = validateGoals(goalRoot('valid-active.md'));
+
+    expect(result.problems).toEqual([]);
+    expect(result.activeGoal).toBe('GOALS/1-valid-active.md');
+    expect(result.nextAction).toContain('without repeating work unit 1');
+  });
+
+  it('rejects multiple active goals', () => {
+    const result = validateGoals(goalRoot('valid-active.md', 'valid-active.md'));
+
+    expect(result.problems).toContain('GOALS/: expected at most one active goal, found 2');
+  });
+
+  it('rejects a goal with an incomplete authority envelope', () => {
+    const root = goalRoot('valid-active.md');
+    const path = join(root, 'GOALS/1-valid-active.md');
+    writeFileSync(
+      path,
+      readFileSync(path, 'utf8').replace('### May Continue Without Asking', '### Missing'),
+    );
+
+    expect(validateGoals(root).problems).toContain(
+      'GOALS/1-valid-active.md: missing required heading "### May Continue Without Asking"',
+    );
+  });
+
+  it('rejects premature completion without checked criteria and final evidence', () => {
+    const result = validateGoals(goalRoot('invalid-completed.md'));
+
+    expect(result.problems).toContain(
+      'GOALS/1-invalid-completed.md: completed goal has unchecked criterion "AC1 — This remains incomplete."',
+    );
+    expect(result.problems).toContain(
+      'GOALS/1-invalid-completed.md: completed criterion "AC1 — This remains incomplete." lacks final evidence',
+    );
   });
 });

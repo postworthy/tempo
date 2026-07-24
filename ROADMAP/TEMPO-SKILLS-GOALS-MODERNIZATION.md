@@ -551,8 +551,8 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 - [x] Phase 0: Refresh research and establish approved scope. (Completed 2026-07-24; evidence: `dbff42b`, approved brief/specification, C016 proposal, refreshed primary guidance.)
 - [x] Phase 1: Repair bootstrap and verification contradictions. (Completed 2026-07-24; evidence: focused governance tests, non-interactive bootstrap, contract validator, and passing `pnpm verify`.)
-- [ ] Phase 2: Create the concise repository kernel. (In progress after explicit T2 approval on 2026-07-24; proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`.)
-- [ ] Phase 3: Add living goal execution.
+- [x] Phase 2: Create the concise repository kernel. (Completed 2026-07-24; evidence: Constitution 2.1 `b425fa2`, 113-line kernel `ba97a34`, and passing `pnpm verify`.)
+- [ ] Phase 3: Add living goal execution. (In progress: lifecycle, template, validator, active modernization goal, and negative fixtures implemented.)
 - [ ] Phase 4: Build the skills bundle.
 - [ ] Phase 5: Preserve one-command public setup and portability.
 - [ ] Phase 6: Add skill and goal evaluations.
@@ -560,7 +560,7 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 Current next action:
 
-- Verify and commit the concise 113-line repository kernel, then add the living-goal lifecycle, validator, and resumption fixtures.
+- Verify and commit the living-goal structure, then record fresh-context resumption evidence and remove duplicated active-state ownership.
 
 ## Discoveries
 
@@ -586,6 +586,9 @@ Record unexpected facts and concise evidence here as execution proceeds.
 
 - Observation: The prior `AGENTS.md` repeated conditional onboarding, proposal, review, RCA, bootstrap, documentation, and completion procedures across 238 lines.
   Evidence: C017 responsibility-map audit routed those procedures to their authoritative artifacts and produced a 113-line always-loaded kernel without dropping the enumerated safety, verification, rollback, dirty-worktree, or review invariants.
+
+- Observation: A deterministic living-goal validator can enforce one active goal, concrete authority and next action, bounded retries, and evidence-backed completion without depending on a specific agent host.
+  Evidence: `scripts/validate-goal.mjs` and positive/negative fixtures under `test/fixtures/goals/`.
 
 ## Decisions
 
@@ -618,3 +621,4 @@ Complete this section at major milestones and final completion.
 - Phase 0 established an approved product contract and an execution-ready modernization sequence.
 - Phase 1 removed the bootstrap/branch-policy contradiction, introduced deterministic contract validation, preserved direct-main commit protection, and covered the corrected boundaries with isolated tests.
 - Phase 2 applied Constitution 2.1 and reduced the always-loaded kernel from 238 to 113 lines; living-goal implementation remains in progress.
+- Phase 3 now has a repository-native active goal and deterministic lifecycle enforcement; clean-context behavioral evidence remains before completion.

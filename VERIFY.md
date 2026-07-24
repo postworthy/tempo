@@ -24,6 +24,7 @@ This command runs complete repository checks:
 - lint (`lint`)
 - type checks (`typecheck`)
 - docs consistency checks (`check:docs`)
+- living-goal structure and active-state checks (`check:goal`)
 - git policy checks (`check:git-policy`)
 - tests (`test`)
 - build (`build`)
@@ -50,6 +51,7 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Static analysis and lint rules pass.
 - Type contracts hold.
 - Governance docs preserve required starter-pack invariants.
+- At most one active living goal exists and its resumable state is structurally valid.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 

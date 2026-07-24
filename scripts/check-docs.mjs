@@ -20,6 +20,8 @@ const requiredFiles = [
   'scripts/check-git-policy.mjs',
   'scripts/intake-scan.mjs',
   'DISCOVERY/TEMPLATE.md',
+  'GOALS/README.md',
+  'GOALS/TEMPLATE.md',
   'TEMPLATE_HISTORY/README.md',
 ];
 
@@ -205,6 +207,13 @@ hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
 hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
 hasAllSnippets('TEMPLATE_HISTORY/README.md', requiredTemplateHistorySnippets);
 hasAllSnippets('DISCOVERY/TEMPLATE.md', ['PROJECT-INVENTORY', 'Delta Intake Questions']);
+hasAllSnippets('GOALS/README.md', ['## Lifecycle', '## Ownership', '## Execution Loop']);
+hasAllSnippets('GOALS/TEMPLATE.md', [
+  '## Acceptance Criteria',
+  '## Authority Envelope',
+  '## Retry State',
+  '## Next Action',
+]);
 
 if (existsSync('AGENTS.md')) {
   const lineCount = readFileSync('AGENTS.md', 'utf8').split('\n').length;
@@ -292,6 +301,9 @@ if (existsSync('package.json')) {
     const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
     if (!pkg.scripts || !pkg.scripts['intake:scan']) {
       problems.push('package.json missing required script: intake:scan');
+    }
+    if (!pkg.scripts || !pkg.scripts['check:goal']) {
+      problems.push('package.json missing required script: check:goal');
     }
   } catch {
     problems.push('package.json is invalid JSON');
