@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C017 refactor(governance): create concise kernel and goal state
+C018 feat(skills): add focused Tempo skill bundle
 
 ## Done (High-Level)
 
@@ -25,7 +25,7 @@ C017 refactor(governance): create concise kernel and goal state
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Implementing the approved C017 Constitution 2.1 amendment, concise kernel, and living-goal model.
+- Preparing the C018 focused Agent Skills bundle.
 
 ## Blockers / Risks
 
@@ -44,6 +44,7 @@ C017 refactor(governance): create concise kernel and goal state
 - Applied the approved Constitution 2.1 amendment and responsibility map.
 - Reduced the always-loaded repository kernel from 238 lines to 113 lines while retaining routed invariants.
 - Added the living-goal lifecycle, one-active-goal validator, retry and completion controls, active modernization goal, and negative fixtures.
+- Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -54,8 +55,8 @@ C017 refactor(governance): create concise kernel and goal state
 
 ## Next Planned Changes
 
-- Commit the validated living-goal thin slice.
-- Prove fresh-context resumption, then consolidate overlapping active state.
+- Create the C018 T1 proposal.
+- Build and evaluate the focused onboarding, goal, review, and RCA skills.
 
 ## Notes
 

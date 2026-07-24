@@ -547,78 +547,25 @@ Every acceptance claim must name the command, artifact, or observable behavior t
 
 ## Progress
 
-Update this list at every meaningful stopping point. Add timestamps and evidence paths.
-
-- [x] Phase 0: Refresh research and establish approved scope. (Completed 2026-07-24; evidence: `dbff42b`, approved brief/specification, C016 proposal, refreshed primary guidance.)
-- [x] Phase 1: Repair bootstrap and verification contradictions. (Completed 2026-07-24; evidence: focused governance tests, non-interactive bootstrap, contract validator, and passing `pnpm verify`.)
-- [x] Phase 2: Create the concise repository kernel. (Completed 2026-07-24; evidence: Constitution 2.1 `b425fa2`, 113-line kernel `ba97a34`, and passing `pnpm verify`.)
-- [ ] Phase 3: Add living goal execution. (In progress: lifecycle, template, validator, active modernization goal, and negative fixtures implemented.)
-- [ ] Phase 4: Build the skills bundle.
-- [ ] Phase 5: Preserve one-command public setup and portability.
-- [ ] Phase 6: Add skill and goal evaluations.
-- [ ] Phase 7: Review, migration, and publication readiness.
-
-Current next action:
-
-- Verify and commit the living-goal structure, then record fresh-context resumption evidence and remove duplicated active-state ownership.
+Canonical active progress moved on 2026-07-24 to
+`GOALS/2026-07-24--tempo-skills-goals-modernization.md`. That file owns phase
+status, criterion evidence, retry state, and the exact next action. This section
+remains as the migration pointer so the original `/goal` contract stays current
+without creating a second execution owner.
 
 ## Discoveries
 
-Record unexpected facts and concise evidence here as execution proceeds.
-
-- Observation: Current Codex guidance explicitly treats repo `AGENTS.md` as a small durable-guidance surface and `.agents/skills` as the repo-local progressive-disclosure workflow surface.
-  Evidence: refreshed `/tmp/openai-docs-cache/codex-manual.md` sections "Best practices", "Build skills", and "Customization" on 2026-07-24.
-
-- Observation: The open Agent Skills specification currently permits optional metadata fields beyond `name` and `description`, while the bundled Codex `skill-creator` guidance intentionally restricts generated frontmatter to those two fields.
-  Evidence: `https://agentskills.io/specification` and the local `skill-creator/SKILL.md`, refreshed 2026-07-24. Tempo skills will use only `name` and `description` for widest compatibility.
-
-- Observation: Tempo bootstrap initially failed inside the restricted execution sandbox because configuring `.git/config` requires write access; the same command succeeded with scoped approval.
-  Evidence: `./bootstrap --no-verify` error "could not lock config file .git/config", followed by a successful approved run on 2026-07-24.
-
-- Observation: `pnpm install` in bootstrap can display an interactive modules-reinstall prompt, which is unsuitable for unattended one-command setup even though the observed run completed.
-  Evidence: bootstrap output on 2026-07-24 prompted whether to remove and reinstall `node_modules`. Add this to C016 regression scope.
-
-- Observation: Tempo's approved template product contract and the unfilled contracts generated for a user's project have different valid states.
-  Evidence: structural validation initially assumed Tempo-specific headings; C016 changed it to validate semantic sections and added a reset regression test covering both `PROJECT-BRIEF.md` and `SPEC.md`.
-
-- Observation: `CI=1 pnpm install --frozen-lockfile` removes the interactive modules-reinstall question and completed successfully against the pinned lockfile.
-  Evidence: approved `./bootstrap --no-verify` run on 2026-07-24 recreated dependencies without prompting and completed the setup path.
-
-- Observation: The prior `AGENTS.md` repeated conditional onboarding, proposal, review, RCA, bootstrap, documentation, and completion procedures across 238 lines.
-  Evidence: C017 responsibility-map audit routed those procedures to their authoritative artifacts and produced a 113-line always-loaded kernel without dropping the enumerated safety, verification, rollback, dirty-worktree, or review invariants.
-
-- Observation: A deterministic living-goal validator can enforce one active goal, concrete authority and next action, bounded retries, and evidence-backed completion without depending on a specific agent host.
-  Evidence: `scripts/validate-goal.mjs` and positive/negative fixtures under `test/fixtures/goals/`.
+Canonical execution discoveries now live in the active goal. Durable discoveries
+that change repository policy are copied to `DECISIONS.md`; research provenance
+remains in this document's Research Baseline section.
 
 ## Decisions
 
-Record decisions that affect execution here, then copy durable product or process decisions to `DECISIONS.md`.
-
-- Decision: Preserve a one-command public bootstrap as a non-negotiable product requirement.
-  Rationale: Tempo's primary user may not be a software engineer and should not need to assemble the agent environment manually.
-  Date: 2026-07-24
-
-- Decision: Target a bundle of focused open-format skills rather than one monolithic skill.
-  Rationale: Focused skills trigger more accurately and support progressive disclosure; optional plugin metadata can provide host-specific distribution.
-  Date: 2026-07-24
-
-- Decision: Keep the default starter stack while separating it from the portable governance and skills kernel.
-  Rationale: This preserves Tempo's batteries-included experience without forcing Node.js and pnpm onto adopted repositories.
-  Date: 2026-07-24
-
-- Decision: Treat branch verification and branch mutation as distinct policy events.
-  Rationale: A public starter must verify on its default branch, while active development and direct commits must remain on compliant feature branches.
-  Date: 2026-07-24
-
-- Decision: Keep `AGENTS.md` as a routing and invariant kernel rather than a complete operating manual.
-  Rationale: Conditional procedures can be loaded from their authoritative artifacts when relevant, reducing always-loaded context without weakening policy.
-  Date: 2026-07-24
+Canonical execution decisions now live in the active goal. `DECISIONS.md` remains
+the sole owner of durable product and process decisions.
 
 ## Outcomes and Retrospective
 
-Complete this section at major milestones and final completion.
-
-- Phase 0 established an approved product contract and an execution-ready modernization sequence.
-- Phase 1 removed the bootstrap/branch-policy contradiction, introduced deterministic contract validation, preserved direct-main commit protection, and covered the corrected boundaries with isolated tests.
-- Phase 2 applied Constitution 2.1 and reduced the always-loaded kernel from 238 to 113 lines; living-goal implementation remains in progress.
-- Phase 3 now has a repository-native active goal and deterministic lifecycle enforcement; clean-context behavioral evidence remains before completion.
+Canonical milestone outcomes and the final retrospective now live in the active
+goal. This document remains the approved objective, research, constraints,
+phases, acceptance criteria, verification, and rollback contract.

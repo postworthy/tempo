@@ -6,7 +6,7 @@ Risk Class: T2
 Related Issue/Context: `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`
 Roadmap Item: C017
 Planned Branch: `docs/c012-tempo-modernization-goal`
-Expected Commit Count: 3
+Expected Commit Count: 4
 
 ## Objective
 
@@ -104,6 +104,7 @@ Pass means:
   - `docs(governance): approve living-goal amendment`
   - `refactor(governance): reduce repository kernel`
   - `feat(goals): add resumable goal state`
+  - `docs(goals): consolidate active execution state`
 - Required trailers:
   - `Roadmap: ROADMAP/COMMIT-PLAN.md#C017`
   - `Proposal: PROPOSALS/2026-07-24--concise-kernel-living-goals.md`
@@ -117,6 +118,10 @@ contract, and positive/negative fixtures form one self-validating thin slice.
 Splitting schema from enforcement or evidence would create an intermediate commit
 that claims a goal contract without proving it. The implementation remains
 isolated from the concise-kernel and constitutional commits for rollback.
+
+The fourth documentation commit was added after the thin slice proved the goal
+format. Keeping ownership consolidation separate ensures the old execution state
+is not removed until its replacement has passed validation.
 
 ## Decomposition Plan
 

@@ -42,10 +42,10 @@ The detailed research and original phase contract are recorded in
   - Evidence: 113-line kernel, `scripts/check-docs.mjs`, commit `ba97a34`
 - [x] AC6 — Durable policy, reusable workflow, active goal state, historical evidence, and executable enforcement have distinct documented owners.
   - Evidence: Constitution 2.1 Article IX responsibility map and commit `b425fa2`
-- [ ] AC7 — Tempo provides a self-contained living goal format that supports fresh-context resumption.
-  - Evidence: pending fresh-context resumption evaluation
-- [ ] AC8 — The goal loop acts, observes evidence, evaluates, repairs, checkpoints, and continues until a defined stop condition.
-  - Evidence: pending completed loop evaluation
+- [x] AC7 — Tempo provides a self-contained living goal format that supports fresh-context resumption.
+  - Evidence: `GOALS/TEMPLATE.md`, `GOALS/README.md`, `scripts/validate-goal.mjs`, and `EVALS/2026-07-24--goal-resumption-thin-slice.md`
+- [x] AC8 — The goal loop acts, observes evidence, evaluates, repairs, checkpoints, and continues until a defined stop condition.
+  - Evidence: C017 used this active goal to select work, repair focused check failures, observe `pnpm verify`, checkpoint evidence/next action, and continue through commits `b425fa2`, `ba97a34`, and `729c304`
 - [x] AC9 — T0/T1 reversible work can continue inside an approved authority envelope without repeated approval prompts.
   - Evidence: Constitution 2.1 Articles II and XV-A
 - [x] AC10 — T2/T3, destructive, production, privacy, compatibility, remote, and publication boundaries require explicit approval.
@@ -96,16 +96,16 @@ The detailed research and original phase contract are recorded in
 
 ## Work Units
 
-| Unit                                      | Status      | Exit criteria                                                                | Verification                                                  |
-| ----------------------------------------- | ----------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| 0. Research and approved product contract | completed   | Definition of Ready established.                                             | Commit `dbff42b`; contract validation.                        |
-| 1. Foundation repair                      | completed   | Clean-main verification and non-interactive setup boundaries are consistent. | Commit `8ef1f06`; isolated `main`; governance tests.          |
-| 2. Constitution 2.1 and concise kernel    | completed   | Bounded authority is constitutional and `AGENTS.md` is at most 120 lines.    | Commits `b425fa2`, `ba97a34`; `pnpm verify`.                  |
-| 3. Living goal execution                  | in progress | One active goal validates and resumes from fresh context.                    | `pnpm check:goal`; goal fixtures; manual resumption evidence. |
-| 4. Focused skill bundle                   | pending     | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger evals.              |
-| 5. Portable setup                         | pending     | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures.                                  |
-| 6. Evaluation harness                     | pending     | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                        |
-| 7. Migration and review                   | pending     | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit.      |
+| Unit                                      | Status    | Exit criteria                                                                | Verification                                             |
+| ----------------------------------------- | --------- | ---------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 0. Research and approved product contract | completed | Definition of Ready established.                                             | Commit `dbff42b`; contract validation.                   |
+| 1. Foundation repair                      | completed | Clean-main verification and non-interactive setup boundaries are consistent. | Commit `8ef1f06`; isolated `main`; governance tests.     |
+| 2. Constitution 2.1 and concise kernel    | completed | Bounded authority is constitutional and `AGENTS.md` is at most 120 lines.    | Commits `b425fa2`, `ba97a34`; `pnpm verify`.             |
+| 3. Living goal execution                  | completed | One active goal validates and resumes from fresh state.                      | `pnpm check:goal`; goal fixtures; thin-slice evaluation. |
+| 4. Focused skill bundle                   | pending   | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger evals.         |
+| 5. Portable setup                         | pending   | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures.                             |
+| 6. Evaluation harness                     | pending   | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
+| 7. Migration and review                   | pending   | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
 
 ## Progress
 
@@ -119,6 +119,8 @@ The detailed research and original phase contract are recorded in
   `ba97a34`.
 - 2026-07-24: Living-goal lifecycle, validator, and fixtures implemented; current
   unit passed canonical verification with 11 tests.
+- 2026-07-24: Active execution ownership consolidated into this file; the
+  original roadmap goal retains the approved contract and points here for state.
 
 ## Evidence
 
@@ -161,7 +163,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Record fresh-context resumption evidence against the committed living-goal thin slice, then consolidate duplicated active-state sections.
+- Create and approve the C018 T1 proposal, then build the focused Tempo skill bundle using the current skill-creator workflow.
 
 ## Pause Conditions
 
@@ -174,5 +176,6 @@ The detailed research and original phase contract are recorded in
 ## Outcomes
 
 - Foundation and concise-kernel outcomes are complete and verified.
-- Living-goal execution is the current active unit.
-- Skills, portability, evaluations, migration, and final review remain required.
+- Living-goal execution and active-state consolidation are complete.
+- Skills are the current active unit; portability, full evaluations, migration,
+  and final review remain required.
