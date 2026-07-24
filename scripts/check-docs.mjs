@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { validateContracts } from './validate-contracts.mjs';
 
 const requiredFiles = [
   'AGENTS.md',
@@ -168,6 +169,7 @@ const filesWherePRMustNotAppear = [
 const forbiddenPRPatterns = [/\bPR\b/, /pull request/i, /merge request/i];
 
 const problems = [];
+problems.push(...validateContracts());
 
 for (const file of requiredFiles) {
   if (!existsSync(file)) {

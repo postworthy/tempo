@@ -108,7 +108,7 @@ if [[ "$INIT_PROJECT" -eq 1 ]]; then
 fi
 
 echo "[bootstrap] Installing dependencies..."
-pnpm install
+CI=1 pnpm install --frozen-lockfile
 
 if [[ "$RUN_INTAKE_SCAN" == "1" || ( "$RUN_INTAKE_SCAN" == "auto" && "$MODE" == "adopt-existing" ) ]]; then
   echo "[bootstrap] Running repository intake scan..."

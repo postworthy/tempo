@@ -549,8 +549,8 @@ Every acceptance claim must name the command, artifact, or observable behavior t
 
 Update this list at every meaningful stopping point. Add timestamps and evidence paths.
 
-- [ ] Phase 0: Refresh research and establish approved scope. (In progress: primary guidance refreshed; product brief, specification, proposal, roadmap, status, and decisions drafted on 2026-07-24.)
-- [ ] Phase 1: Repair bootstrap and verification contradictions.
+- [x] Phase 0: Refresh research and establish approved scope. (Completed 2026-07-24; evidence: `dbff42b`, approved brief/specification, C016 proposal, refreshed primary guidance.)
+- [x] Phase 1: Repair bootstrap and verification contradictions. (Completed 2026-07-24; evidence: focused governance tests, non-interactive bootstrap, contract validator, and passing `pnpm verify`.)
 - [ ] Phase 2: Create the concise repository kernel.
 - [ ] Phase 3: Add living goal execution.
 - [ ] Phase 4: Build the skills bundle.
@@ -560,7 +560,7 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 Current next action:
 
-- Format and verify the Phase 0 contract artifacts, reproduce the foundation defects with focused evidence, and commit C012 before C016 implementation.
+- Create the T2 proposal for C017, record its exact governance amendment and rollback boundary, then pause for explicit human approval before implementation.
 
 ## Discoveries
 
@@ -578,6 +578,12 @@ Record unexpected facts and concise evidence here as execution proceeds.
 - Observation: `pnpm install` in bootstrap can display an interactive modules-reinstall prompt, which is unsuitable for unattended one-command setup even though the observed run completed.
   Evidence: bootstrap output on 2026-07-24 prompted whether to remove and reinstall `node_modules`. Add this to C016 regression scope.
 
+- Observation: Tempo's approved template product contract and the unfilled contracts generated for a user's project have different valid states.
+  Evidence: structural validation initially assumed Tempo-specific headings; C016 changed it to validate semantic sections and added a reset regression test covering both `PROJECT-BRIEF.md` and `SPEC.md`.
+
+- Observation: `CI=1 pnpm install --frozen-lockfile` removes the interactive modules-reinstall question and completed successfully against the pinned lockfile.
+  Evidence: approved `./bootstrap --no-verify` run on 2026-07-24 recreated dependencies without prompting and completed the setup path.
+
 ## Decisions
 
 Record decisions that affect execution here, then copy durable product or process decisions to `DECISIONS.md`.
@@ -594,8 +600,13 @@ Record decisions that affect execution here, then copy durable product or proces
   Rationale: This preserves Tempo's batteries-included experience without forcing Node.js and pnpm onto adopted repositories.
   Date: 2026-07-24
 
+- Decision: Treat branch verification and branch mutation as distinct policy events.
+  Rationale: A public starter must verify on its default branch, while active development and direct commits must remain on compliant feature branches.
+  Date: 2026-07-24
+
 ## Outcomes and Retrospective
 
 Complete this section at major milestones and final completion.
 
-- Not started.
+- Phase 0 established an approved product contract and an execution-ready modernization sequence.
+- Phase 1 removed the bootstrap/branch-policy contradiction, introduced deterministic contract validation, preserved direct-main commit protection, and covered the corrected boundaries with isolated tests.

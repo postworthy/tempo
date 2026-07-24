@@ -8,7 +8,7 @@ STAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP_DIR=".template-init-backup/$STAMP"
 mkdir -p "$BACKUP_DIR"
 
-for f in PROJECT-BRIEF.md STATUS.md ROADMAP/COMMIT-PLAN.md; do
+for f in PROJECT-BRIEF.md SPEC.md STATUS.md ROADMAP/COMMIT-PLAN.md; do
   if [[ -f "$f" ]]; then
     mkdir -p "$BACKUP_DIR/$(dirname "$f")"
     cp "$f" "$BACKUP_DIR/$f"
@@ -22,6 +22,11 @@ Status: UNFILLED
 Last updated: YYYY-MM-DD
 
 This brief is intentionally novice-friendly. Fill this file before non-trivial implementation.
+
+## 0. Onboarding Mode
+
+- Mode: <greenfield or adopt-existing>
+- Why this mode was selected: <reason>
 
 ## 1. One-Sentence Project Goal
 
@@ -94,7 +99,77 @@ This brief is intentionally novice-friendly. Fill this file before non-trivial i
 - [ ] <observable success criterion 1>
 - [ ] <observable success criterion 2>
 - [ ] <observable success criterion 3>
+
+## 15. Inferred from Codebase (Hypotheses, Adopt-Existing Mode)
+
+- <hypothesis or not applicable>
+
+## 16. Confirmed Facts vs Corrected Inferences
+
+- Confirmed: <fact>
+- Corrected: <inference or none>
 BRIEF
+
+cat > SPEC.md <<'SPEC'
+# SPEC - Project Name
+
+Version: 0.1
+Last updated: YYYY-MM-DD
+Status: Draft
+
+## 1. Product Objective
+
+- <What outcome will this product create?>
+
+## 2. Users and Core Workflows
+
+- Primary user: <who>
+- Core workflow: <observable end-to-end workflow>
+
+## 3. Functional Requirements
+
+- FR1: <required behavior>
+
+## 4. Constraints
+
+- Platform: <constraint>
+- Security/privacy: <constraint>
+- Compatibility: <constraint>
+
+## 5. Risk Model
+
+- Risk class: <T0, T1, T2, or T3>
+- Main risks: <list>
+
+## 6. Acceptance Criteria
+
+- [ ] <observable acceptance criterion>
+
+## 7. Canonical Verification
+
+Run:
+
+```bash
+pnpm verify
+```
+
+## 8. Safety and Capability Boundaries
+
+- Must not: <prohibited behavior>
+- Must pause when: <approval boundary>
+
+## 9. Compatibility and Migration
+
+- <compatibility or migration requirement>
+
+## 10. Non-Goals
+
+- <explicit non-goal>
+
+## 11. Open Questions
+
+- <unresolved question>
+SPEC
 
 cat > STATUS.md <<'STATUS'
 ## Current Milestone

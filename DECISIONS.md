@@ -180,3 +180,14 @@ Focused skills trigger more accurately, use progressive disclosure, and avoid lo
 
 Consequences:
 Each skill requires independent validation and trigger evals; open-format `SKILL.md` content is canonical; public plugin publication is deferred until the repo-local bundle is proven.
+
+## 2026-07-24 - Separate Verification from Mutation-Time Branch Enforcement
+
+Decision:
+Allow canonical read-only verification on a clean primary branch while retaining feature-branch enforcement at active-development preflight and commit-hook boundaries.
+
+Rationale:
+Bootstrap and verification must succeed for a newly cloned public starter on `main`, but that does not authorize development commits there.
+
+Consequences:
+`pnpm check:git-policy` permits `main` for repository verification; its `--require-feature-branch` mode and the pre-commit hook reject active development or direct commits on `main`.

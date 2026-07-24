@@ -27,6 +27,17 @@ Whether you're a seasoned engineer or just curious about what you can create, Te
 
 Clone it. Start building. Keep the rhythm.
 
+## Setup
+
+After cloning the repository, run the one canonical setup command:
+
+```bash
+./bootstrap
+```
+
+It installs the pinned dependencies, configures local safeguards, and runs `pnpm verify`.
+Then tell your AI agent what you want to build and ask it to follow `AGENTS.md`.
+
 ## Agent First Command
 
 ```bash

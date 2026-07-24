@@ -2,6 +2,9 @@
 
 This file defines the required first-run workflow for any AI coding assistant using this repository as a starter pack.
 
+The canonical setup command is `./bootstrap`. It finishes by running the canonical
+verification command, `pnpm verify`, unless the caller explicitly uses `--no-verify`.
+
 ## Purpose
 
 Ensure project intent is clarified before implementation for both:

@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C012 docs(spec): define modern Tempo product contract
+C017 refactor(governance): create concise kernel and goal state
 
 ## Done (High-Level)
 
@@ -25,7 +25,7 @@ C012 docs(spec): define modern Tempo product contract
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Completing Tempo's product contract and the T1 foundation-repair proposal.
+- Preparing the T2 proposal and approval boundary for the concise kernel and living goal model.
 
 ## Blockers / Risks
 
@@ -37,6 +37,10 @@ C012 docs(spec): define modern Tempo product contract
 - Added a self-contained modernization goal covering skills, living goals, portability, evaluation, and one-command setup.
 - Replaced the placeholder brief and malformed specification with the approved Tempo product contract.
 - Added Phase 0/1 decomposition and a T1 foundation-repair proposal.
+- Separated read-only primary-branch verification from direct-commit enforcement.
+- Added structural contract validation and focused governance regression tests.
+- Made dependency installation non-interactive and frozen-lockfile based.
+- Made project initialization reset and back up both the brief and specification.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -47,9 +51,8 @@ C012 docs(spec): define modern Tempo product contract
 
 ## Next Planned Changes
 
-- Commit the approved C012 contract and planning artifacts.
-- Repair primary-branch verification and structural contract validation under C016.
 - Prepare the T2 proposal for the concise kernel and living goal model.
+- Pause for explicit approval before implementing that broad governance refactor.
 
 ## Notes
 

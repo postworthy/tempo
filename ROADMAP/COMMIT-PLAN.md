@@ -164,7 +164,7 @@ Acceptance:
 
 ## Milestone M2 - Skills and Goal-Native Tempo
 
-### [TODO] C016 - fix(governance): repair bootstrap and contract validation
+### [DONE] C016 - fix(governance): repair bootstrap and contract validation
 
 Goal:
 
@@ -175,6 +175,12 @@ Acceptance:
 - `pnpm verify` passes on clean `main`.
 - The pre-commit hook rejects direct commits on `main`.
 - Malformed contracts, active placeholders, and canonical-command drift fail focused tests.
+
+Evidence:
+
+- `pnpm verify` passed on the compliant feature branch on 2026-07-24.
+- Focused temporary-repository tests cover read-only `main` verification and hook rejection.
+- `./bootstrap --no-verify` completed non-interactively with the frozen lockfile.
 
 ### [TODO] C017 - refactor(governance): create concise kernel and goal state
 

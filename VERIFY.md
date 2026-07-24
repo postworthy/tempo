@@ -86,10 +86,18 @@ pnpm check:git-policy
 
 This check enforces:
 
-- local branch is not `main` during active development,
+- clean-checkout verification is allowed on `main`,
 - feature branch naming policy,
 - conventional commit subjects,
 - required commit trailers (`Roadmap`, `Proposal`) for commits in scope.
+
+For an explicit active-development preflight, run:
+
+```bash
+pnpm check:git-policy -- --require-feature-branch
+```
+
+Repository hooks remain the enforcement boundary that rejects direct commits to `main`.
 
 ## Change Review Requirement
 

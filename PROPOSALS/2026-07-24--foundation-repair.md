@@ -47,14 +47,14 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] Tempo's active brief and specification have no placeholders and satisfy constitutional minimums.
-- [ ] The modernization roadmap is decomposed into independently verifiable commits.
-- [ ] `pnpm verify` succeeds on a clean primary branch and a compliant feature branch.
-- [ ] Direct commits to the primary branch remain blocked.
-- [ ] Active Markdown structure and required sections are validated deterministically.
-- [ ] Canonical bootstrap and verification commands agree across active documents.
-- [ ] Focused regression tests cover the corrected failure modes.
-- [ ] Canonical verification passes.
+- [x] Tempo's active brief and specification have no placeholders and satisfy constitutional minimums.
+- [x] The modernization roadmap is decomposed into independently verifiable commits.
+- [x] `pnpm verify` succeeds on a clean primary branch and a compliant feature branch.
+- [x] Direct commits to the primary branch remain blocked.
+- [x] Active Markdown structure and required sections are validated deterministically.
+- [x] Canonical bootstrap and verification commands agree across active documents.
+- [x] Focused regression tests cover the corrected failure modes.
+- [x] Canonical verification passes.
 
 ## Verification Plan
 
