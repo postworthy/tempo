@@ -4,15 +4,17 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C012 - docs(spec): write v1 product contract
+### [NEXT] C012 - docs(spec): define modern Tempo product contract
 
 Goal:
 
-- Define first usable `SPEC.md` with project-specific scope and acceptance criteria.
+- Define Tempo's approved product contract and the self-contained modernization goal.
 
 Acceptance:
 
-- `SPEC.md` includes objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, and verification reference.
+- `PROJECT-BRIEF.md` and `SPEC.md` contain approved, placeholder-free product intent.
+- `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md` defines the full execution goal.
+- Foundation repair has an approved T1 proposal.
 
 ## Milestone M0 - Foundation and Governance
 
@@ -114,15 +116,17 @@ Acceptance met:
 - `PROJECT-BRIEF.md` now captures inferred-vs-confirmed facts for existing-codebase onboarding.
 - `GETTING_STARTED.md` includes an explicit existing-repo adoption path.
 
-### [TODO] C012 - docs(spec): write v1 product contract
+### [TODO] C012 - docs(spec): define modern Tempo product contract
 
 Goal:
 
-- Define first usable `SPEC.md` with project-specific scope and acceptance criteria.
+- Define Tempo's first complete product contract and modernization execution goal.
 
 Acceptance:
 
-- `SPEC.md` includes objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, and verification reference.
+- `PROJECT-BRIEF.md` and `SPEC.md` include objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, safety boundaries, and verification.
+- The modernization goal is self-contained and resumable.
+- The foundation-repair proposal satisfies Definition of Ready.
 
 ### [DONE] C015 - docs(prompting): align starter prompts with canonical prompt guidance
 
@@ -157,3 +161,77 @@ Acceptance:
 
 - RCA-driven improvements are implemented.
 - Preventive controls added (tests, lint rules, assertions, or observability).
+
+## Milestone M2 - Skills and Goal-Native Tempo
+
+### [TODO] C016 - fix(governance): repair bootstrap and contract validation
+
+Goal:
+
+- Make clean primary-branch verification valid while preserving direct-commit protection, and add structural contract validation.
+
+Acceptance:
+
+- `pnpm verify` passes on clean `main`.
+- The pre-commit hook rejects direct commits on `main`.
+- Malformed contracts, active placeholders, and canonical-command drift fail focused tests.
+
+### [TODO] C017 - refactor(governance): create concise kernel and goal state
+
+Goal:
+
+- Reduce always-loaded guidance and add a canonical living execution-plan model.
+
+Acceptance:
+
+- `AGENTS.md` is no more than 120 lines unless an evidence-backed exception is recorded.
+- A fresh-context agent can identify and resume the active goal.
+- Authority, pause, evidence, retry, and completion rules are explicit.
+
+### [TODO] C018 - feat(skills): add focused Tempo skill bundle
+
+Goal:
+
+- Ship focused repo-local Agent Skills for onboarding, goal planning and execution, review, and RCA.
+
+Acceptance:
+
+- All skills pass current schema and repository validation.
+- Skills use progressive disclosure with resolved references.
+- Positive and negative trigger cases exist.
+
+### [TODO] C019 - feat(bootstrap): add portable Tempo adoption
+
+Goal:
+
+- Preserve the batteries-included greenfield setup and support stack-neutral adoption.
+
+Acceptance:
+
+- One documented public setup command remains canonical.
+- Repeated greenfield bootstrap succeeds.
+- A non-Node fixture adopts Tempo without receiving the TypeScript starter stack.
+
+### [TODO] C020 - test(evals): validate skills and fresh-context goals
+
+Goal:
+
+- Demonstrate that skills and living goals improve real workflows without unacceptable context or interruption cost.
+
+Acceptance:
+
+- The seven minimum scenarios in the modernization goal have evidence.
+- Deterministic assertions cover mechanical outcomes.
+- Failures and false triggers become regression cases.
+
+### [TODO] C021 - docs(release): complete migration and review evidence
+
+Goal:
+
+- Align public documentation, migration guidance, decisions, status, and review evidence.
+
+Acceptance:
+
+- Canonical verification and manual evaluations pass.
+- The repository is merge-safe and publication-ready.
+- No remote, push, or publication action has occurred.

@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C012 docs(spec): write first project-specific spec from template
+C012 docs(spec): define modern Tempo product contract
 
 ## Done (High-Level)
 
@@ -24,14 +24,19 @@ C012 docs(spec): write first project-specific spec from template
 
 ## In Progress
 
-- Drafting project-specific `SPEC.md` content from template placeholders.
+- Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
+- Completing Tempo's product contract and the T1 foundation-repair proposal.
 
 ## Blockers / Risks
 
-- `SPEC.md` still contains placeholders and must be completed before non-trivial product implementation.
+- Broad governance compression and constitutional amendments will require a separate T2 proposal and explicit approval before implementation.
+- Skill and goal evaluations must use clean contexts without committing generated workspaces.
 
 ## Recent Changes
 
+- Added a self-contained modernization goal covering skills, living goals, portability, evaluation, and one-command setup.
+- Replaced the placeholder brief and malformed specification with the approved Tempo product contract.
+- Added Phase 0/1 decomposition and a T1 foundation-repair proposal.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -42,8 +47,9 @@ C012 docs(spec): write first project-specific spec from template
 
 ## Next Planned Changes
 
-- Finalize `SPEC.md` v1 for a concrete product objective and acceptance criteria.
-- Add first thin vertical slice implementation from approved proposal.
+- Commit the approved C012 contract and planning artifacts.
+- Repair primary-branch verification and structural contract validation under C016.
+- Prepare the T2 proposal for the concise kernel and living goal model.
 
 ## Notes
 

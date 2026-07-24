@@ -147,3 +147,36 @@ Governance-heavy docs improve safety and process control, but assistants also ne
 
 Consequences:
 Starter prompts, onboarding docs, and adapter docs should reference `PROMPTING.md`; prompt-facing documentation changes should include a lightweight manual prompt review.
+
+## 2026-07-24 - Skills and Goal-Native Modernization Direction
+
+Decision:
+Modernize Tempo around a concise repository kernel, focused open-format Agent Skills, a canonical living goal artifact, deterministic enforcement, and evidence-based evaluations.
+
+Rationale:
+Current agent hosts can progressively load reusable procedures and continue persistent goals. Tempo's large always-read instruction stack and duplicated execution state prevent those capabilities from delivering their full value.
+
+Consequences:
+Always-applicable policy will remain in `AGENTS.md`; reusable procedures will move to skills; active execution state will have one canonical owner; broad governance changes require a separate T2 proposal and constitutional amendment process.
+
+## 2026-07-24 - Preserve One-Command Batteries-Included Setup
+
+Decision:
+Keep `./bootstrap` as Tempo's canonical in-repository setup command and preserve the default TypeScript starter profile while separating portable governance and skills from that profile.
+
+Rationale:
+Tempo's primary user should not need to assemble an agent environment or become a software engineer before starting, while existing non-Node repositories should not inherit an unrelated application stack.
+
+Consequences:
+Greenfield setup remains opinionated and batteries included; adopt-existing setup must be stack-neutral; clean primary-branch bootstrap and repeated setup become release acceptance criteria.
+
+## 2026-07-24 - Focused Skill Bundle Instead of Monolithic Skill
+
+Decision:
+Provide separate skills for onboarding, goal planning, goal execution, review, and RCA, with optional host-specific plugin metadata layered on top.
+
+Rationale:
+Focused skills trigger more accurately, use progressive disclosure, and avoid loading irrelevant workflow instructions.
+
+Consequences:
+Each skill requires independent validation and trigger evals; open-format `SKILL.md` content is canonical; public plugin publication is deferred until the repo-local bundle is proven.
