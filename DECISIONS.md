@@ -202,3 +202,14 @@ Long-running agents need durable resumption state and enough bounded authority t
 
 Consequences:
 `GOALS/*` becomes authoritative for active execution state. Explicit approval remains mandatory for scope expansion, destructive or irreversible work, remote/publication actions, production effects, unclear security/privacy impact, compatibility breaks, and all T2/T3 implementation.
+
+## 2026-07-24 - Concise Repository Kernel
+
+Decision:
+Limit `AGENTS.md` to always-applicable invariants, authority boundaries, task routing, preflight, the core work loop, and completion/recovery rules.
+
+Rationale:
+Loading every conditional procedure for every task wastes context and makes durable instructions harder to follow. The Constitution 2.1 responsibility map provides authoritative destinations for procedural detail.
+
+Consequences:
+Onboarding, prompting, proposals, reviews, RCA, and active-goal procedures are loaded when relevant rather than duplicated in the repository kernel. A deterministic check enforces the 120-line limit.

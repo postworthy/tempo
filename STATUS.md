@@ -41,6 +41,8 @@ C017 refactor(governance): create concise kernel and goal state
 - Added structural contract validation and focused governance regression tests.
 - Made dependency installation non-interactive and frozen-lockfile based.
 - Made project initialization reset and back up both the brief and specification.
+- Applied the approved Constitution 2.1 amendment and responsibility map.
+- Reduced the always-loaded repository kernel from 238 lines to 113 lines while retaining routed invariants.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -51,8 +53,8 @@ C017 refactor(governance): create concise kernel and goal state
 
 ## Next Planned Changes
 
-- Apply and verify Constitution 2.1 and its responsibility map.
-- Implement the concise kernel and living-goal units in separate commits.
+- Add the living-goal lifecycle, template, validator, and fixtures.
+- Prove fresh-context resumption before consolidating overlapping active state.
 
 ## Notes
 

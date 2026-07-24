@@ -15,13 +15,13 @@ Prefer this order when an assistant host supports message roles:
 1. System or platform rules for safety and platform behavior.
 2. Developer instructions for stable Tempo rules and workflow constraints.
 3. User instructions for project-specific goals and current task details.
-4. Repository artifacts for durable project context (`PROJECT-BRIEF.md`, `SPEC.md`, proposals, reviews, RCAs).
+4. Repository artifacts for durable project context (`SPEC.md`, approved proposals, the active goal, reviews, and RCAs).
 
 Guidelines:
 
-- Put durable Tempo rules in the highest available stable instruction layer.
+- Put only always-applicable Tempo rules in the highest available stable instruction layer.
 - Put task-specific requests in the user layer, not mixed into long reusable policy text.
-- Treat repository documents as source material to summarize into active instructions when needed.
+- Treat the active living goal as execution state; load conditional procedures only when the task requires them.
 - If two instructions conflict, follow the highest-priority instruction and state the conflict explicitly.
 
 ## Output Contract Pattern
@@ -34,6 +34,10 @@ Recommended structure:
 2. What to produce before approval.
 3. What must not happen yet.
 4. What evidence will prove the step is complete.
+
+For long-running implementation, prefer an outcome contract over a prescribed
+step-by-step solution. Record acceptance criteria, authority, pause conditions,
+evidence, and the next action in the living goal so a fresh context can resume.
 
 Example contract:
 
@@ -62,7 +66,7 @@ Starter prompts should separate environment/setup intent from assistant behavior
 Guidelines:
 
 - Keep shell commands outside the natural-language instruction when possible.
-- Tell the assistant exactly which files to read first.
+- Route the assistant through `AGENTS.md`; name additional files only when the task requires them.
 - Specify the order of outputs expected in the first response.
 - State the approval boundary before any coding or file edits.
 
@@ -118,6 +122,25 @@ Use this when:
 - a prior plan is no longer valid,
 - a failed attempt requires a revised approach.
 
+If a living goal is active, update it rather than leaving the new scope only in
+conversation history. Scope expansion still requires the approval defined by the
+goal and Constitution.
+
+## Long-Running Goal Pattern
+
+For work that may cross context windows:
+
+```text
+Execute the active repository goal to completion.
+Use its outcome, acceptance criteria, authority envelope, and pause conditions.
+Choose the smallest valuable unmet criterion, act, verify with observable
+evidence, checkpoint progress and next action, then continue.
+Do not claim completion until every criterion has evidence.
+```
+
+Host-native goal or loop features may mirror this state, but the repository goal
+is authoritative so another compatible agent can resume it.
+
 ## Grounding and Context
 
 Prefer grounded instructions over assumptions.
@@ -149,6 +172,7 @@ Minimum eval scenarios:
 1. Fresh greenfield onboarding request.
 2. Adopt-existing onboarding request.
 3. Mid-task scope change after discovery.
+4. Fresh-context resumption from a partially completed goal.
 
 For each scenario, verify that the prompt:
 
@@ -156,5 +180,7 @@ For each scenario, verify that the prompt:
 - does not skip directly to coding,
 - asks clarifying questions when the brief is incomplete,
 - respects approval boundaries.
+- chooses the recorded next action without repeating completed work,
+- does not claim goal completion without criterion-level evidence.
 
 Record notable failures in the proposal, review record, or RCA as appropriate.

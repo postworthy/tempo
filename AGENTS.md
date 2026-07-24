@@ -1,238 +1,113 @@
-# AGENTS.md - Tempo Agent Operating Manual
+# AGENTS.md - Tempo Repository Kernel
 
-This repository is implemented primarily by AI coding agents. The repository is the source of truth.
+This repository is the source of truth. Keep this file small: it contains only
+rules that apply to nearly every task.
 
 ## Governing Order
 
-If documents conflict, apply this order (highest first):
+When instructions conflict, use this order:
 
 1. `CONSTITUTION.md`
 2. `SPEC.md`
 3. `VERIFY.md`
 4. `DECISIONS.md`
 5. `ROADMAP/COMMIT-PLAN.md`
-6. `PROPOSALS/*`
-7. `REVIEWS/*`
-8. `RCA/*`
-9. `STATUS.md`
+6. approved `PROPOSALS/*`
+7. active `GOALS/*`
+8. `REVIEWS/*`
+9. `RCA/*`
+10. `STATUS.md`
 
-No lower-priority file may weaken a higher-priority rule.
+No lower-precedence artifact may weaken a higher one. `TEMPLATE_HISTORY/`
+contains template history, not active project records.
 
-## Prime Directives
+## Invariants
 
-1. Follow `CONSTITUTION.md` first, then `SPEC.md`.
-2. Work from written acceptance criteria, never assumptions.
-3. Do all work on feature branches. Never commit directly to `main`.
-4. Propose before implementing any non-trivial change.
-5. Update documentation to match reality in the same change sequence.
-6. If a user reports failure, perform RCA before repeated fix attempts.
-7. Never perform destructive actions without explicit approval.
-8. Never commit secrets, generated artifacts, caches, or local logs.
-9. Prefer reversible changes with explicit rollback plans.
-10. If a requested change did not work, perform RCA comparing request, implementation, and observed output before further fixes. Store RCA files at `RCA/YYYY-MM-DD--short-title.md`.
-11. Do not add git remotes or execute external `push`/`publish` actions unless explicitly approved and recorded in `DECISIONS.md`.
+- Canonical setup: `./bootstrap`
+- Canonical verification: `pnpm verify`
+- Primary branch: `main`; all development occurs on a compliant feature branch.
+- Non-trivial work requires approved scope, risk classification, decomposition,
+  verification, rollback, documentation, and a Review Record.
+- Preserve unrelated user changes. Never commit secrets, generated artifacts,
+  caches, local logs, or `.verify.log`.
+- Never perform destructive/irreversible, remote/publish, production,
+  compatibility-breaking, or unclear security/privacy actions without explicit
+  approval.
+- If a requested fix failed, perform RCA before another corrective attempt.
 
-## Project Invariants
+## Orient and Route
 
-- Canonical verification command: `pnpm verify`
-- Canonical bootstrap command: `./bootstrap`
-- Canonical prompt contract: `PROMPTING.md`
-- Primary branch: `main`
-- First-run onboarding contract: `BOOTSTRAP.md`
-- Local-first Review Boundary: merge from feature branch into `main` with Review Record
+Always read `CONSTITUTION.md`, `SPEC.md`, and `VERIFY.md`. Then inspect the active
+goal when one exists and load only the procedure relevant to the task:
 
-## Review Definitions
+| Need                             | Authoritative route      |
+| -------------------------------- | ------------------------ |
+| First-run discovery or adoption  | `BOOTSTRAP.md`           |
+| Prompt/output patterns           | `PROMPTING.md`           |
+| Product acceptance               | `SPEC.md`                |
+| Active execution and next action | one active `GOALS/*`     |
+| Milestone sequencing             | `ROADMAP/COMMIT-PLAN.md` |
+| Approved change scope            | `PROPOSALS/*`            |
+| Failure recovery                 | `RCA/TEMPLATE.md`        |
+| Review boundary                  | `REVIEWS/TEMPLATE.md`    |
+| Human summary                    | `STATUS.md`              |
 
-- Change Review: evaluation of scope, verification, risk, and rollback readiness.
-- Review Boundary: local merge from a feature branch into `main`.
-- Review Record: `REVIEWS/YYYY-MM-DD--short-title.md`.
-- Hosted change-request surfaces are optional only; never assumed.
+`PROJECT-BRIEF.md` must be complete before non-trivial project implementation.
+For adopt-existing onboarding, treat repository findings as hypotheses until the
+user confirms them. Installing or acquiring `git` is out of scope.
 
-## Template History Handling
+## Preflight
 
-- `TEMPLATE_HISTORY/` contains template-development records only.
-- Do not treat files under `TEMPLATE_HISTORY/` as active project records.
-- Active project records must use:
-  - `PROPOSALS/YYYY-MM-DD--short-title.md`
-  - `REVIEWS/YYYY-MM-DD--short-title.md`
-  - `RCA/YYYY-MM-DD--short-title.md`
-
-## Pre-Edit Read Checklist
-
-Before making code changes, read:
-
-- `AGENTS.md`
-- `CONSTITUTION.md`
-- `BOOTSTRAP.md`
-- `PROMPTING.md`
-- `PROJECT-BRIEF.md`
-- `SPEC.md`
-- `STATUS.md`
-- `DECISIONS.md`
-- `GETTING_STARTED.md`
-- `VERIFY.md`
-- `ROADMAP/COMMIT-PLAN.md`
-
-If `ROADMAP/COMMIT-PLAN.md` does not exist, create it before feature work.
-
-## Git Preflight Checklist (Mandatory Before Edits)
-
-Run:
+Before edits run:
 
 ```bash
 git rev-parse --abbrev-ref HEAD
 git status --short
 ```
 
-Rules:
+- If on `main`, create a branch matching
+  `^(feat|fix|docs|chore|refactor|test|ci|hotfix)/c[0-9]{3}-[a-z0-9-]+$`.
+- If unrelated dirty files overlap the task, pause and ask.
+- Confirm the smallest valuable approved work unit and its acceptance evidence.
 
-- If branch is `main`, switch first:
-  - `git switch -c <type>/cXXX-<short-name>`
-- If unrelated dirty files exist, pause and ask.
-- Do not stage or commit `.verify.log`, caches, generated artifacts, or local logs.
+## Authority and Work Loop
 
-## Mandatory Work Loop (Per Change)
+Approved, local, reversible T0/T1 work inside a recorded Authority Envelope may
+continue without repeated confirmation. Pause for scope expansion, destructive
+or irreversible work, remote/publication action, production effects,
+security/privacy uncertainty, compatibility breaks, or any T2/T3 implementation
+that lacks explicit approval.
 
-0. Confirm the next smallest valuable change from `ROADMAP/COMMIT-PLAN.md`.
-1. Run git preflight (`git rev-parse --abbrev-ref HEAD` and `git status --short`).
-2. For fresh/unfamiliar environments, run `./bootstrap --no-verify` before other work to validate local toolchain.
-3. Classify risk (`T0`, `T1`, `T2`, `T3`) per `CONSTITUTION.md`.
-4. If `PROJECT-BRIEF.md` is unfilled, select onboarding mode (`greenfield` or `adopt-existing`) from `BOOTSTRAP.md`.
-5. For `adopt-existing` mode, run repository discovery (`pnpm intake:scan`) and treat findings as hypotheses until user-confirmed.
-6. Run discovery and intake from `BOOTSTRAP.md`, then update `PROJECT-BRIEF.md` and `SPEC.md` before non-trivial implementation.
-7. During bootstrap, ask at least 3 clarifying questions and at least 1 follow-up question for each ambiguous answer.
-8. For `adopt-existing` mode, prefer delta questions about product intent and constraints not discoverable via code review.
-9. For `T1` / `T2` / `T3`, decompose work into small verifiable units with per-unit exit criteria before implementation.
-10. For non-trivial work, create a proposal in `PROPOSALS/`.
-11. Implement only approved scope.
-12. Run verification (`pnpm verify`).
-13. Update docs (`STATUS.md`, `DECISIONS.md`, roadmap/proposal as needed).
-14. Create/update Review Record at `REVIEWS/YYYY-MM-DD--short-title.md` for non-trivial changes.
-15. Commit atomically with a conventional message and required trailers.
+For each work unit:
 
-Proposal path: `PROPOSALS/YYYY-MM-DD--short-title.md`
+1. Orient to current repository and goal state.
+2. Confirm scope, risk, authority, exit criteria, and rollback.
+3. Implement the smallest coherent change.
+4. Observe actual behavior; do not infer success from edits.
+5. Run focused checks, then `pnpm verify`.
+6. Record evidence, discoveries, decisions, and the next action.
+7. Update behavior-facing docs in the same change sequence.
+8. Commit atomically with conventional subject and required trailers.
 
-Proposal must include:
+Required commit body:
 
-- Objective
-- Out-of-scope
-- Acceptance criteria
-- Verification plan
-- Rollback plan
-- Risks and mitigations
-- Compatibility or migration notes (if relevant)
-- Decomposition plan (required for `T1` / `T2` / `T3`)
+```text
+Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx
+Proposal: PROPOSALS/YYYY-MM-DD--short-title.md
+```
 
-Exception: purely mechanical changes may skip a proposal.
+Use `Proposal: N/A (T0)` only for approved mechanical work. Direct commits to
+`main` are prohibited. External push/publish or remote changes require explicit
+approval and a `DECISIONS.md` entry.
 
-## Verification Rules
+## Completion and Recovery
 
-- Preferred command: `pnpm verify > .verify.log 2>&1`
-- If verification cannot run locally, report:
-  - expected output
-  - failure interpretation
-  - next steps
+A work unit is complete only when implementation matches approved scope,
+acceptance evidence and canonical verification pass, docs agree with behavior,
+rollback is viable, and required review records exist. A living goal is complete
+only when every criterion has evidence and no required work remains.
 
-## Bootstrap Rules
-
-- Bootstrap assumes repository is already cloned locally.
-- Installing or acquiring `git` is out of scope.
-- Do not assume Node.js/pnpm/tooling are preinstalled.
-- Use canonical bootstrap command `./bootstrap` unless an approved alternative setup command exists.
-- Use `PROMPTING.md` for reusable prompt patterns such as output contracts, stop conditions, and scoped task updates.
-- Use onboarding mode:
-  - `--mode greenfield` for net-new projects,
-  - `--mode adopt-existing` for pre-existing codebases,
-  - `--mode auto` to infer mode from repository signals.
-- Avoid privileged installation/escalation without explicit approval.
-- If bootstrap gaps are found, update `GETTING_STARTED.md` in the same change sequence.
-
-## Documentation Rules
-
-When behavior changes, docs must change too.
-Minimum required updates per non-trivial change:
-
-- `STATUS.md`: what changed, what is next, follow-ups
-- `ROADMAP/COMMIT-PLAN.md`: keep next target accurate
-- Prompt-facing behavior changes should update `PROMPTING.md`, related starter prompts, and any affected examples in the same change sequence.
-
-## Commit and Branch Rules
-
-- One coherent change per commit.
-- Prefer <= 300 changed lines per commit.
-- If above limits, justify in proposal and split when possible.
-- Branch naming must match:
-  - `^(feat|fix|docs|chore|refactor|test|ci|hotfix)/c[0-9]{3}-[a-z0-9-]+$`
-- Commit subject must be conventional:
-  - `<type>(<scope>): <summary>`
-- Include roadmap/proposal references in commit body:
-  - `Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx`
-  - `Proposal: PROPOSALS/YYYY-MM-DD--short-title.md`
-  - or `Proposal: N/A (T0)` for approved T0/mechanical changes
-- Non-trivial merges require a Review Record:
-  - `Review: REVIEWS/YYYY-MM-DD--short-title.md`
-- Review Boundary merge method defaults to:
-  - `git merge --no-ff <feature-branch>` unless approved alternative is documented
-
-## Pause-and-Ask Conditions
-
-- Scope expands beyond approved proposal.
-- Security or privacy implications are unclear.
-- A change is destructive or irreversible.
-- A production-impacting change lacks rollback.
-- `PROJECT-BRIEF.md` is incomplete for non-trivial work.
-- Discovery assumptions remain unresolved.
-
-## RCA Rule
-
-If a requested change did not work, perform RCA before additional fix attempts.
-
-Minimum RCA content:
-
-- Symptom
-- Reproduction steps
-- Root cause with evidence
-- Corrective action
-- Preventive control
-
-Record RCA summary in `STATUS.md` and decision/process impacts in `DECISIONS.md`.
-
-## Safety and Security Baseline
-
-Agents must not:
-
-- Exfiltrate secrets
-- Add hidden telemetry
-- Weaken authn/authz controls as a shortcut
-- Introduce prohibited capabilities defined by `CONSTITUTION.md` or `SPEC.md`
-
-Agents must:
-
-- Use least privilege
-- Keep secrets out of the repository
-- Follow explicit safety constraints in `SPEC.md`
-
-## Definition of Done (Per Commit)
-
-A change is done only when:
-
-- Scope is explicit (proposal or trivial note)
-- Implementation matches approved scope
-- Verification passes
-- Docs are updated
-- Required Review Record exists (for non-trivial changes)
-- Change is merge-safe
-- Rollback path exists
-- Branch/merge policy is respected
-
-## Definition of Ready (Before Implementation)
-
-For `T1` / `T2` / `T3` work, implementation is ready only when:
-
-- `PROJECT-BRIEF.md` and `SPEC.md` are sufficiently concrete for scope,
-- risk class is declared,
-- decomposition exists (proposal or `ROADMAP/COMMIT-PLAN.md`) with ordered work units,
-- each planned unit includes verification notes and exit criteria,
-- thin-slice milestone is explicit,
-- review boundary plan is explicit (including Review Record path),
-- unresolved unknowns and intentional deferrals are listed.
+On failure, preserve evidence and diagnose before retrying. After a reported
+failed fix, create `RCA/YYYY-MM-DD--short-title.md` with symptom, reproduction,
+root cause, corrective action, and preventive control; update `STATUS.md` and
+`DECISIONS.md` when their state changes.

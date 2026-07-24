@@ -560,7 +560,7 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 Current next action:
 
-- Verify and commit the Constitution 2.1 amendment and responsibility ownership rules, then reduce `AGENTS.md` against an explicit invariant map.
+- Verify and commit the concise 113-line repository kernel, then add the living-goal lifecycle, validator, and resumption fixtures.
 
 ## Discoveries
 
@@ -584,6 +584,9 @@ Record unexpected facts and concise evidence here as execution proceeds.
 - Observation: `CI=1 pnpm install --frozen-lockfile` removes the interactive modules-reinstall question and completed successfully against the pinned lockfile.
   Evidence: approved `./bootstrap --no-verify` run on 2026-07-24 recreated dependencies without prompting and completed the setup path.
 
+- Observation: The prior `AGENTS.md` repeated conditional onboarding, proposal, review, RCA, bootstrap, documentation, and completion procedures across 238 lines.
+  Evidence: C017 responsibility-map audit routed those procedures to their authoritative artifacts and produced a 113-line always-loaded kernel without dropping the enumerated safety, verification, rollback, dirty-worktree, or review invariants.
+
 ## Decisions
 
 Record decisions that affect execution here, then copy durable product or process decisions to `DECISIONS.md`.
@@ -604,9 +607,14 @@ Record decisions that affect execution here, then copy durable product or proces
   Rationale: A public starter must verify on its default branch, while active development and direct commits must remain on compliant feature branches.
   Date: 2026-07-24
 
+- Decision: Keep `AGENTS.md` as a routing and invariant kernel rather than a complete operating manual.
+  Rationale: Conditional procedures can be loaded from their authoritative artifacts when relevant, reducing always-loaded context without weakening policy.
+  Date: 2026-07-24
+
 ## Outcomes and Retrospective
 
 Complete this section at major milestones and final completion.
 
 - Phase 0 established an approved product contract and an execution-ready modernization sequence.
 - Phase 1 removed the bootstrap/branch-policy contradiction, introduced deterministic contract validation, preserved direct-main commit protection, and covered the corrected boundaries with isolated tests.
+- Phase 2 applied Constitution 2.1 and reduced the always-loaded kernel from 238 to 113 lines; living-goal implementation remains in progress.

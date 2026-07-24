@@ -30,22 +30,20 @@ const requiredReadmeSnippets = [
 ];
 
 const requiredAgentsSnippets = [
-  'Git Preflight Checklist (Mandatory Before Edits)',
-  'Definition of Ready (Before Implementation)',
-  'decompose work into small verifiable units',
-  'Review Boundary',
-  'Review Record',
-  'Do not add git remotes or execute external `push`/`publish` actions',
-  'Canonical bootstrap command: `./bootstrap`',
-  'Canonical prompt contract: `PROMPTING.md`',
-  'Bootstrap Rules',
-  'Installing or acquiring `git` is out of scope',
+  '## Preflight',
+  '## Authority and Work Loop',
+  'Approved, local, reversible T0/T1 work',
+  'one active `GOALS/*`',
+  'Review boundary',
+  'required review records',
+  'External push/publish or remote changes require explicit',
+  'Canonical setup: `./bootstrap`',
+  'Canonical verification: `pnpm verify`',
+  'Installing or acquiring `git` is out of scope.',
   'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
   'Proposal: N/A (T0)',
-  'select onboarding mode',
-  'pnpm intake:scan',
-  'Template History Handling',
-  'Do not treat files under `TEMPLATE_HISTORY/` as active project records',
+  '`TEMPLATE_HISTORY/`',
+  'If a requested fix failed, perform RCA',
 ];
 
 const requiredBootstrapSnippets = [
@@ -106,7 +104,12 @@ const requiredVerifySnippets = [
 ];
 
 const requiredConstitutionSnippets = [
+  'Version: 2.1',
   'Article I-A — Workflow Definitions',
+  'Living Goal:',
+  'Authority Envelope:',
+  '### Responsibility Map',
+  'Active execution state and next action',
   'Pull Request (PR): an optional hosted platform surface',
   'Article V-A — Decomposition Before Development (Mandatory)',
   'Article VII — Local-First Review and Merge Discipline',
@@ -202,6 +205,13 @@ hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
 hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
 hasAllSnippets('TEMPLATE_HISTORY/README.md', requiredTemplateHistorySnippets);
 hasAllSnippets('DISCOVERY/TEMPLATE.md', ['PROJECT-INVENTORY', 'Delta Intake Questions']);
+
+if (existsSync('AGENTS.md')) {
+  const lineCount = readFileSync('AGENTS.md', 'utf8').split('\n').length;
+  if (lineCount > 120) {
+    problems.push(`AGENTS.md exceeds the 120-line repository-kernel limit (${lineCount} lines)`);
+  }
+}
 
 for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
   if (!existsSync(file)) {
