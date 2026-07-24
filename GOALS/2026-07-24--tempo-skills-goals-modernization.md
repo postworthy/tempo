@@ -4,7 +4,7 @@ Status: active
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
-Proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md` (current unit; later units require their recorded proposals)
+Proposal: `PROPOSALS/2026-07-24--focused-tempo-skills.md` (current unit)
 Review Boundary: merge from `docs/c012-tempo-modernization-goal` into `main` with `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`
 
 ## Outcome
@@ -121,6 +121,8 @@ The detailed research and original phase contract are recorded in
   unit passed canonical verification with 11 tests.
 - 2026-07-24: Active execution ownership consolidated into this file; the
   original roadmap goal retains the approved contract and points here for state.
+- 2026-07-24: C018 focused-skill proposal approved under the original `/goal`
+  authority for scoped, reversible T1 work.
 
 ## Evidence
 
@@ -163,7 +165,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Create and approve the C018 T1 proposal, then build the focused Tempo skill bundle using the current skill-creator workflow.
+- Initialize the five focused Tempo skills with the current skill-creator workflow, then replace generated placeholders with task-specific procedures.
 
 ## Pause Conditions
 

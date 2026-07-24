@@ -25,7 +25,7 @@ C018 feat(skills): add focused Tempo skill bundle
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Preparing the C018 focused Agent Skills bundle.
+- Implementing the approved C018 focused Agent Skills bundle.
 
 ## Blockers / Risks
 
@@ -55,8 +55,8 @@ C018 feat(skills): add focused Tempo skill bundle
 
 ## Next Planned Changes
 
-- Create the C018 T1 proposal.
-- Build and evaluate the focused onboarding, goal, review, and RCA skills.
+- Initialize the five skill directories with the current skill-creator.
+- Build and evaluate the focused onboarding, goal, review, and RCA workflows.
 
 ## Notes
 
