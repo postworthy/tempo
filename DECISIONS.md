@@ -191,3 +191,14 @@ Bootstrap and verification must succeed for a newly cloned public starter on `ma
 
 Consequences:
 `pnpm check:git-policy` permits `main` for repository verification; its `--require-feature-branch` mode and the pre-commit hook reject active development or direct commits on `main`.
+
+## 2026-07-24 - Constitution 2.1 Living Goals and Bounded Authority
+
+Decision:
+Approve Constitution 2.1, recognizing one repository-native Living Goal as the canonical active execution state and permitting approved, reversible T0/T1 work within a recorded Authority Envelope to continue without repeated confirmation.
+
+Rationale:
+Long-running agents need durable resumption state and enough bounded authority to complete approved routine work, while meaningful safety and product boundaries remain human-controlled.
+
+Consequences:
+`GOALS/*` becomes authoritative for active execution state. Explicit approval remains mandatory for scope expansion, destructive or irreversible work, remote/publication actions, production effects, unclear security/privacy impact, compatibility breaks, and all T2/T3 implementation.

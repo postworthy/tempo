@@ -247,5 +247,6 @@ If this change causes regressions:
 ## Approval
 
 - Requested from: Human Partner
-- Approval status: pending
-- Approved at: pending
+- Approval status: approved
+- Approved at: 2026-07-24
+- Approval evidence: user stated, “I explicitly approve the C017 T2 proposal and its Constitution 2.1 amendment for implementation.”

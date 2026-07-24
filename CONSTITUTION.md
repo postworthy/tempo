@@ -1,8 +1,11 @@
 # Constitution for Agentic Software Engineering
 
-Version: 2.0  
-Effective date: 2026-02-12  
-Last updated: 2026-02-12  
+Version: 2.1
+
+Effective date: 2026-07-24
+
+Last updated: 2026-07-24
+
 Status: Active
 
 This document is both:
@@ -46,13 +49,16 @@ Document precedence (highest to lowest):
 3. `VERIFY.md`
 4. `DECISIONS.md`
 5. `ROADMAP/COMMIT-PLAN.md`
-6. `PROPOSALS/*`
-7. `REVIEWS/*`
-8. `RCA/*`
-9. `STATUS.md`
-10. Local process notes
+6. Approved `PROPOSALS/*`
+7. Active `GOALS/*`
+8. `REVIEWS/*`
+9. `RCA/*`
+10. `STATUS.md`
+11. Local process notes
 
 No lower-precedence file may weaken a higher-precedence requirement.
+An active goal operationalizes approved scope; it does not create authority that a
+higher-precedence artifact did not grant.
 
 ---
 
@@ -64,6 +70,8 @@ Terms used across this constitution:
 - Review Boundary: the local merge event from a feature branch into `main`.
 - Review Record: an in-repo artifact at `REVIEWS/YYYY-MM-DD--short-title.md` capturing review evidence and decision.
 - Pull Request (PR): an optional hosted platform surface for discussion only; it is not required and is never assumed by default workflow.
+- Living Goal: the canonical repository artifact under `GOALS/` that records an approved outcome, authority envelope, current execution state, evidence, and next action.
+- Authority Envelope: the approved set of local, reversible actions an agent may execute without repeated confirmation.
 
 Default workflow is local-first. Hosted PR/MR systems `MAY` be used as optional surfaces, but governance requirements are satisfied only by in-repo artifacts and local review boundary controls.
 
@@ -91,7 +99,14 @@ The Human Partner (or delegated maintainer) `MUST` approve:
 - destructive actions,
 - security/privacy exceptions,
 - production-impacting rollouts,
-- compatibility-breaking API or schema changes.
+- compatibility-breaking API or schema changes,
+- remote or publication actions,
+- and all T2/T3 implementation.
+
+Approved T0/T1 work inside a recorded Authority Envelope `MAY` continue without
+repeated human confirmation. This bounded authority never includes destructive or
+irreversible work, unclear security/privacy impact, production effects,
+compatibility breaks, remote or publication actions, or scope expansion.
 
 ### Section 3 — Duty of Candor
 
@@ -203,6 +218,9 @@ For `T1` / `T2` / `T3`, proposal `MUST` also include a decomposition plan with o
 
 The AI Agent `MUST NOT` implement beyond approved scope.
 
+An approved proposal `MAY` initialize a Living Goal. A Living Goal does not
+replace proposal approval where this constitution requires a proposal.
+
 ---
 
 ## Article V-A — Decomposition Before Development (Mandatory)
@@ -306,6 +324,8 @@ Required behavior:
    - exact commands,
    - expected outcomes,
    - failure interpretation guide.
+5. When a Living Goal exists, completion evidence `MUST` be recorded against each
+   acceptance criterion in that goal.
 
 Canonical verification `SHOULD` cover:
 
@@ -328,18 +348,40 @@ The following are constitutional artifacts:
 - `DECISIONS.md`
 - `ROADMAP/COMMIT-PLAN.md`
 - `PROPOSALS/*`
+- `GOALS/*`
 - `REVIEWS/*`
 - `RCA/*`
+
+### Responsibility Map
+
+Each information category has one authoritative owner:
+
+| Information category                    | Authoritative owner      |
+| --------------------------------------- | ------------------------ |
+| Product intent and acceptance           | `SPEC.md`                |
+| Highest-order governance and safety     | `CONSTITUTION.md`        |
+| Always-applicable repository routing    | `AGENTS.md`              |
+| Canonical verification behavior         | `VERIFY.md`              |
+| Durable decisions and rationale         | `DECISIONS.md`           |
+| Milestone and commit sequencing         | `ROADMAP/COMMIT-PLAN.md` |
+| Approved non-trivial change scope       | Approved `PROPOSALS/*`   |
+| Active execution state and next action  | One active `GOALS/*`     |
+| Review evidence and boundary decision   | `REVIEWS/*`              |
+| Failure analysis and preventive control | `RCA/*`                  |
+| Human-facing current summary            | `STATUS.md`              |
 
 Rules:
 
 1. Behavior change requires documentation updates in the same change sequence.
 2. Non-trivial decisions `MUST` be recorded with rationale and consequences.
-3. `STATUS.md` `MUST` record:
+3. Active execution state `MUST` have exactly one canonical owner: the active
+   Living Goal under `GOALS/`.
+4. `STATUS.md` is a concise human-facing summary and `MUST NOT` override an active
+   Living Goal. It `MUST` record:
    - what changed,
    - what is next,
    - known risks/follow-ups.
-4. RCA documents `MUST` be stored at `RCA/YYYY-MM-DD--short-title.md`.
+5. RCA documents `MUST` be stored at `RCA/YYYY-MM-DD--short-title.md`.
 
 ---
 
@@ -529,6 +571,10 @@ A change is done only when it is:
 
 If any element is missing, the change is not done.
 
+When a Living Goal exists, it may enter `completed` only when every acceptance
+criterion has recorded evidence, required verification passes, documentation
+agrees with observed behavior, and no required work remains.
+
 ---
 
 ## Article XV-A — Definition of Ready (Before Implementation)
@@ -541,7 +587,9 @@ For `T1` / `T2` / `T3` work, implementation is ready to start only when:
 - each planned work unit has verification notes and exit criteria,
 - thin-slice milestone is defined,
 - review boundary plan exists (including expected Review Record path),
-- unresolved unknowns and deferrals are explicitly listed.
+- unresolved unknowns and deferrals are explicitly listed,
+- and, when a Living Goal is used, its Authority Envelope, next action, pause
+  conditions, and review boundary are explicit.
 
 If these conditions are not met, implementation `MUST NOT` begin.
 

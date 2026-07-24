@@ -551,7 +551,7 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 - [x] Phase 0: Refresh research and establish approved scope. (Completed 2026-07-24; evidence: `dbff42b`, approved brief/specification, C016 proposal, refreshed primary guidance.)
 - [x] Phase 1: Repair bootstrap and verification contradictions. (Completed 2026-07-24; evidence: focused governance tests, non-interactive bootstrap, contract validator, and passing `pnpm verify`.)
-- [ ] Phase 2: Create the concise repository kernel. (Pending explicit T2 approval; proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`.)
+- [ ] Phase 2: Create the concise repository kernel. (In progress after explicit T2 approval on 2026-07-24; proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`.)
 - [ ] Phase 3: Add living goal execution.
 - [ ] Phase 4: Build the skills bundle.
 - [ ] Phase 5: Preserve one-command public setup and portability.
@@ -560,7 +560,7 @@ Update this list at every meaningful stopping point. Add timestamps and evidence
 
 Current next action:
 
-- Obtain explicit human approval for `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`, including its Constitution 2.1 text changes, bounded T0/T1 authority envelope, and active-state ownership model.
+- Verify and commit the Constitution 2.1 amendment and responsibility ownership rules, then reduce `AGENTS.md` against an explicit invariant map.
 
 ## Discoveries
 

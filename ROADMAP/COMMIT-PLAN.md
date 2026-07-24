@@ -182,7 +182,7 @@ Evidence:
 - Focused temporary-repository tests cover read-only `main` verification and hook rejection.
 - `./bootstrap --no-verify` completed non-interactively with the frozen lockfile.
 
-### [PENDING APPROVAL] C017 - refactor(governance): create concise kernel and goal state
+### [IN PROGRESS] C017 - refactor(governance): create concise kernel and goal state
 
 Goal:
 
@@ -197,7 +197,7 @@ Acceptance:
 Approval boundary:
 
 - T2 proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`
-- Explicit human approval is required before implementation.
+- Explicit human approval was recorded on 2026-07-24.
 
 ### [TODO] C018 - feat(skills): add focused Tempo skill bundle
 
