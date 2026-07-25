@@ -65,19 +65,30 @@ pnpm verify
 
 ## Adopt Tempo in an Existing Repository
 
-From an existing repository root:
+From the cloned Tempo repository, point the same setup command at the existing
+repository and provide its real verification command:
 
 ```bash
-./bootstrap --mode adopt-existing --no-verify
+./bootstrap --mode adopt-existing --target /path/to/existing-repo --verify-command "make verify"
 ```
 
-Then run repository discovery to generate an intake snapshot:
+This portable path runs before Tempo's Node/pnpm checks and installs only:
 
-```bash
-pnpm intake:scan -- --write
-```
+- a stack-neutral kernel under `.tempo/`,
+- the focused skills under `.agents/skills/`,
+- living-goal guidance under `GOALS/`,
+- and one marked routing block in `AGENTS.md`.
 
-Use the generated discovery findings as hypotheses, and ask only delta questions that code review cannot answer.
+It records but does not execute the supplied verification command. It does not
+add application code, package manifests, dependencies, or a language toolchain.
+Existing `AGENTS.md` content is backed up before the first marked append.
+
+Rerun the same command safely; unchanged files remain unchanged and conflicting
+files stop with an actionable message instead of being overwritten.
+
+Then ask your agent to read `AGENTS.md` and use `tempo-onboard-project`. Treat
+repository findings as hypotheses and answer only product-intent questions the
+code cannot resolve.
 
 ## If Bootstrap Reports Missing Tools
 

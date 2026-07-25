@@ -53,6 +53,8 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Type contracts hold.
 - Governance docs preserve required starter-pack invariants.
 - At most one active living goal exists and its resumable state is structurally valid.
+- Portable adoption preserves target files, avoids the starter stack, rejects
+  conflicts, and is idempotent in an isolated fixture.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 

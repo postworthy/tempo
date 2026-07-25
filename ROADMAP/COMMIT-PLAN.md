@@ -225,7 +225,7 @@ Evidence:
 - Trigger cases and audit: `EVALS/skill-trigger-cases.json` and
   `EVALS/2026-07-24--skill-trigger-audit.md`.
 
-### [TODO] C019 - feat(bootstrap): add portable Tempo adoption
+### [DONE] C019 - feat(bootstrap): add portable Tempo adoption
 
 Goal:
 
@@ -236,6 +236,13 @@ Acceptance:
 - One documented public setup command remains canonical.
 - Repeated greenfield bootstrap succeeds.
 - A non-Node fixture adopts Tempo without receiving the TypeScript starter stack.
+
+Evidence:
+
+- Portable installer: commit `13409a6`.
+- Non-Node, repeat, and conflict fixtures: `test/portable-adoption.test.ts`.
+- Two consecutive greenfield bootstrap runs completed non-interactively on
+  2026-07-24.
 
 ### [TODO] C020 - test(evals): validate skills and fresh-context goals
 

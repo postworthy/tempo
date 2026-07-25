@@ -56,12 +56,12 @@ The detailed research and original phase contract are recorded in
   - Evidence: `EVALS/skill-trigger-cases.json`, `EVALS/2026-07-24--skill-trigger-audit.md`, and trigger-coverage regression test
 - [ ] AC13 — At least one fresh-context resume evaluation demonstrates correct continuation without premature completion.
   - Evidence: pending
-- [ ] AC14 — Tempo retains one documented public setup command suitable for the GitHub README.
-  - Evidence: pending final public-doc audit
-- [ ] AC15 — Greenfield setup remains batteries included.
-  - Evidence: pending isolated greenfield evaluation
-- [ ] AC16 — Adopt-existing setup works without imposing the TypeScript starter stack.
-  - Evidence: pending non-Node fixture
+- [x] AC14 — Tempo retains one documented public setup command suitable for the GitHub README.
+  - Evidence: README and `GETTING_STARTED.md` use `./bootstrap`; target adoption is expressed only through flags on the same command
+- [x] AC15 — Greenfield setup remains batteries included.
+  - Evidence: two consecutive `./bootstrap --mode greenfield --no-verify` runs completed non-interactively with the pinned TypeScript profile on 2026-07-24
+- [x] AC16 — Adopt-existing setup works without imposing the TypeScript starter stack.
+  - Evidence: `test/portable-adoption.test.ts` proves target install, repeat install, collision refusal, Node/pnpm non-invocation, and absence of starter-stack files
 - [x] AC17 — Documentation validation detects structural defects and material command inconsistencies.
   - Evidence: `scripts/validate-contracts.mjs` and negative tests in `test/governance.test.ts`
 - [ ] AC18 — Current behavior, migration guidance, rollback, decisions, roadmap, and review evidence agree.
@@ -103,7 +103,7 @@ The detailed research and original phase contract are recorded in
 | 2. Constitution 2.1 and concise kernel    | completed | Bounded authority is constitutional and `AGENTS.md` is at most 120 lines.    | Commits `b425fa2`, `ba97a34`; `pnpm verify`.             |
 | 3. Living goal execution                  | completed | One active goal validates and resumes from fresh state.                      | `pnpm check:goal`; goal fixtures; thin-slice evaluation. |
 | 4. Focused skill bundle                   | completed | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger audit.         |
-| 5. Portable setup                         | pending   | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures.                             |
+| 5. Portable setup                         | completed | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures and repeated setup.          |
 | 6. Evaluation harness                     | pending   | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
 | 7. Migration and review                   | pending   | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
 
@@ -128,6 +128,9 @@ The detailed research and original phase contract are recorded in
   repository checks.
 - 2026-07-24: C019 portable-adoption proposal approved under the active goal's
   scoped, reversible T1 authority.
+- 2026-07-24: Target adoption implemented before toolchain checks; isolated
+  non-Node install, repeat install, collision refusal, and two repeated
+  greenfield bootstrap runs passed.
 
 ## Evidence
 
@@ -150,6 +153,9 @@ The detailed research and original phase contract are recorded in
   different valid structural states.
 - The old 238-line `AGENTS.md` duplicated conditional procedure that now has
   explicit authoritative routes.
+- The full starter Constitution contains bootstrap-artifact assumptions that are
+  inappropriate in arbitrary targets; the portable profile preserves authority,
+  evidence, safety, and recovery rules without choosing a toolchain.
 
 ## Decisions
 
@@ -170,7 +176,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Implement the pure-shell target installer and route target adoption before bootstrap's Node/pnpm checks.
+- Create and approve the C020 evaluation proposal, then add the complete deterministic scenario harness and clean-context evidence.
 
 ## Pause Conditions
 
@@ -185,5 +191,6 @@ The detailed research and original phase contract are recorded in
 - Foundation and concise-kernel outcomes are complete and verified.
 - Living-goal execution and active-state consolidation are complete.
 - Skills and their deterministic trigger coverage are complete.
-- Portability is the current active unit; full clean-context evaluations,
-  migration, and final review remain required.
+- Portable greenfield and adopt-existing setup are complete.
+- Full clean-context evaluations are the current active unit; migration and final
+  review remain required.

@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C019 feat(bootstrap): add portable Tempo adoption
+C020 test(evals): validate skills and fresh-context goals
 
 ## Done (High-Level)
 
@@ -25,7 +25,7 @@ C019 feat(bootstrap): add portable Tempo adoption
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Implementing approved stack-neutral Tempo adoption while preserving greenfield setup.
+- Preparing the complete skill, goal, authority, and setup evaluation harness.
 
 ## Blockers / Risks
 
@@ -46,6 +46,7 @@ C019 feat(bootstrap): add portable Tempo adoption
 - Added the living-goal lifecycle, one-active-goal validator, retry and completion controls, active modernization goal, and negative fixtures.
 - Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
 - Added five focused repo-local Tempo skills with progressive-disclosure references, validation, and trigger cases.
+- Added stack-neutral target adoption through `./bootstrap`, with preservation, idempotence, conflict, and no-toolchain fixture coverage.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -56,8 +57,8 @@ C019 feat(bootstrap): add portable Tempo adoption
 
 ## Next Planned Changes
 
-- Implement the target installer and bootstrap CLI routing.
-- Exercise greenfield, repeat, and non-Node adopt-existing setup in isolated fixtures.
+- Create the C020 evaluation proposal.
+- Add objective assertions for all required skill, goal, authority, setup, and unrelated-trigger scenarios.
 
 ## Notes
 

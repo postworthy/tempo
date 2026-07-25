@@ -33,6 +33,16 @@ Tempo supports two onboarding modes:
 - `greenfield`: repository is new or still template-baseline with unfilled project intent.
 - `adopt-existing`: repository already has meaningful implementation history and Tempo is being introduced after development started.
 
+For a different target repository, the portable form is:
+
+```bash
+./bootstrap --mode adopt-existing --target /path/to/repo --verify-command "make verify"
+```
+
+This path installs the portable kernel, goals, and skills before any Node/pnpm
+toolchain check. It preserves the target application stack and records the
+target's verification command without executing it.
+
 Mode selection:
 
 1. Use explicit bootstrap mode override when provided (`--mode greenfield` or `--mode adopt-existing`).

@@ -103,7 +103,7 @@ install_value() {
 install_file "$SOURCE_ROOT/portable/KERNEL.md" "$TEMPO_ROOT/KERNEL.md"
 install_file "$SOURCE_ROOT/portable/VERIFY.md" "$TEMPO_ROOT/VERIFY.md"
 install_file "$SOURCE_ROOT/portable/README.md" "$TEMPO_ROOT/README.md"
-install_file "$SOURCE_ROOT/CONSTITUTION.md" "$TEMPO_ROOT/CONSTITUTION.md"
+install_file "$SOURCE_ROOT/portable/CONSTITUTION.md" "$TEMPO_ROOT/CONSTITUTION.md"
 install_value "$VERIFY_COMMAND" "$TEMPO_ROOT/VERIFY_COMMAND"
 
 install_file "$SOURCE_ROOT/portable/PROJECT-BRIEF.md" "$TEMPO_ROOT/templates/PROJECT-BRIEF.md"

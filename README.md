@@ -38,6 +38,17 @@ After cloning the repository, run the one canonical setup command:
 It installs the pinned dependencies, configures local safeguards, and runs `pnpm verify`.
 Then tell your AI agent what you want to build and ask it to follow `AGENTS.md`.
 
+To add only Tempo's portable governance, goals, and skills to an existing
+repository, use the same command with a target and that repository's verification
+command:
+
+```bash
+./bootstrap --mode adopt-existing --target /path/to/existing-repo --verify-command "make verify"
+```
+
+Target adoption does not install Node, pnpm, TypeScript, dependencies, or starter
+application files.
+
 ## Agent First Command
 
 ```bash

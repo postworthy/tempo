@@ -18,10 +18,16 @@ const requiredFiles = [
   '.githooks/commit-msg',
   '.githooks/pre-push',
   'scripts/check-git-policy.mjs',
+  'scripts/install-portable.sh',
   'scripts/intake-scan.mjs',
   'DISCOVERY/TEMPLATE.md',
   'GOALS/README.md',
   'GOALS/TEMPLATE.md',
+  'portable/KERNEL.md',
+  'portable/CONSTITUTION.md',
+  'portable/VERIFY.md',
+  'portable/PROJECT-BRIEF.md',
+  'portable/SPEC.md',
   '.agents/skills/tempo-onboard-project/SKILL.md',
   '.agents/skills/tempo-plan-goal/SKILL.md',
   '.agents/skills/tempo-execute-goal/SKILL.md',
@@ -82,6 +88,8 @@ const requiredGettingStartedSnippets = [
   'Onboarding Modes',
   'Adopt Tempo in an Existing Repository',
   '--mode adopt-existing',
+  '--target /path/to/existing-repo',
+  '--verify-command "make verify"',
   '.githooks',
   'idempotent',
   'Template History vs Your Project History',
@@ -276,6 +284,13 @@ for (const hook of ['.githooks/pre-commit', '.githooks/commit-msg', '.githooks/p
   const isExecutable = (statSync(hook).mode & 0o111) !== 0;
   if (!isExecutable) {
     problems.push(`${hook} exists but is not executable`);
+  }
+}
+
+if (existsSync('scripts/install-portable.sh')) {
+  const isExecutable = (statSync('scripts/install-portable.sh').mode & 0o111) !== 0;
+  if (!isExecutable) {
+    problems.push('scripts/install-portable.sh exists but is not executable');
   }
 }
 

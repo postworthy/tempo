@@ -224,3 +224,14 @@ These boundaries match distinct lifecycle intents, produce precise trigger descr
 
 Consequences:
 Skills live under `.agents/skills/`, canonical frontmatter uses only `name` and `description`, host interface metadata remains optional, and deterministic validation enforces direct references and positive/ambiguous/negative trigger coverage.
+
+## 2026-07-24 - Target-Based Portable Adoption
+
+Decision:
+Use `./bootstrap --mode adopt-existing --target <repo> --verify-command <command>` as the stack-neutral adoption form while retaining default `./bootstrap` for the batteries-included starter.
+
+Rationale:
+One public entry point is easier for novice users, but an existing repository must not inherit Tempo's Node/TypeScript application profile or have its files overwritten.
+
+Consequences:
+Target adoption runs before Node/pnpm checks, installs a portable Constitution/kernel/goals/skills profile, backs up and marks existing `AGENTS.md`, records the target verification command as data, refuses conflicts, and remains idempotent.

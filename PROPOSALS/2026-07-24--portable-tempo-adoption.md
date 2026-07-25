@@ -64,23 +64,23 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] `./bootstrap` remains the one primary public setup command.
-- [ ] Default/greenfield bootstrap retains the pinned TypeScript profile.
-- [ ] Target adoption runs before any Node/pnpm requirement.
-- [ ] A non-Node fixture receives no `package.json`, lockfile, `src/`, `test/`,
+- [x] `./bootstrap` remains the one primary public setup command.
+- [x] Default/greenfield bootstrap retains the pinned TypeScript profile.
+- [x] Target adoption runs before any Node/pnpm requirement.
+- [x] A non-Node fixture receives no `package.json`, lockfile, `src/`, `test/`,
       Node dependency directory, or starter application files.
-- [ ] The target receives a stack-neutral kernel, verification contract, focused
+- [x] The target receives a stack-neutral kernel, verification contract, focused
       skills, living-goal template, and installation manifest.
-- [ ] A pre-existing `AGENTS.md` is backed up and receives exactly one bounded
+- [x] A pre-existing `AGENTS.md` is backed up and receives exactly one bounded
       routing block without losing original content.
-- [ ] Conflicting destination files fail with an actionable message rather than
+- [x] Conflicting destination files fail with an actionable message rather than
       being overwritten.
-- [ ] Repeated target adoption succeeds without duplicate routing or changed
+- [x] Repeated target adoption succeeds without duplicate routing or changed
       output.
-- [ ] Repeated greenfield bootstrap succeeds non-interactively.
-- [ ] Public README and `GETTING_STARTED.md` agree on the primary command and
+- [x] Repeated greenfield bootstrap succeeds non-interactively.
+- [x] Public README and `GETTING_STARTED.md` agree on the primary command and
       adopt-existing variant.
-- [ ] Canonical verification passes.
+- [x] Canonical verification passes.
 
 ## Verification Plan
 
@@ -133,6 +133,12 @@ bootstrap route, pure-shell installer, portable kernel/contracts, and two
 portability corrections in skills form one executable profile. Splitting the
 templates from their installer would leave a commit that cannot perform the
 approved target adoption or prove its rollback boundary.
+
+The final test/documentation commit also exceeds the normal line target because
+the isolated preservation/idempotence/collision suite, portable constitutional
+profile, public command migration, and criterion evidence are one compatibility
+boundary. Separating the profile from its tests would permit an unverified
+stack-specific contract to ship to non-Node targets.
 
 ## Decomposition Plan
 
