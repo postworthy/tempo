@@ -122,6 +122,12 @@ Pass means:
   - `Proposal: PROPOSALS/2026-07-24--skill-goal-evaluations.md`
 - Planned merge method: `git merge --no-ff docs/c012-tempo-modernization-goal`
 
+The harness commit intentionally exceeds the normal line/file target because the
+seven scenario contracts, authority matrix, baseline, clean-bootstrap evidence,
+clean-process evaluator, types, and negative tests are one executable evidence
+boundary. Splitting the data from its grader would create an unvalidated
+evaluation claim.
+
 ## Decomposition Plan
 
 1. Define scenario schema, baseline, and evidence map — Verify by: review against

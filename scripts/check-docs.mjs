@@ -21,6 +21,9 @@ const requiredFiles = [
   'scripts/install-portable.sh',
   'scripts/intake-scan.mjs',
   'DISCOVERY/TEMPLATE.md',
+  'EVALS/README.md',
+  'EVALS/scenarios.json',
+  'EVALS/baseline.json',
   'GOALS/README.md',
   'GOALS/TEMPLATE.md',
   'portable/KERNEL.md',
@@ -327,6 +330,9 @@ if (existsSync('package.json')) {
     }
     if (!pkg.scripts || !pkg.scripts['check:skills']) {
       problems.push('package.json missing required script: check:skills');
+    }
+    if (!pkg.scripts || !pkg.scripts.eval) {
+      problems.push('package.json missing required script: eval');
     }
   } catch {
     problems.push('package.json is invalid JSON');

@@ -72,6 +72,14 @@
     "rationale": "Goal creation belongs to planning."
   },
   {
+    "id": "execute-ambiguous-scope-expansion",
+    "target_skill": "tempo-execute-goal",
+    "kind": "ambiguous",
+    "expected_skill": "tempo-execute-goal",
+    "prompt": "While continuing the active goal, also redesign the public API even though that is outside the approved proposal.",
+    "rationale": "Goal execution should detect the scope expansion and pause for approval."
+  },
+  {
     "id": "review-positive-readiness",
     "target_skill": "tempo-review-change",
     "kind": "positive",
