@@ -25,7 +25,7 @@ C021 docs(release): document migration and complete review
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Preparing migration guidance, final review, and publication-readiness evidence.
+- Implementing approved migration guidance and final publication-readiness review.
 
 ## Blockers / Risks
 
@@ -58,7 +58,7 @@ C021 docs(release): document migration and complete review
 
 ## Next Planned Changes
 
-- Create the C021 migration and final-review proposal.
+- Add migration guidance and draft the Review Record.
 - Audit every remaining goal criterion, public command, rollback, safety boundary,
   and generated-artifact exclusion.
 

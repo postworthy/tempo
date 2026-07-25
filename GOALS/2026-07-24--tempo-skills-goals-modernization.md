@@ -4,7 +4,7 @@ Status: active
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
-Proposal: `PROPOSALS/2026-07-24--skill-goal-evaluations.md` (current unit)
+Proposal: `PROPOSALS/2026-07-24--modernization-release-readiness.md` (current unit)
 Review Boundary: merge from `docs/c012-tempo-modernization-goal` into `main` with `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`
 
 ## Outcome
@@ -137,6 +137,8 @@ The detailed research and original phase contract are recorded in
   goal authority.
 - 2026-07-24: `pnpm eval` passed seven scenarios and 59 assertions; canonical
   verification passed with 22 tests and the human evidence audit was recorded.
+- 2026-07-24: C021 migration and final-review proposal approved under scoped,
+  reversible T1 goal authority.
 
 ## Evidence
 
@@ -182,7 +184,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Create the C021 migration and final-review proposal, then audit every remaining acceptance criterion against current repository evidence.
+- Add migration guidance and draft the exact commit/criterion evidence inventory for final review.
 
 ## Pause Conditions
 
