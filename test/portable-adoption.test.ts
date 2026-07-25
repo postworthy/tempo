@@ -1,12 +1,17 @@
 import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import {
   chmodSync,
   existsSync,
+  lstatSync,
   mkdtempSync,
   mkdirSync,
+  readlinkSync,
   readFileSync,
   readdirSync,
   rmSync,
+  symlinkSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -45,6 +50,31 @@ function adopt(root: string, wrappers: string) {
       env: { ...process.env, PATH: `${wrappers}:${process.env.PATH}` },
     },
   );
+}
+
+function snapshot(root: string) {
+  const entries: string[] = [];
+  const visit = (directory: string, prefix = '') => {
+    for (const name of readdirSync(directory).sort()) {
+      if (!prefix && name === '.git') {
+        continue;
+      }
+      const path = join(directory, name);
+      const relative = prefix ? `${prefix}/${name}` : name;
+      const stat = lstatSync(path);
+      if (stat.isSymbolicLink()) {
+        entries.push(`link ${relative} -> ${readlinkSync(path)}`);
+      } else if (stat.isDirectory()) {
+        entries.push(`dir ${relative}`);
+        visit(path, relative);
+      } else {
+        const hash = createHash('sha256').update(readFileSync(path)).digest('hex');
+        entries.push(`file ${relative} ${hash}`);
+      }
+    }
+  };
+  visit(root);
+  return entries;
 }
 
 afterEach(() => {
@@ -116,5 +146,52 @@ describe('portable adopt-existing setup', () => {
     expect(conflict.status).toBe(1);
     expect(conflict.stdout).toContain('Conflict: existing file differs: .tempo/KERNEL.md');
     expect(readFileSync(join(root, '.tempo/KERNEL.md'), 'utf8')).toBe('user changed this\n');
+  });
+
+  it('rejects a symlinked AGENTS file without modifying its target', () => {
+    const { root, wrappers } = fixture();
+    const outside = mkdtempSync(join(tmpdir(), 'tempo-portable-outside-'));
+    workspaces.push(outside);
+    const sentinel = join(outside, 'AGENTS.md');
+    writeFileSync(sentinel, '# Outside target\n');
+    unlinkSync(join(root, 'AGENTS.md'));
+    symlinkSync(sentinel, join(root, 'AGENTS.md'));
+    const targetBefore = snapshot(root);
+    const sentinelBefore = readFileSync(sentinel, 'utf8');
+
+    const result = adopt(root, wrappers);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('symbolic link');
+    expect(snapshot(root)).toEqual(targetBefore);
+    expect(readFileSync(sentinel, 'utf8')).toBe(sentinelBefore);
+  });
+
+  it('rejects a symlinked managed parent without writing through it', () => {
+    const { root, wrappers } = fixture();
+    const outside = mkdtempSync(join(tmpdir(), 'tempo-portable-parent-'));
+    workspaces.push(outside);
+    symlinkSync(outside, join(root, '.tempo'));
+    const targetBefore = snapshot(root);
+
+    const result = adopt(root, wrappers);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('symbolic link');
+    expect(snapshot(root)).toEqual(targetBefore);
+    expect(readdirSync(outside)).toEqual([]);
+  });
+
+  it('preflights a first-install conflict before creating any file', () => {
+    const { root, wrappers } = fixture();
+    mkdirSync(join(root, '.tempo'));
+    writeFileSync(join(root, '.tempo/VERIFY.md'), 'existing verification contract\n');
+    const before = snapshot(root);
+
+    const result = adopt(root, wrappers);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('Conflict: existing file differs: .tempo/VERIFY.md');
+    expect(snapshot(root)).toEqual(before);
   });
 });

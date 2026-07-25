@@ -33,12 +33,12 @@ Record is evidence-backed and approved.
   - Evidence: pending
 - [ ] AC3 — Explicit initialization backs up affected contracts and active records while preserving `TEMPLATE_HISTORY/`.
   - Evidence: pending
-- [ ] AC4 — Portable adoption rejects destination and managed-parent symlinks before mutation without changing out-of-target data.
-  - Evidence: pending
-- [ ] AC5 — A first-run portable conflict leaves the target byte-for-byte unchanged.
-  - Evidence: pending
-- [ ] AC6 — Normal and repeated portable adoption remain stack-neutral, idempotent, and preserving.
-  - Evidence: pending
+- [x] AC4 — Portable adoption rejects destination and managed-parent symlinks before mutation without changing out-of-target data.
+  - Evidence: `test/portable-adoption.test.ts` hashes a symlink target, snapshots the repository, and proves both remain unchanged after AGENTS and managed-parent rejection
+- [x] AC5 — A first-run portable conflict leaves the target byte-for-byte unchanged.
+  - Evidence: the first-install conflict fixture snapshots every non-git path before and after a conflicting `.tempo/VERIFY.md` and observes exact equality
+- [x] AC6 — Normal and repeated portable adoption remain stack-neutral, idempotent, and preserving.
+  - Evidence: six focused portable fixtures pass with Node/pnpm failure wrappers, unchanged application content, stable manifest, and one routing block
 - [ ] AC7 — The frozen dependency graph has no unapproved high or critical audit result.
   - Evidence: pending
 - [ ] AC8 — Regression coverage exercises all reproduced release blockers and meaningful negative paths.
@@ -76,7 +76,7 @@ Record is evidence-backed and approved.
 | -------------------------------------- | ----------- | -------------------------------------------------------------------- | -------------------------------------------------- |
 | 1. Release-path regressions            | completed   | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
 | 2. Public bootstrap and initialization | in_progress | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
-| 3. Portable containment and preflight  | in_progress | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
+| 3. Portable containment and preflight  | completed   | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
 | 4. Dependency remediation              | pending     | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
 | 5. Final replay and review             | pending     | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
 
@@ -95,6 +95,10 @@ Record is evidence-backed and approved.
   and produces contracts accepted by the repository validators.
 - 2026-07-24: Focused release-path and portable-adoption suites pass eight tests
   after the first repairs.
+- 2026-07-24: Portable content is staged outside the target, every managed path
+  component and conflict is preflighted before mutation, malformed AGENTS
+  routing is rejected, and unexpected failures restore changed AGENTS content
+  and remove created files.
 
 ## Evidence
 
@@ -106,6 +110,7 @@ Record is evidence-backed and approved.
   advisories; production-only audit reports none.
 - `pnpm exec vitest run test/release-paths.test.ts
 test/portable-adoption.test.ts` passes eight focused tests.
+- `bash -n scripts/install-portable.sh` passes after the containment rewrite.
 
 ## Discoveries
 
@@ -134,7 +139,7 @@ test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Next Action
 
-- Finish the portable containment checkpoint, then refresh the audited dependency graph.
+- Refresh the frozen dependency graph and prove that no unapproved high or critical advisory remains.
 
 ## Pause Conditions
 
