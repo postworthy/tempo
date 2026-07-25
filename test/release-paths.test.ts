@@ -115,6 +115,9 @@ describe('public release paths', () => {
     writeFileSync(join(root, 'PROPOSALS/2026-07-24--fixture.md'), '# Fixture proposal\n');
     writeFileSync(join(root, 'REVIEWS/2026-07-24--fixture.md'), '# Fixture review\n');
     writeFileSync(join(root, 'GOALS/2026-07-24--fixture.md'), '# Fixture goal\n');
+    writeFileSync(join(root, 'ROADMAP/2026-07-24--fixture.md'), '# Fixture roadmap\n');
+    writeFileSync(join(root, 'EVALS/2026-07-24--fixture.md'), '# Fixture evaluation\n');
+    writeFileSync(join(root, 'EVALS/clean-main-bootstrap.json'), '{"fixture":true}\n');
 
     const initialization = spawnSync('bash', ['scripts/init-project.sh'], {
       cwd: root,
@@ -149,12 +152,8 @@ describe('public release paths', () => {
     expect(existsSync(join(backupRoot, backup[0], 'PROPOSALS/2026-07-24--fixture.md'))).toBe(true);
     expect(existsSync(join(backupRoot, backup[0], 'GOALS/2026-07-24--fixture.md'))).toBe(true);
     expect(existsSync(join(backupRoot, backup[0], 'DECISIONS.md'))).toBe(true);
-    expect(
-      existsSync(join(backupRoot, backup[0], 'ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md')),
-    ).toBe(true);
-    expect(existsSync(join(backupRoot, backup[0], 'EVALS/2026-07-24--evaluation-report.md'))).toBe(
-      true,
-    );
+    expect(existsSync(join(backupRoot, backup[0], 'ROADMAP/2026-07-24--fixture.md'))).toBe(true);
+    expect(existsSync(join(backupRoot, backup[0], 'EVALS/2026-07-24--fixture.md'))).toBe(true);
     expect(existsSync(join(backupRoot, backup[0], 'EVALS/clean-main-bootstrap.json'))).toBe(true);
 
     const docs = spawnSync(process.execPath, ['scripts/check-docs.mjs'], {

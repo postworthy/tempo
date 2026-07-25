@@ -7,7 +7,7 @@ Related Issue/Context: public clones must become fresh user projects without
 active Tempo-development state
 Roadmap Item: C023
 Planned Branch: `docs/c012-tempo-modernization-goal`
-Expected Commit Count: 3
+Expected Commit Count: 4
 
 ## Objective
 
@@ -112,7 +112,8 @@ Pass means:
 - Planned commits:
   1. `docs(release): approve clean initialization boundary`
   2. `fix(bootstrap): remove template development state`
-  3. `docs(review): approve clean initialized release`
+  3. `fix(test): keep initialization regression template neutral`
+  4. `docs(review): approve clean initialized release`
 - Required commit trailers:
   - `Roadmap: ROADMAP/COMMIT-PLAN.md#C023`
   - `Proposal: PROPOSALS/2026-07-24--clean-initialized-project-boundary.md`

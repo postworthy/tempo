@@ -87,6 +87,9 @@ archived and cannot influence the user's project.
   regressions implemented.
 - 2026-07-24: Source `pnpm verify` passes 27 tests and 7/7 evaluation scenarios
   with 59 assertions; high-threshold audit exits 0 with one low advisory.
+- 2026-07-24: First exact initialized replay passed contracts, docs, goals, and
+  initialized-state validation, then exposed a repository-specific nested test
+  expectation after the roadmap was correctly archived.
 
 ## Evidence
 
@@ -116,13 +119,14 @@ archived and cannot influence the user's project.
 
 ## Retry State
 
-- Current attempt: 0
+- Current attempt: 1
 - Maximum attempts per unchanged failure: 2
-- Last failure: none
+- Last failure: release-path fixture expected Tempo's named modernization
+  roadmap even when running inside an already initialized source tree.
 
 ## Next Action
 
-- Commit the enforcement unit, then replay plain and initialized bootstrap from exact isolated release trees.
+- Commit the template-neutral regression repair, then repeat the exact initialized bootstrap replay.
 
 ## Pause Conditions
 
