@@ -25,7 +25,7 @@ C020 test(evals): validate skills and fresh-context goals
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Preparing the complete skill, goal, authority, and setup evaluation harness.
+- Implementing the approved skill, goal, authority, and setup evaluation harness.
 
 ## Blockers / Risks
 
@@ -57,8 +57,8 @@ C020 test(evals): validate skills and fresh-context goals
 
 ## Next Planned Changes
 
-- Create the C020 evaluation proposal.
-- Add objective assertions for all required skill, goal, authority, setup, and unrelated-trigger scenarios.
+- Define the seven scenario fixtures and pre-skill baseline.
+- Add objective assertions for skill, goal, authority, setup, RCA, and unrelated-trigger behavior.
 
 ## Notes
 

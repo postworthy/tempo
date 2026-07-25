@@ -4,7 +4,7 @@ Status: active
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
-Proposal: `PROPOSALS/2026-07-24--portable-tempo-adoption.md` (current unit)
+Proposal: `PROPOSALS/2026-07-24--skill-goal-evaluations.md` (current unit)
 Review Boundary: merge from `docs/c012-tempo-modernization-goal` into `main` with `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`
 
 ## Outcome
@@ -32,8 +32,8 @@ The detailed research and original phase contract are recorded in
 
 - [x] AC1 — Tempo's product brief and specification describe the modernized product without placeholders.
   - Evidence: `PROJECT-BRIEF.md`, `SPEC.md`, commit `dbff42b`, and `pnpm check:contracts`
-- [ ] AC2 — A clean primary-branch checkout runs the documented canonical bootstrap successfully.
-  - Evidence: pending
+- [x] AC2 — A clean primary-branch checkout runs the documented canonical bootstrap successfully.
+  - Evidence: isolated `main` at commit `ff9efd3` completed `./bootstrap --mode greenfield`, dependency installation, all 18 tests, and canonical verification on 2026-07-24
 - [x] AC3 — Canonical verification passes on a clean primary branch.
   - Evidence: isolated `main` verification at commit `8ef1f06` on 2026-07-24
 - [x] AC4 — Direct development commits to the primary branch remain blocked.
@@ -131,6 +131,10 @@ The detailed research and original phase contract are recorded in
 - 2026-07-24: Target adoption implemented before toolchain checks; isolated
   non-Node install, repeat install, collision refusal, and two repeated
   greenfield bootstrap runs passed.
+- 2026-07-24: Clean isolated `main` completed the full greenfield bootstrap and
+  canonical verification at commit `ff9efd3`.
+- 2026-07-24: C020 evaluation proposal approved under scoped, reversible T1
+  goal authority.
 
 ## Evidence
 
@@ -176,7 +180,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Create and approve the C020 evaluation proposal, then add the complete deterministic scenario harness and clean-context evidence.
+- Define the seven structured evaluation scenarios and baseline, then implement the clean-process deterministic evaluator.
 
 ## Pause Conditions
 
