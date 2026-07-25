@@ -72,13 +72,13 @@ Record is evidence-backed and approved.
 
 ## Work Units
 
-| Unit                                   | Status  | Exit criteria                                                        | Verification                                       |
-| -------------------------------------- | ------- | -------------------------------------------------------------------- | -------------------------------------------------- |
-| 1. Release-path regressions            | pending | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
-| 2. Public bootstrap and initialization | pending | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
-| 3. Portable containment and preflight  | pending | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
-| 4. Dependency remediation              | pending | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
-| 5. Final replay and review             | pending | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
+| Unit                                   | Status      | Exit criteria                                                        | Verification                                       |
+| -------------------------------------- | ----------- | -------------------------------------------------------------------- | -------------------------------------------------- |
+| 1. Release-path regressions            | completed   | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
+| 2. Public bootstrap and initialization | in_progress | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
+| 3. Portable containment and preflight  | in_progress | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
+| 4. Dependency remediation              | pending     | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
+| 5. Final replay and review             | pending     | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
 
 ## Progress
 
@@ -87,6 +87,14 @@ Record is evidence-backed and approved.
 - 2026-07-24: Human Partner explicitly approved the T2 remediation with “make it
   so.”
 - 2026-07-24: C022 proposal and resumable execution state drafted.
+- 2026-07-24: Eight focused release tests produced five expected pre-fix
+  failures: default bootstrap, initialized SPEC, symlinked AGENTS, symlinked
+  managed parent, and first-install partial mutation.
+- 2026-07-24: Default bootstrap now selects greenfield deterministically;
+  explicit initialization archives active records, preserves template history,
+  and produces contracts accepted by the repository validators.
+- 2026-07-24: Focused release-path and portable-adoption suites pass eight tests
+  after the first repairs.
 
 ## Evidence
 
@@ -96,6 +104,8 @@ Record is evidence-backed and approved.
   demonstrating why broader release fixtures are required.
 - Pre-remediation audit reports 1 critical and 20 high development-toolchain
   advisories; production-only audit reports none.
+- `pnpm exec vitest run test/release-paths.test.ts
+test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Discoveries
 
@@ -104,6 +114,8 @@ Record is evidence-backed and approved.
   only the final file.
 - Explicit project initialization is the correct boundary for retiring inherited
   active records because it is intentional and can be backed up.
+- A failing-test-only commit would violate Tempo's per-commit completion rules,
+  so regression fixtures ship atomically with the corresponding repairs.
 
 ## Decisions
 
@@ -122,7 +134,7 @@ Record is evidence-backed and approved.
 
 ## Next Action
 
-- Add deterministic release-path fixtures for public bootstrap, explicit initialization, portable symlink containment, and first-install conflict atomicity.
+- Finish the portable containment checkpoint, then refresh the audited dependency graph.
 
 ## Pause Conditions
 

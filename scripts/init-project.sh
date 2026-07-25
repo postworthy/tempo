@@ -15,6 +15,43 @@ for f in PROJECT-BRIEF.md SPEC.md STATUS.md ROADMAP/COMMIT-PLAN.md; do
   fi
 done
 
+archive_active_records() {
+  local folder="$1"
+  shift
+  local path
+  local name
+  local keep
+  local retained
+
+  [[ -d "$folder" ]] || return 0
+
+  for path in "$folder"/*.md; do
+    [[ -e "$path" ]] || continue
+    name="$(basename "$path")"
+    retained=0
+    for keep in "$@"; do
+      if [[ "$name" == "$keep" ]]; then
+        retained=1
+        break
+      fi
+    done
+    if [[ "$retained" -eq 0 ]]; then
+      mkdir -p "$BACKUP_DIR/$folder"
+      mv "$path" "$BACKUP_DIR/$path"
+    fi
+  done
+}
+
+archive_active_records "PROPOSALS" "TEMPLATE.md"
+archive_active_records "REVIEWS" "TEMPLATE.md"
+archive_active_records "RCA" "TEMPLATE.md"
+archive_active_records "GOALS" "README.md" "TEMPLATE.md"
+
+if [[ -f "DISCOVERY/PROJECT-INVENTORY.md" ]]; then
+  mkdir -p "$BACKUP_DIR/DISCOVERY"
+  mv "DISCOVERY/PROJECT-INVENTORY.md" "$BACKUP_DIR/DISCOVERY/PROJECT-INVENTORY.md"
+fi
+
 cat > PROJECT-BRIEF.md <<'BRIEF'
 # PROJECT-BRIEF
 
@@ -147,6 +184,12 @@ Status: Draft
 
 ## 7. Canonical Verification
 
+Setup:
+
+```bash
+./bootstrap
+```
+
 Run:
 
 ```bash
@@ -254,3 +297,4 @@ ROADMAP
 
 echo "Project initialization complete."
 echo "Backups saved to: $BACKUP_DIR"
+echo "Inherited active records were moved into the backup; TEMPLATE_HISTORY/ was preserved."

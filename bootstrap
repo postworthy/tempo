@@ -6,7 +6,8 @@ cd "$ROOT_DIR"
 
 RUN_VERIFY=1
 INIT_PROJECT=0
-MODE="auto"
+MODE="greenfield"
+MODE_SOURCE="default"
 RUN_INTAKE_SCAN="auto"
 TARGET=""
 VERIFY_COMMAND=""
@@ -27,10 +28,12 @@ while [[ "$#" -gt 0 ]]; do
         exit 1
       fi
       MODE="$2"
+      MODE_SOURCE="explicit"
       shift 2
       ;;
     --mode=*)
       MODE="${1#*=}"
+      MODE_SOURCE="explicit"
       shift
       ;;
     --intake-scan)
@@ -88,6 +91,16 @@ if [[ "$MODE" != "auto" && "$MODE" != "greenfield" && "$MODE" != "adopt-existing
   exit 1
 fi
 
+if [[ "$INIT_PROJECT" -eq 1 && -n "$TARGET" ]]; then
+  echo "[bootstrap] --init-project cannot be combined with --target"
+  exit 1
+fi
+
+if [[ "$INIT_PROJECT" -eq 1 && "$MODE" != "greenfield" ]]; then
+  echo "[bootstrap] --init-project requires greenfield mode"
+  exit 1
+fi
+
 if [[ -n "$TARGET" ]]; then
   if [[ "$MODE" != "adopt-existing" ]]; then
     echo "[bootstrap] --target requires --mode adopt-existing"
@@ -139,6 +152,8 @@ node scripts/bootstrap-check.mjs
 if [[ "$MODE" == "auto" ]]; then
   MODE="$(node scripts/intake-scan.mjs --mode-only)"
   echo "[bootstrap] Auto-detected onboarding mode: $MODE"
+elif [[ "$MODE_SOURCE" == "default" ]]; then
+  echo "[bootstrap] Onboarding mode: $MODE (default)"
 else
   echo "[bootstrap] Onboarding mode override: $MODE"
 fi

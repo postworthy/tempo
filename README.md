@@ -29,14 +29,19 @@ Clone it. Start building. Keep the rhythm.
 
 ## Setup
 
-After cloning the repository, run the one canonical setup command:
+After cloning the repository to start a new project, run one command:
 
 ```bash
-./bootstrap
+./bootstrap --init-project
 ```
 
-It installs the pinned dependencies, configures local safeguards, and runs `pnpm verify`.
-Then tell your AI agent what you want to build and ask it to follow `AGENTS.md`.
+It backs up Tempo's own development records, creates a clean project baseline,
+installs the pinned dependencies, configures local safeguards, and runs
+`pnpm verify`. Then tell your AI agent what you want to build and ask it to
+follow `AGENTS.md`.
+
+Tempo contributors can run plain `./bootstrap` to verify the repository without
+resetting its project records.
 
 To add only Tempo's portable governance, goals, and skills to an existing
 repository, use the same command with a target and that repository's verification

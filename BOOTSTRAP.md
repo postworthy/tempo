@@ -2,8 +2,10 @@
 
 This file defines the required first-run workflow for any AI coding assistant using this repository as a starter pack.
 
-The canonical setup command is `./bootstrap`. It finishes by running the canonical
-verification command, `pnpm verify`, unless the caller explicitly uses `--no-verify`.
+The canonical setup entry point is `./bootstrap`. New projects use
+`./bootstrap --init-project`; Tempo contributors use plain `./bootstrap`.
+Bootstrap finishes by running the canonical verification command, `pnpm verify`,
+unless the caller explicitly uses `--no-verify`.
 
 ## Purpose
 
@@ -45,9 +47,11 @@ target's verification command without executing it.
 
 Mode selection:
 
-1. Use explicit bootstrap mode override when provided (`--mode greenfield` or `--mode adopt-existing`).
-2. Otherwise use auto-detection signals from repository discovery.
-3. If signals conflict, pause and ask the user to confirm mode.
+1. Default to `greenfield` for the cloned Tempo starter.
+2. Use an explicit override when provided (`--mode greenfield`,
+   `--mode adopt-existing`, or `--mode auto`).
+3. Use repository signals only when the caller explicitly selects `--mode auto`.
+4. If auto-detection signals conflict, pause and ask the user to confirm mode.
 
 ## First-Run Requirements
 

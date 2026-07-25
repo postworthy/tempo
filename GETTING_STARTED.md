@@ -8,12 +8,16 @@ Installing or acquiring `git` is out of scope for this guide.
 
 ## Fast Path
 
+For a new project created from Tempo:
+
 ```bash
-./bootstrap
+./bootstrap --init-project
 ```
 
 What this does:
 
+- backs up Tempo's inherited project records and creates a clean project
+  baseline,
 - checks required Node.js and pnpm versions,
 - activates pnpm via corepack when safe and available,
 - configures repository-local git hooks under `.githooks/`,
@@ -26,7 +30,9 @@ Tempo supports:
 
 - `greenfield`: new project startup flow.
 - `adopt-existing`: apply Tempo governance to a codebase that already has implementation history.
-- `auto`: infer mode from repository signals (default bootstrap behavior).
+- `auto`: infer mode from repository signals when explicitly requested.
+
+The cloned Tempo starter defaults to `greenfield`.
 
 ## Template History vs Your Project History
 
@@ -43,7 +49,8 @@ Active record folders should start clean for new projects:
 
 ## One-Time Project Initialization
 
-If you want a clean baseline for your own project records:
+The fast path above performs this initialization. To run it explicitly in an
+existing Tempo clone:
 
 ```bash
 ./bootstrap --init-project --no-verify
@@ -52,10 +59,15 @@ If you want a clean baseline for your own project records:
 This resets:
 
 - `PROJECT-BRIEF.md` to unfilled baseline,
+- `SPEC.md` to a project-ready draft,
 - `STATUS.md` to starter baseline,
 - `ROADMAP/COMMIT-PLAN.md` to starter next-commit plan.
+- active proposals, reviews, RCA records, and completed goals to template-only
+  folders.
 
-A backup is created under `.template-init-backup/<timestamp>/` before changes.
+A recoverable local backup is created under
+`.template-init-backup/<timestamp>/` before changes. The backup directory is
+ignored by git.
 
 Then run:
 

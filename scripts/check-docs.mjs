@@ -346,18 +346,19 @@ const projectBriefIsUnfilled =
 
 if (projectBriefIsUnfilled) {
   const liveRecordFolders = [
-    ['PROPOSALS', 'TEMPLATE.md'],
-    ['REVIEWS', 'TEMPLATE.md'],
-    ['RCA', 'TEMPLATE.md'],
+    ['PROPOSALS', ['TEMPLATE.md']],
+    ['REVIEWS', ['TEMPLATE.md']],
+    ['RCA', ['TEMPLATE.md']],
+    ['GOALS', ['README.md', 'TEMPLATE.md']],
   ];
 
-  for (const [folder, templateFile] of liveRecordFolders) {
+  for (const [folder, allowedFiles] of liveRecordFolders) {
     if (!existsSync(folder)) {
       continue;
     }
 
     const files = readdirSync(folder).filter((name) => name.endsWith('.md'));
-    const nonTemplate = files.filter((name) => name !== templateFile);
+    const nonTemplate = files.filter((name) => !allowedFiles.includes(name));
     if (nonTemplate.length > 0) {
       problems.push(
         `${folder}/ contains non-template records in fresh-template mode: ${nonTemplate.join(', ')}`,
