@@ -1,10 +1,10 @@
 ## Current Milestone
 
-Modernization implementation complete; release-readiness remediation required
+Modernization and production-readiness remediation complete
 
 ## Current Next Commit
 
-C022 test(release): capture production readiness failures
+None; awaiting separately approved merge or publication action
 
 ## Done (High-Level)
 
@@ -24,17 +24,10 @@ C022 test(release): capture production readiness failures
 
 ## In Progress
 
-- Executing the explicitly approved C022 T2 production-readiness remediation.
+- None.
 
 ## Blockers / Risks
 
-- Plain `./bootstrap` fails from a clean public-template checkout after auto mode
-  generates an unformatted discovery artifact.
-- Portable adoption does not reject all symlink escapes and can leave a partial
-  first-run installation after a conflict.
-- The frozen development dependency graph has one critical and twenty high
-  advisories.
-- `--init-project` does not produce a canonically valid clean project state.
 - Deterministic trigger evaluation cannot prove behavior across every
   probabilistic model or host.
 - Local merge and external publication remain intentionally unexecuted.
@@ -49,7 +42,8 @@ C022 test(release): capture production readiness failures
 - Made dependency installation non-interactive and frozen-lockfile based.
 - Made project initialization reset and back up both the brief and specification.
 - Applied the approved Constitution 2.1 amendment and responsibility map.
-- Reduced the always-loaded repository kernel from 238 lines to 113 lines while retaining routed invariants.
+- Reduced the always-loaded repository kernel from 238 to 116 lines while
+  retaining routed invariants.
 - Added the living-goal lifecycle, one-active-goal validator, retry and completion controls, active modernization goal, and negative fixtures.
 - Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
 - Added five focused repo-local Tempo skills with progressive-disclosure references, validation, and trigger cases.
@@ -64,20 +58,24 @@ C022 test(release): capture production readiness failures
 - Added lightweight prompt review guidance in `VERIFY.md` and enforcement for `PROMPTING.md` in `pnpm check:docs`.
 - Added migration and rollback guidance, completed the exact criterion evidence
   inventory, and approved the branch for its local Review Boundary.
-- Replayed final verification with 22 tests, seven evaluation scenarios, and 59
-  assertions, plus an isolated clean `main` bootstrap.
+- Replayed final verification with 27 tests, seven evaluation scenarios, and 59
+  assertions, plus isolated plain and initialized `main` bootstraps.
 - Performed a production-readiness sweep against the exact public and
   initialization commands; canonical branch verification remains green, but
   release-blocking setup, containment, atomicity, dependency, and coverage gaps
   were found.
+- Remediated all production-review blockers: deterministic contributor setup,
+  reversible project initialization, portable symlink containment and conflict
+  preflight, an audited Node 20.19+ toolchain, and template-neutral checks.
+- Replayed both public commands from isolated exact committed trees; each passed
+  27 tests, seven evaluation scenarios, 59 assertions, and the build, while the
+  contributor path left a clean worktree.
 
 ## Next Planned Changes
 
-- Propose remediation for public bootstrap mode selection and initialization.
-- Harden portable installation with preflighted containment and atomic behavior.
-- Refresh the frozen development toolchain and add release-path regressions.
-- Repeat the complete production-readiness review before any merge or
-  publication.
+- Obtain explicit approval before any merge, push, or publication.
+- Treat cross-host probabilistic skill evaluation as an optional future
+  improvement, not a release blocker.
 
 ## Notes
 

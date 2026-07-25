@@ -169,6 +169,9 @@ Tempo's primary user should not need to assemble an agent environment or become 
 
 Consequences:
 Greenfield setup remains opinionated and batteries included; adopt-existing setup must be stack-neutral; clean primary-branch bootstrap and repeated setup become release acceptance criteria.
+Plain `./bootstrap` is the deterministic contributor verification path;
+new-project users run explicit `./bootstrap --init-project`, which creates a
+recoverable backup before retiring Tempo's active development records.
 
 ## 2026-07-24 - Focused Skill Bundle Instead of Monolithic Skill
 
@@ -235,6 +238,8 @@ One public entry point is easier for novice users, but an existing repository mu
 
 Consequences:
 Target adoption runs before Node/pnpm checks, installs a portable Constitution/kernel/goals/skills profile, backs up and marks existing `AGENTS.md`, records the target verification command as data, refuses conflicts, and remains idempotent.
+Every managed path component must be a real directory rather than a symlink, and
+known conflicts must be rejected during preflight before target mutation.
 
 ## 2026-07-24 - Audited Development Toolchain Floor
 

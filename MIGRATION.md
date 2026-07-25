@@ -11,12 +11,18 @@ application stack.
 After cloning Tempo:
 
 ```bash
-./bootstrap
+./bootstrap --init-project
 ```
 
 Then tell your agent what you want to build and ask it to follow `AGENTS.md`.
 Tempo retains the pinned TypeScript starter, local hooks, validation, skills, and
-living-goal tooling.
+living-goal tooling. Explicit initialization backs up Tempo's own active
+development records under `.template-init-backup/`, preserves
+`TEMPLATE_HISTORY/`, and leaves reusable active folders template-only.
+
+Tempo contributors working on the template itself use plain `./bootstrap`,
+which defaults to the greenfield profile and verifies without initializing
+project records.
 
 ### Add Tempo to an existing repository
 
@@ -85,11 +91,13 @@ ownership.
   required work.
 - Reversible approved T0/T1 work may continue without repeated confirmation;
   high-impact boundaries still pause.
-- Target adoption refuses conflicting files rather than overwriting them.
+- Target adoption rejects managed-path symlinks and preflights conflicts before
+  mutation rather than overwriting or partially installing files.
 
 ## Compatibility Notes
 
 - Existing TypeScript starter projects remain supported.
+- The batteries-included profile requires Node.js 20.19 or later.
 - Non-Node repositories use the portable profile and their own verification
   command.
 - Hosts that ignore skills can still follow the repository kernel and source

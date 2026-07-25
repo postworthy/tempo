@@ -1,6 +1,6 @@
 # Goal: Remediate Tempo Production Readiness
 
-Status: active
+Status: completed
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
@@ -27,12 +27,12 @@ Record is evidence-backed and approved.
 
 ## Acceptance Criteria
 
-- [ ] AC1 — Plain `./bootstrap` passes from isolated clean `main` and leaves a clean worktree.
-  - Evidence: pending
-- [ ] AC2 — The documented one-command new-project path creates a valid unfilled project state and passes canonical verification.
-  - Evidence: pending
-- [ ] AC3 — Explicit initialization backs up affected contracts and active records while preserving `TEMPLATE_HISTORY/`.
-  - Evidence: pending
+- [x] AC1 — Plain `./bootstrap` passes from isolated clean `main` and leaves a clean worktree.
+  - Evidence: exact committed tree `acdfef0`, initialized as `main`, completed plain `./bootstrap`, 27 tests, 7/7 evaluation scenarios, 59 assertions, build, and empty status/diff checks
+- [x] AC2 — The documented one-command new-project path creates a valid unfilled project state and passes canonical verification.
+  - Evidence: exact committed tree `acdfef0`, initialized as `main`, completed `./bootstrap --init-project`; validators reported an unfilled project with no active goal and the full gate passed
+- [x] AC3 — Explicit initialization backs up affected contracts and active records while preserving `TEMPLATE_HISTORY/`.
+  - Evidence: isolated initialization created a timestamped `.template-init-backup/`, left only templates in active record folders, and produced no `TEMPLATE_HISTORY/` diff
 - [x] AC4 — Portable adoption rejects destination and managed-parent symlinks before mutation without changing out-of-target data.
   - Evidence: `test/portable-adoption.test.ts` hashes a symlink target, snapshots the repository, and proves both remain unchanged after AGENTS and managed-parent rejection
 - [x] AC5 — A first-run portable conflict leaves the target byte-for-byte unchanged.
@@ -43,10 +43,10 @@ Record is evidence-backed and approved.
   - Evidence: `pnpm audit --audit-level=high` exits 0 with one low advisory after the coherent ESLint 10, Vitest 4, Node 20.19, and patched-transitive refresh
 - [x] AC8 — Regression coverage exercises all reproduced release blockers and meaningful negative paths.
   - Evidence: canonical verification passes 27 tests across public bootstrap, initialization, symlink containment, first-conflict atomicity, normal/repeat adoption, governance, goals, skills, and evaluations
-- [ ] AC9 — Public, migration, verification, status, roadmap, goal, and decision documentation agree with behavior.
-  - Evidence: pending
-- [ ] AC10 — The final exact tree passes all feature and isolated release gates, the Review Record is approved, and no external action occurred.
-  - Evidence: pending
+- [x] AC9 — Public, migration, verification, status, roadmap, goal, and decision documentation agree with behavior.
+  - Evidence: `pnpm check:contracts` and `pnpm check:docs` pass after final reconciliation; README, getting started, bootstrap, migration, verification, status, roadmap, decisions, proposal, goal, evaluation artifact, and review state agree
+- [x] AC10 — The final exact tree passes all feature and isolated release gates, the Review Record is approved, and no external action occurred.
+  - Evidence: feature branch and both isolated committed-tree public paths pass; the Review Record has no blocking finding and approves the local boundary; no merge, push, publish, tag, deploy, remote, or production command occurred
 
 ## Authority Envelope
 
@@ -72,13 +72,13 @@ Record is evidence-backed and approved.
 
 ## Work Units
 
-| Unit                                   | Status      | Exit criteria                                                        | Verification                                       |
-| -------------------------------------- | ----------- | -------------------------------------------------------------------- | -------------------------------------------------- |
-| 1. Release-path regressions            | completed   | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
-| 2. Public bootstrap and initialization | in_progress | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
-| 3. Portable containment and preflight  | completed   | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
-| 4. Dependency remediation              | completed   | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
-| 5. Final replay and review             | pending     | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
+| Unit                                   | Status    | Exit criteria                                                        | Verification                                       |
+| -------------------------------------- | --------- | -------------------------------------------------------------------- | -------------------------------------------------- |
+| 1. Release-path regressions            | completed | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
+| 2. Public bootstrap and initialization | completed | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
+| 3. Portable containment and preflight  | completed | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
+| 4. Dependency remediation              | completed | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
+| 5. Final replay and review             | completed | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
 
 ## Progress
 
@@ -105,6 +105,13 @@ Record is evidence-backed and approved.
 - 2026-07-24: The first exact-tree initialization replay reached canonical
   verification and exposed template-specific evaluation and test fixtures; the
   plain bootstrap replay passed and left a clean worktree.
+- 2026-07-24: Template-neutral checks passed canonical verification, then exact
+  committed-tree plain and initialized `main` replays both completed the full
+  gate; the plain tree stayed clean and initialization preserved reversible
+  backups and template history.
+- 2026-07-24: Final scope, history, safety, compatibility, rollback,
+  documentation, secret, artifact, audit, and evidence review found no blocking
+  issue and approved the local Review Boundary.
 
 ## Evidence
 
@@ -120,6 +127,13 @@ test/portable-adoption.test.ts` passes eight focused tests.
 - `pnpm audit --audit-level=high` exits 0 with one low advisory.
 - `pnpm verify` passes after the dependency refresh with 27 tests, seven
   evaluation scenarios, 59 assertions, and a successful build.
+- Exact committed tree `acdfef0` passes plain `./bootstrap` and remains clean.
+- Exact committed tree `acdfef0` passes `./bootstrap --init-project`, including
+  27 tests, 7/7 evaluation scenarios, 59 assertions, and the build.
+- Initialized state has unfilled contracts, template-only active record folders,
+  a timestamped complete backup, and no `TEMPLATE_HISTORY/` diff.
+- Final review records no blocking findings; `git diff --check`, trailer audit,
+  secret-pattern scan, and high-threshold dependency audit pass.
 
 ## Discoveries
 
@@ -148,15 +162,13 @@ test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Retry State
 
-- Current attempt: 1
+- Current attempt: 0
 - Maximum attempts per unchanged failure: 2
-- Last failure: initialized exact tree could not verify because evaluation and
-  test fixtures referenced active records that initialization correctly
-  archived.
+- Last failure: none
 
 ## Next Action
 
-- Replay plain and initialized bootstrap from exact isolated staged trees, then reconcile the final Review Record.
+- Preserve this approved branch; merge, push, and publication require separate explicit approval.
 
 ## Pause Conditions
 
@@ -168,6 +180,9 @@ test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Outcomes
 
-- Production-readiness remediation is approved and active.
-- Release regressions, portable containment, and dependency remediation are
-  implemented; exact-tree integration replay remains.
+- Production-readiness remediation is complete.
+- Public bootstrap, reversible initialization, portable containment and
+  atomicity, dependency remediation, release regressions, documentation, and
+  exact-tree integration evidence are complete.
+- The branch is ready for the approved local Review Boundary; no merge or
+  publication action has occurred.

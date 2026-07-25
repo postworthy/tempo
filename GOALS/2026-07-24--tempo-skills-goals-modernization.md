@@ -33,7 +33,7 @@ The detailed research and original phase contract are recorded in
 - [x] AC1 — Tempo's product brief and specification describe the modernized product without placeholders.
   - Evidence: `PROJECT-BRIEF.md`, `SPEC.md`, commit `dbff42b`, and `pnpm check:contracts`
 - [x] AC2 — A clean primary-branch checkout runs the documented canonical bootstrap successfully.
-  - Evidence: isolated `main` at commit `c58d1dd` completed `./bootstrap --mode greenfield`, dependency installation, all 22 tests, seven evaluation scenarios, 59 assertions, and canonical verification on 2026-07-24
+  - Evidence: isolated `main` at commit `acdfef0` completed plain `./bootstrap`, dependency installation, all 27 tests, seven evaluation scenarios, 59 assertions, and canonical verification with a clean worktree on 2026-07-24
 - [x] AC3 — Canonical verification passes on a clean primary branch.
   - Evidence: isolated `main` verification at commit `8ef1f06` on 2026-07-24
 - [x] AC4 — Direct development commits to the primary branch remain blocked.
@@ -67,7 +67,7 @@ The detailed research and original phase contract are recorded in
 - [x] AC18 — Current behavior, migration guidance, rollback, decisions, roadmap, and review evidence agree.
   - Evidence: `MIGRATION.md`, all six modernization proposals, `ROADMAP/COMMIT-PLAN.md`, `STATUS.md`, `DECISIONS.md`, and `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md` agree with the final committed-tree replay
 - [x] AC19 — Full canonical verification and the documented manual evaluation suite pass.
-  - Evidence: `pnpm verify` and `pnpm eval` passed at C020 with 22 tests, seven scenarios, 59 assertions, and the human audit in `EVALS/2026-07-24--evaluation-report.md`
+  - Evidence: `pnpm verify` and `pnpm eval` pass after C022 with 27 tests, seven scenarios, 59 assertions, and the human audit in `EVALS/2026-07-24--evaluation-report.md`
 - [x] AC20 — No external push, publication, remote change, or production action occurred.
   - Evidence: final git, tracked-artifact, secret-pattern, decision, and remote audits found no external action or remote mutation; the pre-existing `origin` remained unchanged and unused
 
@@ -115,8 +115,8 @@ The detailed research and original phase contract are recorded in
 - 2026-07-24: Human explicitly approved the C017 T2 proposal and Constitution
   2.1 amendment.
 - 2026-07-24: Constitution 2.1 committed as `b425fa2`.
-- 2026-07-24: `AGENTS.md` reduced from 238 to 113 lines and committed as
-  `ba97a34`.
+- 2026-07-24: `AGENTS.md` reduced from 238 to 113 lines at `ba97a34` and
+  settled at 116 after final routing additions; the 120-line limit passes.
 - 2026-07-24: Living-goal lifecycle, validator, and fixtures implemented; current
   unit passed canonical verification with 11 tests.
 - 2026-07-24: Active execution ownership consolidated into this file; the
@@ -139,11 +139,11 @@ The detailed research and original phase contract are recorded in
   verification passed with 22 tests and the human evidence audit was recorded.
 - 2026-07-24: C021 migration and final-review proposal approved under scoped,
   reversible T1 goal authority.
-- 2026-07-24: Final feature-branch verification passed with 22 tests, seven
-  evaluation scenarios, and 59 assertions; all five skills also passed the
-  upstream skill validator.
-- 2026-07-24: Isolated `main` at `c58d1dd` completed the full greenfield
-  bootstrap with a clean resulting worktree.
+- 2026-07-24: Final feature-branch verification passed with 27 tests, seven
+  evaluation scenarios, and 59 assertions after C022; all five skills also
+  passed the upstream skill validator.
+- 2026-07-24: Isolated `main` at `acdfef0` completed plain and initialized
+  public bootstrap paths; the plain path left a clean worktree.
 - 2026-07-24: Migration, safety, artifact, secret-pattern, remote, commit,
   rollback, and criterion audits completed with no blocking finding.
 

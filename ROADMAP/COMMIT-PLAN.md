@@ -4,7 +4,8 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-C022 test(release): capture production readiness failures
+None; C022 is complete. Await an explicitly approved merge or publication
+action.
 
 ## Milestone M0 - Foundation and Governance
 
@@ -273,7 +274,7 @@ Evidence:
 - Result: 22 tests, 7/7 evaluation scenarios, 59 assertions, isolated clean
   bootstrap pass, and all 20 goal criteria complete.
 
-### [NEXT] C022 - fix(release): remediate production readiness blockers
+### [DONE] C022 - fix(release): remediate production readiness blockers
 
 Goal:
 
@@ -290,3 +291,14 @@ Acceptance:
 Proposal:
 
 - `PROPOSALS/2026-07-24--production-readiness-remediation.md`
+
+Evidence:
+
+- Plain and initialized bootstrap replays passed from isolated `main`
+  repositories built from `acdfef0`; plain bootstrap left a clean worktree.
+- Six portable fixtures prove symlink containment, conflict atomicity,
+  stack-neutral operation, preservation, and idempotence.
+- `pnpm verify` passes 27 tests and 7/7 evaluation scenarios with 59 assertions.
+- `pnpm audit --audit-level=high` exits 0 with one low advisory.
+- Final decision:
+  `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.

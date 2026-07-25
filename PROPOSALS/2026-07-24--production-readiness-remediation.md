@@ -7,7 +7,7 @@ Related Issue/Context: production-readiness findings in
 `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`
 Roadmap Item: C022
 Planned Branch: `docs/c012-tempo-modernization-goal`
-Expected Commit Count: 5
+Expected Commit Count: 6
 
 ## Objective
 
@@ -75,27 +75,27 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] Plain `./bootstrap` exits 0 from an isolated clean `main` fixture and
+- [x] Plain `./bootstrap` exits 0 from an isolated clean `main` fixture and
       leaves no untracked or modified project file.
-- [ ] The documented one-command new-project path produces unfilled project
+- [x] The documented one-command new-project path produces unfilled project
       contracts, template-only active record folders, and a passing
       `pnpm verify`.
-- [ ] Explicit project initialization backs up every replaced or retired active
+- [x] Explicit project initialization backs up every replaced or retired active
       record and never removes `TEMPLATE_HISTORY/`.
-- [ ] Portable adoption rejects a symlink at `AGENTS.md` or any managed ancestor
+- [x] Portable adoption rejects a symlink at `AGENTS.md` or any managed ancestor
       before mutation and does not change the symlink target.
-- [ ] A first-run managed-file or manifest conflict leaves the target's tracked
+- [x] A first-run managed-file or manifest conflict leaves the target's tracked
       and untracked content byte-for-byte unchanged.
-- [ ] Normal and repeated portable adoption remain stack-neutral, preserve
+- [x] Normal and repeated portable adoption remain stack-neutral, preserve
       unrelated files, and pass without invoking Node or pnpm.
-- [ ] `pnpm audit --audit-level=high` reports no high or critical finding, unless
+- [x] `pnpm audit --audit-level=high` reports no high or critical finding, unless
       an explicit approved exception identifies the package, exposure, and
       compensating control.
-- [ ] Regression tests cover the public command, initialized-template
+- [x] Regression tests cover the public command, initialized-template
       verification, symlink containment, and first-install conflict atomicity.
-- [ ] Public instructions describe one primary new-project command, contributor
+- [x] Public instructions describe one primary new-project command, contributor
       setup, target adoption, and rollback without contradiction.
-- [ ] Final feature-branch and isolated-clean verification pass, the Review
+- [x] Final feature-branch and isolated-clean verification pass, the Review
       Record is approved, and no external action has occurred.
 
 ## Verification Plan
@@ -146,7 +146,8 @@ Pass means:
   2. `fix(bootstrap): make project initialization release safe`
   3. `fix(bootstrap): contain portable adoption`
   4. `chore(deps): refresh verified toolchain`
-  5. `docs(review): approve remediated release`
+  5. `fix(evals): make initialized checks template neutral`
+  6. `docs(review): approve remediated release`
 - Required trailers:
   - `Roadmap: ROADMAP/COMMIT-PLAN.md#C022`
   - `Proposal: PROPOSALS/2026-07-24--production-readiness-remediation.md`

@@ -12,12 +12,14 @@ Related Proposals:
 - `PROPOSALS/2026-07-24--portable-tempo-adoption.md`
 - `PROPOSALS/2026-07-24--skill-goal-evaluations.md`
 - `PROPOSALS/2026-07-24--modernization-release-readiness.md`
+- `PROPOSALS/2026-07-24--production-readiness-remediation.md`
 
 ## Branch
 
 - Source branch: `docs/c012-tempo-modernization-goal`
 - Target branch: `main`
-- Boundary status: not ready; merge and publication must not proceed
+- Boundary status: ready for an explicitly approved local merge; publication
+  remains a separate approval boundary
 
 ## Commits in Scope
 
@@ -40,6 +42,12 @@ Related Proposals:
 - `9146caa` docs(release): approve modernization readiness review
 - `c58d1dd` docs(release): add migration and draft review
 - `0018819` docs(release): complete modernization review
+- `c884f93` docs(review): record production readiness blockers
+- `39b7189` docs(release): approve production remediation
+- `02882b6` fix(bootstrap): make project initialization release safe
+- `1a6da54` fix(bootstrap): contain portable adoption
+- `0b27734` chore(deps): refresh verified toolchain
+- `acdfef0` fix(evals): make initialized checks template neutral
 
 The final administrative review/evidence commit is part of the exact branch
 history under review, although it does not change runtime behavior.
@@ -63,31 +71,31 @@ history under review, although it does not change runtime behavior.
 - Added stack-neutral target adoption through the same `./bootstrap` entry point.
 - Added seven-scenario deterministic evaluation with a recorded baseline.
 - Added migration and rollback guidance for old and adopted repositories.
+- Made plain contributor bootstrap deterministic and explicit project
+  initialization reversible and canonically verifiable.
+- Made portable adoption containment-safe and atomic for known conflicts.
+- Refreshed the frozen verification toolchain and added release-path regressions.
 
 ## Acceptance Evidence
 
-| Criterion                        | Evidence                                                          | Review |
-| -------------------------------- | ----------------------------------------------------------------- | ------ |
-| Modern product contracts         | `PROJECT-BRIEF.md`, `SPEC.md`, `dbff42b`, contract validator      | pass   |
-| Clean primary bootstrap          | plain public `./bootstrap` replay at `0018819`                    | fail   |
-| Clean-main verification          | isolated `main` verification and bootstrap output                 | pass   |
-| Direct-main commit block         | pre-commit temporary-repository regression                        | pass   |
-| Concise routing kernel           | 116 lines; `scripts/check-docs.mjs` limit                         | pass   |
-| Distinct state owners            | Constitution 2.1 responsibility map                               | pass   |
-| Living-goal format               | `GOALS/`, validator, positive/negative fixtures                   | pass   |
-| Evidence-driven loop             | active goal history and `pnpm eval` transition                    | pass   |
-| Bounded T0/T1 autonomy           | Constitution, kernel, authority matrix                            | pass   |
-| High-impact approvals            | T2 user approval and seven pause categories                       | pass   |
-| Focused skill bundle             | five upstream-valid skills and `pnpm check:skills`                | pass   |
-| Trigger coverage                 | 16 metadata cases and trigger audit                               | pass   |
-| Fresh-state resumption           | isolated transition preserves AC1 and completes AC2               | pass   |
-| One public setup command         | README command auto-detects `adopt-existing` and fails formatting | fail   |
-| Batteries-included greenfield    | repeated local runs and clean-main full run                       | pass   |
-| Stack-neutral adoption           | normal fixtures pass; symlink containment and atomicity fail      | fail   |
-| Structural validation            | contract/goal/skill/doc negative regressions                      | pass   |
-| Migration and evidence agreement | stale readiness claims and active template-development records    | fail   |
-| Canonical and eval gates         | 22 tests; 7 scenarios; 59 assertions                              | pass   |
-| No external action               | git/decision audit; no external command executed                  | pass   |
+| Criterion                        | Evidence                                                         | Review |
+| -------------------------------- | ---------------------------------------------------------------- | ------ |
+| Modern product contracts         | `PROJECT-BRIEF.md`, `SPEC.md`, contract validator                | pass   |
+| Plain contributor bootstrap      | isolated exact-tree `./bootstrap`; clean worktree                | pass   |
+| Initialized new-project path     | isolated `./bootstrap --init-project`; full gate                 | pass   |
+| Reversible initialization        | timestamped backup; active folders template-only                 | pass   |
+| Direct-main commit block         | pre-commit temporary-repository regression                       | pass   |
+| Concise routing kernel           | 116 lines; deterministic line limit                              | pass   |
+| Living goals and bounded loops   | validator, fixtures, resumption, authority matrix                | pass   |
+| Focused skill bundle             | five validated skills and 16 trigger cases                       | pass   |
+| Stack-neutral adoption           | normal/repeat/no-Node fixtures                                   | pass   |
+| Portable containment             | symlink target hashes and managed-parent rejection               | pass   |
+| Portable conflict atomicity      | exact before/after inventory on first-install conflict           | pass   |
+| Structural validation            | contract, goal, skill, docs, and git-policy negative regressions | pass   |
+| Frozen dependency graph          | high-threshold audit exits 0; one low advisory                   | pass   |
+| Migration and evidence agreement | public, migration, status, roadmap, goal, and review reconciled  | pass   |
+| Canonical and eval gates         | 27 tests; 7 scenarios; 59 assertions; build                      | pass   |
+| No external action               | git and command audit; no remote operation                       | pass   |
 
 ## Verification Evidence
 
@@ -95,6 +103,7 @@ Commands run during final review:
 
 ```bash
 pnpm verify
+pnpm audit --audit-level=high
 git diff --check
 git status --short
 git diff main...HEAD --stat
@@ -104,32 +113,28 @@ git log --reverse --format=fuller main..HEAD
 Isolated executions:
 
 ```bash
-./bootstrap --mode greenfield
-./bootstrap --mode adopt-existing --target <fixture> --verify-command "python3 -m pytest"
+./bootstrap
+./bootstrap --init-project
+pnpm exec vitest run test/portable-adoption.test.ts
 ```
 
 Results:
 
-- `pnpm verify`: pass; 22 tests, 7/7 eval scenarios, 59 assertions.
-- clean isolated `main` bootstrap at `c58d1dd`: pass; 22 tests, seven
-  evaluation scenarios, and 59 assertions.
-- portable non-Node, repeat, and conflict fixtures: pass.
-- final staged-tree feature verification and isolated `main` bootstrap replay:
-  pass before the administrative completion commit.
-- exact public command `./bootstrap` from a clean `main` fixture at `0018819`:
-  fail; mode auto-detected as `adopt-existing`, generated
-  `DISCOVERY/PROJECT-INVENTORY.md`, and failed `format:check`.
-- documented `./bootstrap --init-project --no-verify` followed by
-  `pnpm check:docs`: fail; the generated `SPEC.md` omits `./bootstrap`, and
-  modernization proposals and review remain in active project folders.
-- first-run portable conflict fixture: fail; `.tempo/KERNEL.md` was created
-  before a conflicting `.tempo/VERIFY.md` stopped installation.
-- symlinked target `AGENTS.md` fixture: fail; installation returned success and
-  modified the symlink target outside the selected repository.
-- `pnpm audit --prod --audit-level=high`: pass; no runtime dependencies or known
-  production-dependency vulnerabilities.
-- `pnpm audit --audit-level=high`: fail; frozen development graph contains 30
-  advisories (1 critical, 20 high, 8 moderate, 1 low).
+- `pnpm verify`: pass; 27 tests, 7/7 evaluation scenarios, 59 assertions, and
+  successful TypeScript build.
+- `pnpm audit --audit-level=high`: pass at the high threshold; one low advisory
+  remains and is not a release blocker.
+- Exact committed tree `acdfef0`, isolated as `main`, plain `./bootstrap`: pass;
+  full canonical gate and clean worktree.
+- Exact committed tree `acdfef0`, isolated as `main`,
+  `./bootstrap --init-project`: pass; full canonical gate, unfilled contracts,
+  template-only active folders, timestamped backup, and unchanged
+  `TEMPLATE_HISTORY/`.
+- Final staged release tree based on `acdfef0`: both isolated public paths pass
+  again with the reconciled documentation and approved Review Record included.
+- Six portable fixtures: pass; normal, repeated, and no-Node adoption plus
+  first-conflict atomicity, symlinked `AGENTS.md`, and managed-parent symlink
+  containment.
 
 ## Safety and Compatibility Review
 
@@ -141,9 +146,10 @@ Results:
 - Default starter compatibility: retained and replayed.
 - Non-Node compatibility: isolated fixture passes without Node/pnpm invocation.
 - Existing regular target files: preserved, backed up, or rejected on conflict.
-- Target containment: fail; `AGENTS.md` and ancestor-directory symlinks are not
-  rejected before mutation.
-- Transactionality: fail; first-run conflicts can leave a partial installation.
+- Target containment: pass; destination and every managed parent are rejected
+  when symlinked before target mutation.
+- Transactionality: pass for known conflicts; all managed paths and the manifest
+  are preflighted before mutation, with rollback for unexpected failures.
 - Generated evaluation workspaces: temporary and removed.
 - Template history: remains under `TEMPLATE_HISTORY/`.
 
@@ -151,28 +157,24 @@ Results:
 
 Blocking:
 
-1. High — Portable adoption can write outside the selected repository through a
-   symlinked `AGENTS.md`; parent symlinks under `.tempo/`, `.agents/`, or
-   `GOALS/` are likewise not preflighted. Evidence: disposable fixture changed
-   the hash of an out-of-target file while the installer exited 0.
-2. High — The exact public README command fails from a clean clone. Auto mode
-   selects `adopt-existing`, writes an unformatted discovery artifact, and
-   causes canonical verification to exit 1.
-3. High — The frozen development toolchain has 1 critical and 20 high
-   advisories, including the installed Vitest 3.2.4 vulnerability fixed in
-   3.2.6 or later. The production-only audit is clean because Tempo has no
-   runtime dependencies.
-4. Medium — The documented project-initialization path cannot produce a valid
-   fresh template. Its generated `SPEC.md` fails the canonical-command contract,
-   and Tempo's modernization proposals/review remain in active project folders.
-5. Medium — Portable installation is not atomic: a first-run conflict can leave
-   files created before the conflicting path was encountered.
-6. Medium — Current tests exercise an explicit greenfield mode and an
-   already-installed conflict, but not the plain public command, initialized
-   template verification, first-install atomicity, or symlink containment.
-7. Low — Historical evidence documents disagree on the kernel line count and
-   prior bootstrap commit. This re-review corrects the current boundary state,
-   but the stale evidence should be reconciled during remediation.
+- None.
+
+Resolved by C022:
+
+1. High — Portable symlink escape: resolved by component-level containment
+   preflight and out-of-target hash regressions.
+2. High — Plain public bootstrap failure: resolved by deterministic greenfield
+   default and an exact clean-tree replay.
+3. High — Critical/high development advisories: resolved by the coherent
+   toolchain refresh and high-threshold audit.
+4. Medium — Invalid initialized state: resolved by contract regeneration,
+   active-record backup, and initialized-tree canonical verification.
+5. Medium — Partial first installation: resolved by full conflict preflight and
+   rollback.
+6. Medium — Missing release regressions: resolved by public-path and portable
+   negative fixtures.
+7. Low — Stale evidence: reconciled in the goal, roadmap, status, migration
+   guide, evaluation artifact, and this record.
 
 Known limitation after remediation:
 
@@ -191,15 +193,17 @@ Known limitation after remediation:
 
 - T2 constitutional implementation: explicitly approved by Human Partner on
   2026-07-24.
+- C022 T2 production remediation: explicitly approved by Human Partner with
+  “make it so” on 2026-07-24.
 - Reviewer: Codex
-- Approval status: rejected pending remediation and a new full replay
-- Timestamp: 2026-07-24 22:02 CDT
+- Approval status: approved for the local Review Boundary
+- Timestamp: 2026-07-24 22:30 CDT
 
 ## Follow-Ups
 
-- Do not merge or publish until every blocking finding is fixed and this Review
-  Record returns to an approved state.
 - Actual local merge and external GitHub publication remain intentionally
   unexecuted.
+- Merge, push, and publication still require their separately explicit
+  approvals.
 - Optional plugin packaging and independent cross-host forward tests may be
   proposed after publication.
