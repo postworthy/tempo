@@ -244,11 +244,18 @@ Evidence:
 - Two consecutive greenfield bootstrap runs completed non-interactively on
   2026-07-24.
 
-### [TODO] C020 - test(evals): validate skills and fresh-context goals
+### [DONE] C020 - test(evals): validate skills and fresh-context goals
 
 Goal:
 
 - Demonstrate that skills and living goals improve real workflows without unacceptable context or interruption cost.
+
+Evidence:
+
+- Harness: commit `8f67342`.
+- Report: `EVALS/2026-07-24--evaluation-report.md`.
+- Result: 7/7 scenarios, 59 assertions, 0 failures; `AGENTS.md` 238→116
+  lines; focused skills 0→5.
 
 Acceptance:
 

@@ -38,6 +38,18 @@ pnpm verify:fast
 
 Use this for local iteration only. It does not replace `pnpm verify` before merge.
 
+## Agent Workflow Evaluation Gate
+
+```bash
+pnpm eval
+```
+
+This clean-process suite validates the seven required skill, goal, authority,
+RCA, unrelated-trigger, portable-adoption, and clean-bootstrap scenarios. It
+also compares instruction cost and capabilities with the recorded baseline.
+Deterministic evaluation does not replace host-specific forward testing; review
+the dated report under `EVALS/` for limitations.
+
 ## Preferred Logging Pattern
 
 ```bash
@@ -55,6 +67,8 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - At most one active living goal exists and its resumable state is structurally valid.
 - Portable adoption preserves target files, avoids the starter stack, rejects
   conflicts, and is idempotent in an isolated fixture.
+- The required agent-workflow scenarios and authority matrix pass objective
+  assertions.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 

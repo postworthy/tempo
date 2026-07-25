@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C020 test(evals): validate skills and fresh-context goals
+C021 docs(release): document migration and complete review
 
 ## Done (High-Level)
 
@@ -25,7 +25,7 @@ C020 test(evals): validate skills and fresh-context goals
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Implementing the approved skill, goal, authority, and setup evaluation harness.
+- Preparing migration guidance, final review, and publication-readiness evidence.
 
 ## Blockers / Risks
 
@@ -47,6 +47,7 @@ C020 test(evals): validate skills and fresh-context goals
 - Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
 - Added five focused repo-local Tempo skills with progressive-disclosure references, validation, and trigger cases.
 - Added stack-neutral target adoption through `./bootstrap`, with preservation, idempotence, conflict, and no-toolchain fixture coverage.
+- Added a seven-scenario evaluation harness with 59 assertions, baseline comparison, clean-state resumption, and a dated human audit.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -57,8 +58,9 @@ C020 test(evals): validate skills and fresh-context goals
 
 ## Next Planned Changes
 
-- Define the seven scenario fixtures and pre-skill baseline.
-- Add objective assertions for skill, goal, authority, setup, RCA, and unrelated-trigger behavior.
+- Create the C021 migration and final-review proposal.
+- Audit every remaining goal criterion, public command, rollback, safety boundary,
+  and generated-artifact exclusion.
 
 ## Notes
 

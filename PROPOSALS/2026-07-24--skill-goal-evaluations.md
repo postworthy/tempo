@@ -65,23 +65,23 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] Every required scenario has a stable ID, grounded fixture/evidence source,
+- [x] Every required scenario has a stable ID, grounded fixture/evidence source,
       expected skill or no-skill result, authority decision, and objective
       assertions.
-- [ ] Positive, ambiguous, neighboring-skill, and unrelated trigger behavior is
+- [x] Positive, ambiguous, neighboring-skill, and unrelated trigger behavior is
       represented.
-- [ ] Fresh-state resumption selects the recorded next action and preserves
+- [x] Fresh-state resumption selects the recorded next action and preserves
       completed work.
-- [ ] Premature completion fails when any criterion or evidence remains pending.
-- [ ] Authority cases continue approved local T0/T1 work and pause all enumerated
+- [x] Premature completion fails when any criterion or evidence remains pending.
+- [x] Authority cases continue approved local T0/T1 work and pause all enumerated
       high-impact boundaries.
-- [ ] Greenfield and non-Node setup cases use actual isolated execution evidence.
-- [ ] RCA case requires reproduction, cause evidence, preventive control, and no
+- [x] Greenfield and non-Node setup cases use actual isolated execution evidence.
+- [x] RCA case requires reproduction, cause evidence, preventive control, and no
       immediate second fix.
-- [ ] Current `AGENTS.md` line cost and new capability coverage are compared with
+- [x] Current `AGENTS.md` line cost and new capability coverage are compared with
       the recorded baseline.
-- [ ] Generated result files and workspaces are ignored or remain temporary.
-- [ ] `pnpm eval` and `pnpm verify` pass.
+- [x] Generated result files and workspaces are ignored or remain temporary.
+- [x] `pnpm eval` and `pnpm verify` pass.
 
 ## Verification Plan
 

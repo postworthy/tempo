@@ -54,8 +54,8 @@ The detailed research and original phase contract are recorded in
   - Evidence: five `.agents/skills/tempo-*` workflows, direct references, upstream `quick_validate.py`, `pnpm check:skills`, and negative reference/frontmatter tests
 - [x] AC12 — Skill trigger behavior includes positive and negative evaluation coverage.
   - Evidence: `EVALS/skill-trigger-cases.json`, `EVALS/2026-07-24--skill-trigger-audit.md`, and trigger-coverage regression test
-- [ ] AC13 — At least one fresh-context resume evaluation demonstrates correct continuation without premature completion.
-  - Evidence: pending
+- [x] AC13 — At least one fresh-context resume evaluation demonstrates correct continuation without premature completion.
+  - Evidence: `pnpm eval` creates isolated goal state, selects work unit 2, preserves AC1, completes AC2 with evidence, validates completed state, and rejects the premature-completion fixture
 - [x] AC14 — Tempo retains one documented public setup command suitable for the GitHub README.
   - Evidence: README and `GETTING_STARTED.md` use `./bootstrap`; target adoption is expressed only through flags on the same command
 - [x] AC15 — Greenfield setup remains batteries included.
@@ -66,8 +66,8 @@ The detailed research and original phase contract are recorded in
   - Evidence: `scripts/validate-contracts.mjs` and negative tests in `test/governance.test.ts`
 - [ ] AC18 — Current behavior, migration guidance, rollback, decisions, roadmap, and review evidence agree.
   - Evidence: pending final review
-- [ ] AC19 — Full canonical verification and the documented manual evaluation suite pass.
-  - Evidence: pending final verification
+- [x] AC19 — Full canonical verification and the documented manual evaluation suite pass.
+  - Evidence: `pnpm verify` and `pnpm eval` passed at C020 with 22 tests, seven scenarios, 59 assertions, and the human audit in `EVALS/2026-07-24--evaluation-report.md`
 - [ ] AC20 — No external push, publication, remote change, or production action occurred.
   - Evidence: pending final git and decision audit
 
@@ -104,7 +104,7 @@ The detailed research and original phase contract are recorded in
 | 3. Living goal execution                  | completed | One active goal validates and resumes from fresh state.                      | `pnpm check:goal`; goal fixtures; thin-slice evaluation. |
 | 4. Focused skill bundle                   | completed | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger audit.         |
 | 5. Portable setup                         | completed | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures and repeated setup.          |
-| 6. Evaluation harness                     | pending   | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
+| 6. Evaluation harness                     | completed | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
 | 7. Migration and review                   | pending   | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
 
 ## Progress
@@ -135,6 +135,8 @@ The detailed research and original phase contract are recorded in
   canonical verification at commit `ff9efd3`.
 - 2026-07-24: C020 evaluation proposal approved under scoped, reversible T1
   goal authority.
+- 2026-07-24: `pnpm eval` passed seven scenarios and 59 assertions; canonical
+  verification passed with 22 tests and the human evidence audit was recorded.
 
 ## Evidence
 
@@ -180,7 +182,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Define the seven structured evaluation scenarios and baseline, then implement the clean-process deterministic evaluator.
+- Create the C021 migration and final-review proposal, then audit every remaining acceptance criterion against current repository evidence.
 
 ## Pause Conditions
 
@@ -196,5 +198,5 @@ The detailed research and original phase contract are recorded in
 - Living-goal execution and active-state consolidation are complete.
 - Skills and their deterministic trigger coverage are complete.
 - Portable greenfield and adopt-existing setup are complete.
-- Full clean-context evaluations are the current active unit; migration and final
-  review remain required.
+- Full clean-process evaluations are complete.
+- Migration and final review are the current active unit.
