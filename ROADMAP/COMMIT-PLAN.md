@@ -4,8 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-None. The modernization goal is complete and ready for its documented local
-Review Boundary. Merge and publication are separate actions.
+C022 test(release): capture production readiness failures
 
 ## Milestone M0 - Foundation and Governance
 
@@ -273,3 +272,21 @@ Evidence:
   `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
 - Result: 22 tests, 7/7 evaluation scenarios, 59 assertions, isolated clean
   bootstrap pass, and all 20 goal criteria complete.
+
+### [NEXT] C022 - fix(release): remediate production readiness blockers
+
+Goal:
+
+- Repair the public setup, initialization, portable-containment, dependency, and
+  evidence failures found by the final production sweep.
+
+Acceptance:
+
+- Plain and initialized clean-main bootstrap paths pass.
+- Portable adoption rejects symlinks and known conflicts before mutation.
+- The frozen graph has no unapproved high/critical advisory.
+- Regression and exact-tree evidence return the Review Record to approved.
+
+Proposal:
+
+- `PROPOSALS/2026-07-24--production-readiness-remediation.md`
