@@ -22,6 +22,11 @@ const requiredFiles = [
   'DISCOVERY/TEMPLATE.md',
   'GOALS/README.md',
   'GOALS/TEMPLATE.md',
+  '.agents/skills/tempo-onboard-project/SKILL.md',
+  '.agents/skills/tempo-plan-goal/SKILL.md',
+  '.agents/skills/tempo-execute-goal/SKILL.md',
+  '.agents/skills/tempo-review-change/SKILL.md',
+  '.agents/skills/tempo-perform-rca/SKILL.md',
   'TEMPLATE_HISTORY/README.md',
 ];
 
@@ -304,6 +309,9 @@ if (existsSync('package.json')) {
     }
     if (!pkg.scripts || !pkg.scripts['check:goal']) {
       problems.push('package.json missing required script: check:goal');
+    }
+    if (!pkg.scripts || !pkg.scripts['check:skills']) {
+      problems.push('package.json missing required script: check:skills');
     }
   } catch {
     problems.push('package.json is invalid JSON');

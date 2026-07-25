@@ -4,7 +4,7 @@ M0 - Foundation and Governance
 
 ## Current Next Commit
 
-C018 feat(skills): add focused Tempo skill bundle
+C019 feat(bootstrap): add portable Tempo adoption
 
 ## Done (High-Level)
 
@@ -25,11 +25,11 @@ C018 feat(skills): add focused Tempo skill bundle
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Implementing the approved C018 focused Agent Skills bundle.
+- Preparing stack-neutral Tempo adoption while preserving greenfield setup.
 
 ## Blockers / Risks
 
-- Broad governance compression and constitutional amendments will require a separate T2 proposal and explicit approval before implementation.
+- Portable adoption must not overwrite existing application or governance files.
 - Skill and goal evaluations must use clean contexts without committing generated workspaces.
 
 ## Recent Changes
@@ -45,6 +45,7 @@ C018 feat(skills): add focused Tempo skill bundle
 - Reduced the always-loaded repository kernel from 238 lines to 113 lines while retaining routed invariants.
 - Added the living-goal lifecycle, one-active-goal validator, retry and completion controls, active modernization goal, and negative fixtures.
 - Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
+- Added five focused repo-local Tempo skills with progressive-disclosure references, validation, and trigger cases.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -55,8 +56,8 @@ C018 feat(skills): add focused Tempo skill bundle
 
 ## Next Planned Changes
 
-- Initialize the five skill directories with the current skill-creator.
-- Build and evaluate the focused onboarding, goal, review, and RCA workflows.
+- Create the C019 portable-adoption proposal.
+- Exercise greenfield, repeat, and non-Node adopt-existing setup in isolated fixtures.
 
 ## Notes
 

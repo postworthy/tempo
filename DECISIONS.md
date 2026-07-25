@@ -213,3 +213,14 @@ Loading every conditional procedure for every task wastes context and makes dura
 
 Consequences:
 Onboarding, prompting, proposals, reviews, RCA, and active-goal procedures are loaded when relevant rather than duplicated in the repository kernel. A deterministic check enforces the 120-line limit.
+
+## 2026-07-24 - Canonical Focused Skill Bundle
+
+Decision:
+Ship `tempo-onboard-project`, `tempo-plan-goal`, `tempo-execute-goal`, `tempo-review-change`, and `tempo-perform-rca` as Tempo's canonical repo-local skill bundle.
+
+Rationale:
+These boundaries match distinct lifecycle intents, produce precise trigger descriptions, and let agents load only the procedure needed for the current task.
+
+Consequences:
+Skills live under `.agents/skills/`, canonical frontmatter uses only `name` and `description`, host interface metadata remains optional, and deterministic validation enforces direct references and positive/ambiguous/negative trigger coverage.

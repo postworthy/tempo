@@ -50,10 +50,10 @@ The detailed research and original phase contract are recorded in
   - Evidence: Constitution 2.1 Articles II and XV-A
 - [x] AC10 — T2/T3, destructive, production, privacy, compatibility, remote, and publication boundaries require explicit approval.
   - Evidence: Constitution 2.1 Article II and this goal's Authority Envelope
-- [ ] AC11 — Focused Tempo skills exist, pass validation, use progressive disclosure, and have tested references or scripts.
-  - Evidence: pending
-- [ ] AC12 — Skill trigger behavior includes positive and negative evaluation coverage.
-  - Evidence: pending
+- [x] AC11 — Focused Tempo skills exist, pass validation, use progressive disclosure, and have tested references or scripts.
+  - Evidence: five `.agents/skills/tempo-*` workflows, direct references, upstream `quick_validate.py`, `pnpm check:skills`, and negative reference/frontmatter tests
+- [x] AC12 — Skill trigger behavior includes positive and negative evaluation coverage.
+  - Evidence: `EVALS/skill-trigger-cases.json`, `EVALS/2026-07-24--skill-trigger-audit.md`, and trigger-coverage regression test
 - [ ] AC13 — At least one fresh-context resume evaluation demonstrates correct continuation without premature completion.
   - Evidence: pending
 - [ ] AC14 — Tempo retains one documented public setup command suitable for the GitHub README.
@@ -102,7 +102,7 @@ The detailed research and original phase contract are recorded in
 | 1. Foundation repair                      | completed | Clean-main verification and non-interactive setup boundaries are consistent. | Commit `8ef1f06`; isolated `main`; governance tests.     |
 | 2. Constitution 2.1 and concise kernel    | completed | Bounded authority is constitutional and `AGENTS.md` is at most 120 lines.    | Commits `b425fa2`, `ba97a34`; `pnpm verify`.             |
 | 3. Living goal execution                  | completed | One active goal validates and resumes from fresh state.                      | `pnpm check:goal`; goal fixtures; thin-slice evaluation. |
-| 4. Focused skill bundle                   | pending   | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger evals.         |
+| 4. Focused skill bundle                   | completed | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger audit.         |
 | 5. Portable setup                         | pending   | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures.                             |
 | 6. Evaluation harness                     | pending   | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
 | 7. Migration and review                   | pending   | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
@@ -123,6 +123,9 @@ The detailed research and original phase contract are recorded in
   original roadmap goal retains the approved contract and points here for state.
 - 2026-07-24: C018 focused-skill proposal approved under the original `/goal`
   authority for scoped, reversible T1 work.
+- 2026-07-24: Five focused skills initialized with the current skill creator,
+  filled with direct-reference workflows, and validated by both upstream and
+  repository checks.
 
 ## Evidence
 
@@ -165,7 +168,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Initialize the five focused Tempo skills with the current skill-creator workflow, then replace generated placeholders with task-specific procedures.
+- Create and approve the C019 T1 proposal, then implement stack-neutral adopt-existing setup without changing the batteries-included greenfield path.
 
 ## Pause Conditions
 
@@ -179,5 +182,6 @@ The detailed research and original phase contract are recorded in
 
 - Foundation and concise-kernel outcomes are complete and verified.
 - Living-goal execution and active-state consolidation are complete.
-- Skills are the current active unit; portability, full evaluations, migration,
-  and final review remain required.
+- Skills and their deterministic trigger coverage are complete.
+- Portability is the current active unit; full clean-context evaluations,
+  migration, and final review remain required.

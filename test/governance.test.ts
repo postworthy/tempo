@@ -2,6 +2,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import {
   chmodSync,
   copyFileSync,
+  cpSync,
   mkdtempSync,
   mkdirSync,
   readFileSync,
@@ -14,6 +15,7 @@ import { describe, expect, it } from 'vitest';
 
 import { validateContracts } from '../scripts/validate-contracts.mjs';
 import { validateGoals } from '../scripts/validate-goal.mjs';
+import { validateSkills } from '../scripts/validate-skills.mjs';
 
 const repositoryRoot = resolve(process.cwd());
 const gitPolicyScript = join(repositoryRoot, 'scripts/check-git-policy.mjs');
@@ -177,6 +179,73 @@ describe('living goal validation', () => {
     );
     expect(result.problems).toContain(
       'GOALS/1-invalid-completed.md: completed criterion "AC1 — This remains incomplete." lacks final evidence',
+    );
+  });
+});
+
+describe('Agent Skill validation', () => {
+  function skillRoot() {
+    const root = mkdtempSync(join(tmpdir(), 'tempo-skills-'));
+    mkdirSync(join(root, '.agents'), { recursive: true });
+    mkdirSync(join(root, 'EVALS'));
+    cpSync(join(repositoryRoot, '.agents/skills'), join(root, '.agents/skills'), {
+      recursive: true,
+    });
+    copyFileSync(
+      join(repositoryRoot, 'EVALS/skill-trigger-cases.json'),
+      join(root, 'EVALS/skill-trigger-cases.json'),
+    );
+    return root;
+  }
+
+  it('accepts the complete focused skill bundle', () => {
+    expect(validateSkills(repositoryRoot).problems).toEqual([]);
+  });
+
+  it('rejects a broken progressive-disclosure reference', () => {
+    const root = skillRoot();
+    const path = join(root, '.agents/skills/tempo-plan-goal/SKILL.md');
+    writeFileSync(path, `${readFileSync(path, 'utf8')}\n[Missing](references/does-not-exist.md)\n`);
+
+    expect(validateSkills(root).problems).toContain(
+      '.agents/skills/tempo-plan-goal/SKILL.md: broken local reference "references/does-not-exist.md"',
+    );
+  });
+
+  it('rejects non-canonical frontmatter fields', () => {
+    const root = skillRoot();
+    const path = join(root, '.agents/skills/tempo-plan-goal/SKILL.md');
+    writeFileSync(
+      path,
+      readFileSync(path, 'utf8').replace(
+        'name: tempo-plan-goal',
+        'name: tempo-plan-goal\nmetadata: forbidden',
+      ),
+    );
+
+    expect(validateSkills(root).problems).toContain(
+      '.agents/skills/tempo-plan-goal/SKILL.md: frontmatter must contain only name and description',
+    );
+  });
+
+  it('requires positive, ambiguous, and negative trigger coverage per skill', () => {
+    const root = skillRoot();
+    const path = join(root, 'EVALS/skill-trigger-cases.json');
+    const cases = JSON.parse(readFileSync(path, 'utf8')) as Array<{
+      target_skill: string;
+      kind: string;
+    }>;
+    writeFileSync(
+      path,
+      JSON.stringify(
+        cases.filter(
+          (item) => !(item.target_skill === 'tempo-review-change' && item.kind === 'negative'),
+        ),
+      ),
+    );
+
+    expect(validateSkills(root).problems).toContain(
+      'EVALS/skill-trigger-cases.json: tempo-review-change needs a negative case',
     );
   });
 });

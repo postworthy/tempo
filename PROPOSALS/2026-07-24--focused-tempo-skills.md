@@ -130,6 +130,11 @@ reference. Splitting by file would create partially installed public states and
 would not reduce conceptual review complexity. Enforcement and trigger evidence
 remain isolated in the following test commit.
 
+The enforcement commit also exceeds the normal line target because the validator,
+its type contract, fourteen focused governance tests, and all fifteen trigger
+cases are one evidence boundary. Splitting the cases from the validator would
+allow an intermediate state that claims coverage without enforcing it.
+
 ## Decomposition Plan
 
 1. Record concrete trigger examples and initialize five skill skeletons — Verify

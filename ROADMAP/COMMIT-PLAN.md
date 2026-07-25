@@ -206,7 +206,7 @@ Evidence:
 - Living-goal lifecycle, validator, and fixtures: commit `729c304`.
 - Resumption thin slice: `EVALS/2026-07-24--goal-resumption-thin-slice.md`.
 
-### [TODO] C018 - feat(skills): add focused Tempo skill bundle
+### [DONE] C018 - feat(skills): add focused Tempo skill bundle
 
 Goal:
 
@@ -217,6 +217,13 @@ Acceptance:
 - All skills pass current schema and repository validation.
 - Skills use progressive disclosure with resolved references.
 - Positive and negative trigger cases exist.
+
+Evidence:
+
+- Skill bundle: commit `1291dfe`.
+- Structural and trigger validation: `pnpm check:skills`.
+- Trigger cases and audit: `EVALS/skill-trigger-cases.json` and
+  `EVALS/2026-07-24--skill-trigger-audit.md`.
 
 ### [TODO] C019 - feat(bootstrap): add portable Tempo adoption
 

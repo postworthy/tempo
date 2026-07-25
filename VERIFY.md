@@ -25,6 +25,7 @@ This command runs complete repository checks:
 - type checks (`typecheck`)
 - docs consistency checks (`check:docs`)
 - living-goal structure and active-state checks (`check:goal`)
+- Agent Skill structure, reference, and trigger-case checks (`check:skills`)
 - git policy checks (`check:git-policy`)
 - tests (`test`)
 - build (`build`)

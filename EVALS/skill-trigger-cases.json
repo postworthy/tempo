@@ -1,0 +1,122 @@
+[
+  {
+    "id": "onboard-positive-greenfield",
+    "target_skill": "tempo-onboard-project",
+    "kind": "positive",
+    "expected_skill": "tempo-onboard-project",
+    "prompt": "I have a rough idea for a neighborhood tool library. Use Tempo to help me figure out a realistic first version before we code.",
+    "rationale": "Vague greenfield intent needs discovery and approved contracts."
+  },
+  {
+    "id": "onboard-ambiguous-project-plan",
+    "target_skill": "tempo-onboard-project",
+    "kind": "ambiguous",
+    "expected_skill": "tempo-onboard-project",
+    "prompt": "Help me plan my new project; I have not decided who it is for or what v1 should do.",
+    "rationale": "Missing product intent makes onboarding appropriate rather than goal planning."
+  },
+  {
+    "id": "onboard-negative-code-question",
+    "target_skill": "tempo-onboard-project",
+    "kind": "negative",
+    "expected_skill": null,
+    "prompt": "Explain the difference between a JavaScript Map and Object.",
+    "rationale": "A language explanation does not require Tempo onboarding."
+  },
+  {
+    "id": "plan-positive-approved-outcome",
+    "target_skill": "tempo-plan-goal",
+    "kind": "positive",
+    "expected_skill": "tempo-plan-goal",
+    "prompt": "Our export feature proposal is approved. Turn it into a resumable Tempo goal with evidence and pause boundaries.",
+    "rationale": "Approved outcome needs durable decomposition."
+  },
+  {
+    "id": "plan-ambiguous-vague-task",
+    "target_skill": "tempo-plan-goal",
+    "kind": "ambiguous",
+    "expected_skill": null,
+    "prompt": "Make me a plan for tomorrow.",
+    "rationale": "No repository or long-running execution context is present."
+  },
+  {
+    "id": "plan-negative-active-execution",
+    "target_skill": "tempo-plan-goal",
+    "kind": "negative",
+    "expected_skill": "tempo-execute-goal",
+    "prompt": "Resume the active Tempo goal and keep going through the next verified unit.",
+    "rationale": "An existing goal should execute, not be planned again."
+  },
+  {
+    "id": "execute-positive-resume",
+    "target_skill": "tempo-execute-goal",
+    "kind": "positive",
+    "expected_skill": "tempo-execute-goal",
+    "prompt": "Continue the active Tempo goal to completion and checkpoint it across context resets.",
+    "rationale": "Explicit active-goal continuation should trigger execution."
+  },
+  {
+    "id": "execute-ambiguous-finish-it",
+    "target_skill": "tempo-execute-goal",
+    "kind": "ambiguous",
+    "expected_skill": "tempo-execute-goal",
+    "prompt": "The active goal is already approved—finish it, but stop at any real approval boundary.",
+    "rationale": "Informal completion language still names an approved active goal."
+  },
+  {
+    "id": "execute-negative-create-goal",
+    "target_skill": "tempo-execute-goal",
+    "kind": "negative",
+    "expected_skill": "tempo-plan-goal",
+    "prompt": "Draft a new living goal for this approved feature; do not start implementation.",
+    "rationale": "Goal creation belongs to planning."
+  },
+  {
+    "id": "review-positive-readiness",
+    "target_skill": "tempo-review-change",
+    "kind": "positive",
+    "expected_skill": "tempo-review-change",
+    "prompt": "Audit this feature branch against its proposal and create the Tempo Review Record if it is merge-ready.",
+    "rationale": "Explicit readiness and review-record request."
+  },
+  {
+    "id": "review-ambiguous-look-over",
+    "target_skill": "tempo-review-change",
+    "kind": "ambiguous",
+    "expected_skill": "tempo-review-change",
+    "prompt": "Look over the completed change and tell me whether the evidence and rollback are good enough.",
+    "rationale": "Evidence and rollback assessment indicate Change Review."
+  },
+  {
+    "id": "review-negative-fix",
+    "target_skill": "tempo-review-change",
+    "kind": "negative",
+    "expected_skill": null,
+    "prompt": "Implement the missing pagination behavior.",
+    "rationale": "Implementation is not a review request."
+  },
+  {
+    "id": "rca-positive-failed-fix",
+    "target_skill": "tempo-perform-rca",
+    "kind": "positive",
+    "expected_skill": "tempo-perform-rca",
+    "prompt": "That fix did not work. Reproduce the failure and perform the required RCA before changing it again.",
+    "rationale": "User reports a failed corrective attempt."
+  },
+  {
+    "id": "rca-ambiguous-regression",
+    "target_skill": "tempo-perform-rca",
+    "kind": "ambiguous",
+    "expected_skill": "tempo-perform-rca",
+    "prompt": "The behavior we said was fixed has returned even though the test still passes.",
+    "rationale": "Observed regression contradicts the earlier verification claim."
+  },
+  {
+    "id": "rca-negative-first-bug",
+    "target_skill": "tempo-perform-rca",
+    "kind": "negative",
+    "expected_skill": null,
+    "prompt": "I found a typo in the settings label. Please correct it.",
+    "rationale": "A first-pass trivial defect does not require RCA."
+  }
+]
