@@ -27,6 +27,37 @@ Whether you're a seasoned engineer or just curious about what you can create, Te
 
 Clone it. Start building. Keep the rhythm.
 
+## Setup
+
+After cloning the repository to start a new project, run one command:
+
+```bash
+./bootstrap --init-project
+```
+
+It applies `INITIALIZATION-POLICY.json`: project contracts and decisions reset,
+Tempo's active records, roadmap, and release evidence move into a recoverable
+ignored backup, and reusable skills, validators, starter tooling, and
+`TEMPLATE_HISTORY/` remain. It then installs the pinned dependencies, configures
+local safeguards, and runs `pnpm verify`. Tell your AI agent what you want to
+build and ask it to follow `AGENTS.md`.
+
+Tempo contributors can run plain `./bootstrap` to verify the repository without
+resetting its project records.
+
+To add only Tempo's portable governance, goals, and skills to an existing
+repository, use the same command with a target and that repository's verification
+command:
+
+```bash
+./bootstrap --mode adopt-existing --target /path/to/existing-repo --verify-command "make verify"
+```
+
+Target adoption does not install Node, pnpm, TypeScript, dependencies, or starter
+application files.
+
+Upgrading an older Tempo clone? Follow [MIGRATION.md](MIGRATION.md).
+
 ## Agent First Command
 
 ```bash

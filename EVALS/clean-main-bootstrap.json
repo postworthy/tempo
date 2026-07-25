@@ -1,0 +1,18 @@
+{
+  "date": "2026-07-24",
+  "commit": "staged release tree based on acdfef0",
+  "branch": "main",
+  "workspace": "isolated local staged tree",
+  "command": "./bootstrap",
+  "exit_code": 0,
+  "observed": [
+    "pinned dependencies installed non-interactively",
+    "canonical verification passed",
+    "contract, goal, skill, and git-policy checks passed",
+    "27 tests passed",
+    "7/7 evaluation scenarios and 59 assertions passed",
+    "worktree remained clean",
+    "TypeScript build passed"
+  ],
+  "external_actions": []
+}

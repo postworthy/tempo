@@ -147,3 +147,151 @@ Governance-heavy docs improve safety and process control, but assistants also ne
 
 Consequences:
 Starter prompts, onboarding docs, and adapter docs should reference `PROMPTING.md`; prompt-facing documentation changes should include a lightweight manual prompt review.
+
+## 2026-07-24 - Skills and Goal-Native Modernization Direction
+
+Decision:
+Modernize Tempo around a concise repository kernel, focused open-format Agent Skills, a canonical living goal artifact, deterministic enforcement, and evidence-based evaluations.
+
+Rationale:
+Current agent hosts can progressively load reusable procedures and continue persistent goals. Tempo's large always-read instruction stack and duplicated execution state prevent those capabilities from delivering their full value.
+
+Consequences:
+Always-applicable policy will remain in `AGENTS.md`; reusable procedures will move to skills; active execution state will have one canonical owner; broad governance changes require a separate T2 proposal and constitutional amendment process.
+
+## 2026-07-24 - Preserve One-Command Batteries-Included Setup
+
+Decision:
+Keep `./bootstrap` as Tempo's canonical in-repository setup command and preserve the default TypeScript starter profile while separating portable governance and skills from that profile.
+
+Rationale:
+Tempo's primary user should not need to assemble an agent environment or become a software engineer before starting, while existing non-Node repositories should not inherit an unrelated application stack.
+
+Consequences:
+Greenfield setup remains opinionated and batteries included; adopt-existing setup must be stack-neutral; clean primary-branch bootstrap and repeated setup become release acceptance criteria.
+Plain `./bootstrap` is the deterministic contributor verification path;
+new-project users run explicit `./bootstrap --init-project`, which creates a
+recoverable backup before retiring Tempo's active development records.
+
+## 2026-07-24 - Focused Skill Bundle Instead of Monolithic Skill
+
+Decision:
+Provide separate skills for onboarding, goal planning, goal execution, review, and RCA, with optional host-specific plugin metadata layered on top.
+
+Rationale:
+Focused skills trigger more accurately, use progressive disclosure, and avoid loading irrelevant workflow instructions.
+
+Consequences:
+Each skill requires independent validation and trigger evals; open-format `SKILL.md` content is canonical; public plugin publication is deferred until the repo-local bundle is proven.
+
+## 2026-07-24 - Separate Verification from Mutation-Time Branch Enforcement
+
+Decision:
+Allow canonical read-only verification on a clean primary branch while retaining feature-branch enforcement at active-development preflight and commit-hook boundaries.
+
+Rationale:
+Bootstrap and verification must succeed for a newly cloned public starter on `main`, but that does not authorize development commits there.
+
+Consequences:
+`pnpm check:git-policy` permits `main` for repository verification; its `--require-feature-branch` mode and the pre-commit hook reject active development or direct commits on `main`.
+
+## 2026-07-24 - Constitution 2.1 Living Goals and Bounded Authority
+
+Decision:
+Approve Constitution 2.1, recognizing one repository-native Living Goal as the canonical active execution state and permitting approved, reversible T0/T1 work within a recorded Authority Envelope to continue without repeated confirmation.
+
+Rationale:
+Long-running agents need durable resumption state and enough bounded authority to complete approved routine work, while meaningful safety and product boundaries remain human-controlled.
+
+Consequences:
+`GOALS/*` becomes authoritative for active execution state. Explicit approval remains mandatory for scope expansion, destructive or irreversible work, remote/publication actions, production effects, unclear security/privacy impact, compatibility breaks, and all T2/T3 implementation.
+
+## 2026-07-24 - Concise Repository Kernel
+
+Decision:
+Limit `AGENTS.md` to always-applicable invariants, authority boundaries, task routing, preflight, the core work loop, and completion/recovery rules.
+
+Rationale:
+Loading every conditional procedure for every task wastes context and makes durable instructions harder to follow. The Constitution 2.1 responsibility map provides authoritative destinations for procedural detail.
+
+Consequences:
+Onboarding, prompting, proposals, reviews, RCA, and active-goal procedures are loaded when relevant rather than duplicated in the repository kernel. A deterministic check enforces the 120-line limit.
+
+## 2026-07-24 - Canonical Focused Skill Bundle
+
+Decision:
+Ship `tempo-onboard-project`, `tempo-plan-goal`, `tempo-execute-goal`, `tempo-review-change`, and `tempo-perform-rca` as Tempo's canonical repo-local skill bundle.
+
+Rationale:
+These boundaries match distinct lifecycle intents, produce precise trigger descriptions, and let agents load only the procedure needed for the current task.
+
+Consequences:
+Skills live under `.agents/skills/`, canonical frontmatter uses only `name` and `description`, host interface metadata remains optional, and deterministic validation enforces direct references and positive/ambiguous/negative trigger coverage.
+
+## 2026-07-24 - Target-Based Portable Adoption
+
+Decision:
+Use `./bootstrap --mode adopt-existing --target <repo> --verify-command <command>` as the stack-neutral adoption form while retaining default `./bootstrap` for the batteries-included starter.
+
+Rationale:
+One public entry point is easier for novice users, but an existing repository must not inherit Tempo's Node/TypeScript application profile or have its files overwritten.
+
+Consequences:
+Target adoption runs before Node/pnpm checks, installs a portable Constitution/kernel/goals/skills profile, backs up and marks existing `AGENTS.md`, records the target verification command as data, refuses conflicts, and remains idempotent.
+Every managed path component must be a real directory rather than a symlink, and
+known conflicts must be rejected during preflight before target mutation.
+
+## 2026-07-24 - Audited Development Toolchain Floor
+
+Decision:
+Require Node.js 20.19 or later, upgrade the verification stack to current
+compatible ESLint 10, Vitest 4, TypeScript ESLint 8, and related tools, and pin
+patched transitive versions when upstream dependency ranges otherwise resolve a
+known-vulnerable release.
+
+Rationale:
+Every greenfield Tempo user installs and executes the development toolchain.
+High and critical advisories in that graph are therefore release blockers even
+though Tempo has no runtime production dependencies.
+
+Consequences:
+`.nvmrc`, package engines, bootstrap validation, hosted verification, and
+documentation use Node 20.19 as the minimum. Public release review runs
+`pnpm audit:high`; the network-backed audit remains separate from the offline
+canonical verification gate.
+
+## 2026-07-24 - Initialized Project as a Distribution Boundary
+
+Decision:
+Treat `./bootstrap --init-project` as the explicit conversion from Tempo's
+auditable source repository into a fresh user project. Reset project-owned
+contracts and decisions, archive Tempo-specific execution and release state,
+retain reusable capabilities, and preserve explicitly quarantined
+`TEMPLATE_HISTORY/`.
+
+Rationale:
+Tempo maintainers need source history and evidence, while novice users must not
+inherit active decisions or plans that appear to govern an unrelated product.
+
+Consequences:
+`INITIALIZATION-POLICY.json` defines the behavior, initialization creates one
+recoverable ignored backup, and canonical verification rejects residual
+Tempo-development state in an unfilled project.
+
+## 2026-07-24 - Approve Modernization Merge and GitHub Publication
+
+Decision:
+The Human Partner explicitly approved merging
+`docs/c012-tempo-modernization-goal` into `main` with `--no-ff`, then pushing
+`main` to `origin`.
+
+Rationale:
+The final production-readiness review found no blocking issue. Exact
+minimum-runtime, merge, bootstrap, initialization, portable adoption,
+security/artifact, and dependency gates passed.
+
+Consequences:
+Execute one local no-fast-forward merge and one push of `main` to `origin`.
+This approval does not authorize tags, releases, deployments, other branches,
+remotes, or later publication actions. Verify merged `main` before pushing and
+confirm the remote ref afterward.

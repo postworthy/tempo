@@ -1,10 +1,10 @@
 ## Current Milestone
 
-M0 - Foundation and Governance
+Modernization and clean initialized-project boundary complete
 
 ## Current Next Commit
 
-C012 docs(spec): write first project-specific spec from template
+None; awaiting separately approved merge or publication action
 
 ## Done (High-Level)
 
@@ -24,14 +24,31 @@ C012 docs(spec): write first project-specific spec from template
 
 ## In Progress
 
-- Drafting project-specific `SPEC.md` content from template placeholders.
+- None.
 
 ## Blockers / Risks
 
-- `SPEC.md` still contains placeholders and must be completed before non-trivial product implementation.
+- Deterministic trigger evaluation cannot prove behavior across every
+  probabilistic model or host.
+- Local merge and external publication remain intentionally unexecuted.
 
 ## Recent Changes
 
+- Added a self-contained modernization goal covering skills, living goals, portability, evaluation, and one-command setup.
+- Replaced the placeholder brief and malformed specification with the approved Tempo product contract.
+- Added Phase 0/1 decomposition and a T1 foundation-repair proposal.
+- Separated read-only primary-branch verification from direct-commit enforcement.
+- Added structural contract validation and focused governance regression tests.
+- Made dependency installation non-interactive and frozen-lockfile based.
+- Made project initialization reset and back up both the brief and specification.
+- Applied the approved Constitution 2.1 amendment and responsibility map.
+- Reduced the always-loaded repository kernel from 238 to 116 lines while
+  retaining routed invariants.
+- Added the living-goal lifecycle, one-active-goal validator, retry and completion controls, active modernization goal, and negative fixtures.
+- Consolidated active execution state into one living goal and recorded the deterministic resumption thin slice.
+- Added five focused repo-local Tempo skills with progressive-disclosure references, validation, and trigger cases.
+- Added stack-neutral target adoption through `./bootstrap`, with preservation, idempotence, conflict, and no-toolchain fixture coverage.
+- Added a seven-scenario evaluation harness with 59 assertions, baseline comparison, clean-state resumption, and a dated human audit.
 - Added one-time initialization flow via `./bootstrap --init-project --no-verify` for clean project baselines.
 - Added fresh-template checks to prevent inherited dated records from appearing in active governance folders.
 - Added `pnpm check:git-policy` and integrated it into canonical verification.
@@ -39,11 +56,31 @@ C012 docs(spec): write first project-specific spec from template
 - Added `pnpm intake:scan` discovery tooling and `adopt-existing` onboarding flow guidance.
 - Added canonical prompt guidance in `PROMPTING.md` and aligned starter/onboarding docs to explicit output contracts and approval-stop behavior.
 - Added lightweight prompt review guidance in `VERIFY.md` and enforcement for `PROMPTING.md` in `pnpm check:docs`.
+- Added migration and rollback guidance, completed the exact criterion evidence
+  inventory, and approved the branch for its local Review Boundary.
+- Replayed final verification with 27 tests, seven evaluation scenarios, and 59
+  assertions, plus isolated plain and initialized `main` bootstraps.
+- Performed a production-readiness sweep against the exact public and
+  initialization commands; canonical branch verification remains green, but
+  release-blocking setup, containment, atomicity, dependency, and coverage gaps
+  were found.
+- Remediated all production-review blockers: deterministic contributor setup,
+  reversible project initialization, portable symlink containment and conflict
+  preflight, an audited Node 20.19+ toolchain, and template-neutral checks.
+- Replayed both public commands from isolated exact committed trees; each passed
+  27 tests, seven evaluation scenarios, 59 assertions, and the build, while the
+  contributor path left a clean worktree.
+- Added a machine-readable initialization policy, neutral decision baseline,
+  transactional archive/reset behavior, and canonical residual-state validator.
+- Replayed the exact initialized tree: Tempo decisions, active records,
+  modernization roadmap, and dated release evidence moved into one ignored
+  backup while reusable capabilities and `TEMPLATE_HISTORY/` remained unchanged.
 
 ## Next Planned Changes
 
-- Finalize `SPEC.md` v1 for a concrete product objective and acceptance criteria.
-- Add first thin vertical slice implementation from approved proposal.
+- Obtain explicit approval before any merge, push, or publication.
+- Treat cross-host probabilistic skill evaluation as an optional future
+  improvement, not a release blocker.
 
 ## Notes
 

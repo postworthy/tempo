@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "reset_files": [
+    "PROJECT-BRIEF.md",
+    "SPEC.md",
+    "STATUS.md",
+    "DECISIONS.md",
+    "ROADMAP/COMMIT-PLAN.md"
+  ],
+  "template_only_directories": {
+    "PROPOSALS": ["TEMPLATE.md"],
+    "REVIEWS": ["TEMPLATE.md"],
+    "RCA": ["TEMPLATE.md"],
+    "GOALS": ["README.md", "TEMPLATE.md"]
+  },
+  "archive_files": ["DISCOVERY/PROJECT-INVENTORY.md", "EVALS/clean-main-bootstrap.json"],
+  "archive_patterns": [
+    {
+      "directory": "ROADMAP",
+      "pattern": "\\.md$",
+      "exclude": ["COMMIT-PLAN.md"]
+    },
+    {
+      "directory": "EVALS",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}--.*\\.md$",
+      "exclude": []
+    }
+  ],
+  "retain_paths": [
+    ".agents/skills",
+    "AGENTS.md",
+    "BOOTSTRAP.md",
+    "CONSTITUTION.md",
+    "DISCOVERY/TEMPLATE.md",
+    "EVALS/README.md",
+    "EVALS/authority-cases.json",
+    "EVALS/baseline.json",
+    "EVALS/scenarios.json",
+    "EVALS/skill-trigger-cases.json",
+    "GETTING_STARTED.md",
+    "MIGRATION.md",
+    "PROMPTING.md",
+    "VERIFY.md",
+    "bootstrap",
+    "package.json",
+    "pnpm-lock.yaml",
+    "portable",
+    "scripts",
+    "src",
+    "test"
+  ],
+  "preserve_directories": ["TEMPLATE_HISTORY"]
+}

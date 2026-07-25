@@ -2,6 +2,16 @@
 
 This file defines the required first-run workflow for any AI coding assistant using this repository as a starter pack.
 
+The canonical setup entry point is `./bootstrap`. New projects use
+`./bootstrap --init-project`; Tempo contributors use plain `./bootstrap`.
+Bootstrap finishes by running the canonical verification command, `pnpm verify`,
+unless the caller explicitly uses `--no-verify`.
+
+For a new project, initialization applies `INITIALIZATION-POLICY.json`.
+Project-owned contracts reset; Tempo-specific decisions, active records,
+roadmaps, and release evidence move into a recoverable ignored backup; reusable
+capabilities and explicitly non-active `TEMPLATE_HISTORY/` remain.
+
 ## Purpose
 
 Ensure project intent is clarified before implementation for both:
@@ -30,11 +40,23 @@ Tempo supports two onboarding modes:
 - `greenfield`: repository is new or still template-baseline with unfilled project intent.
 - `adopt-existing`: repository already has meaningful implementation history and Tempo is being introduced after development started.
 
+For a different target repository, the portable form is:
+
+```bash
+./bootstrap --mode adopt-existing --target /path/to/repo --verify-command "make verify"
+```
+
+This path installs the portable kernel, goals, and skills before any Node/pnpm
+toolchain check. It preserves the target application stack and records the
+target's verification command without executing it.
+
 Mode selection:
 
-1. Use explicit bootstrap mode override when provided (`--mode greenfield` or `--mode adopt-existing`).
-2. Otherwise use auto-detection signals from repository discovery.
-3. If signals conflict, pause and ask the user to confirm mode.
+1. Default to `greenfield` for the cloned Tempo starter.
+2. Use an explicit override when provided (`--mode greenfield`,
+   `--mode adopt-existing`, or `--mode auto`).
+3. Use repository signals only when the caller explicitly selects `--mode auto`.
+4. If auto-detection signals conflict, pause and ask the user to confirm mode.
 
 ## First-Run Requirements
 

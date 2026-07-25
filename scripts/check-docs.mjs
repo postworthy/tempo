@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { validateContracts } from './validate-contracts.mjs';
 
 const requiredFiles = [
   'AGENTS.md',
@@ -12,13 +13,34 @@ const requiredFiles = [
   'PROPOSALS/TEMPLATE.md',
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
+  'INITIALIZATION-POLICY.json',
+  'MIGRATION.md',
   'bootstrap',
   '.githooks/pre-commit',
   '.githooks/commit-msg',
   '.githooks/pre-push',
   'scripts/check-git-policy.mjs',
+  'scripts/install-portable.sh',
+  'scripts/init-project.mjs',
+  'scripts/initialization-policy.mjs',
+  'scripts/validate-initialized-state.mjs',
   'scripts/intake-scan.mjs',
   'DISCOVERY/TEMPLATE.md',
+  'EVALS/README.md',
+  'EVALS/scenarios.json',
+  'EVALS/baseline.json',
+  'GOALS/README.md',
+  'GOALS/TEMPLATE.md',
+  'portable/KERNEL.md',
+  'portable/CONSTITUTION.md',
+  'portable/VERIFY.md',
+  'portable/PROJECT-BRIEF.md',
+  'portable/SPEC.md',
+  '.agents/skills/tempo-onboard-project/SKILL.md',
+  '.agents/skills/tempo-plan-goal/SKILL.md',
+  '.agents/skills/tempo-execute-goal/SKILL.md',
+  '.agents/skills/tempo-review-change/SKILL.md',
+  '.agents/skills/tempo-perform-rca/SKILL.md',
   'TEMPLATE_HISTORY/README.md',
 ];
 
@@ -29,22 +51,20 @@ const requiredReadmeSnippets = [
 ];
 
 const requiredAgentsSnippets = [
-  'Git Preflight Checklist (Mandatory Before Edits)',
-  'Definition of Ready (Before Implementation)',
-  'decompose work into small verifiable units',
-  'Review Boundary',
-  'Review Record',
-  'Do not add git remotes or execute external `push`/`publish` actions',
-  'Canonical bootstrap command: `./bootstrap`',
-  'Canonical prompt contract: `PROMPTING.md`',
-  'Bootstrap Rules',
-  'Installing or acquiring `git` is out of scope',
+  '## Preflight',
+  '## Authority and Work Loop',
+  'Approved, local, reversible T0/T1 work',
+  'one active `GOALS/*`',
+  'Review boundary',
+  'required review records',
+  'External push/publish or remote changes require explicit',
+  'Canonical setup: `./bootstrap`',
+  'Canonical verification: `pnpm verify`',
+  'Installing or acquiring `git` is out of scope.',
   'Roadmap: ROADMAP/COMMIT-PLAN.md#Cxxx',
   'Proposal: N/A (T0)',
-  'select onboarding mode',
-  'pnpm intake:scan',
-  'Template History Handling',
-  'Do not treat files under `TEMPLATE_HISTORY/` as active project records',
+  '`TEMPLATE_HISTORY/`',
+  'If a requested fix failed, perform RCA',
 ];
 
 const requiredBootstrapSnippets = [
@@ -76,6 +96,8 @@ const requiredGettingStartedSnippets = [
   'Onboarding Modes',
   'Adopt Tempo in an Existing Repository',
   '--mode adopt-existing',
+  '--target /path/to/existing-repo',
+  '--verify-command "make verify"',
   '.githooks',
   'idempotent',
   'Template History vs Your Project History',
@@ -102,10 +124,17 @@ const requiredVerifySnippets = [
   'Hosted CI (Optional Surface)',
   './bootstrap --no-verify',
   'Prompt Change Review',
+  'Release Dependency Audit',
+  'pnpm audit:high',
 ];
 
 const requiredConstitutionSnippets = [
+  'Version: 2.1',
   'Article I-A — Workflow Definitions',
+  'Living Goal:',
+  'Authority Envelope:',
+  '### Responsibility Map',
+  'Active execution state and next action',
   'Pull Request (PR): an optional hosted platform surface',
   'Article V-A — Decomposition Before Development (Mandatory)',
   'Article VII — Local-First Review and Merge Discipline',
@@ -168,6 +197,7 @@ const filesWherePRMustNotAppear = [
 const forbiddenPRPatterns = [/\bPR\b/, /pull request/i, /merge request/i];
 
 const problems = [];
+problems.push(...validateContracts());
 
 for (const file of requiredFiles) {
   if (!existsSync(file)) {
@@ -200,6 +230,20 @@ hasAllSnippets('PROPOSALS/TEMPLATE.md', requiredProposalTemplateSnippets);
 hasAllSnippets('REVIEWS/TEMPLATE.md', requiredReviewTemplateSnippets);
 hasAllSnippets('TEMPLATE_HISTORY/README.md', requiredTemplateHistorySnippets);
 hasAllSnippets('DISCOVERY/TEMPLATE.md', ['PROJECT-INVENTORY', 'Delta Intake Questions']);
+hasAllSnippets('GOALS/README.md', ['## Lifecycle', '## Ownership', '## Execution Loop']);
+hasAllSnippets('GOALS/TEMPLATE.md', [
+  '## Acceptance Criteria',
+  '## Authority Envelope',
+  '## Retry State',
+  '## Next Action',
+]);
+
+if (existsSync('AGENTS.md')) {
+  const lineCount = readFileSync('AGENTS.md', 'utf8').split('\n').length;
+  if (lineCount > 120) {
+    problems.push(`AGENTS.md exceeds the 120-line repository-kernel limit (${lineCount} lines)`);
+  }
+}
 
 for (const file of ['AGENTS.md', 'CONSTITUTION.md', 'README.md', 'VERIFY.md']) {
   if (!existsSync(file)) {
@@ -234,6 +278,16 @@ if (existsSync('.github/workflows/verify.yml')) {
   if (!content.includes('Optional hosted review surface.')) {
     problems.push('.github/workflows/verify.yml missing optional-hosted-surface marker comment');
   }
+  for (const required of [
+    'permissions:',
+    'contents: read',
+    'pnpm install --frozen-lockfile',
+    'pnpm audit:high',
+  ]) {
+    if (!content.includes(required)) {
+      problems.push(`.github/workflows/verify.yml missing release hardening: ${required}`);
+    }
+  }
 }
 
 if (existsSync('bootstrap')) {
@@ -250,6 +304,13 @@ for (const hook of ['.githooks/pre-commit', '.githooks/commit-msg', '.githooks/p
   const isExecutable = (statSync(hook).mode & 0o111) !== 0;
   if (!isExecutable) {
     problems.push(`${hook} exists but is not executable`);
+  }
+}
+
+if (existsSync('scripts/install-portable.sh')) {
+  const isExecutable = (statSync('scripts/install-portable.sh').mode & 0o111) !== 0;
+  if (!isExecutable) {
+    problems.push('scripts/install-portable.sh exists but is not executable');
   }
 }
 
@@ -281,6 +342,21 @@ if (existsSync('package.json')) {
     if (!pkg.scripts || !pkg.scripts['intake:scan']) {
       problems.push('package.json missing required script: intake:scan');
     }
+    if (!pkg.scripts || !pkg.scripts['check:goal']) {
+      problems.push('package.json missing required script: check:goal');
+    }
+    if (!pkg.scripts || !pkg.scripts['check:initialized']) {
+      problems.push('package.json missing required script: check:initialized');
+    }
+    if (!pkg.scripts || !pkg.scripts['check:skills']) {
+      problems.push('package.json missing required script: check:skills');
+    }
+    if (!pkg.scripts || !pkg.scripts.eval) {
+      problems.push('package.json missing required script: eval');
+    }
+    if (!pkg.scripts || !pkg.scripts['audit:high']) {
+      problems.push('package.json missing required script: audit:high');
+    }
   } catch {
     problems.push('package.json is invalid JSON');
   }
@@ -292,18 +368,19 @@ const projectBriefIsUnfilled =
 
 if (projectBriefIsUnfilled) {
   const liveRecordFolders = [
-    ['PROPOSALS', 'TEMPLATE.md'],
-    ['REVIEWS', 'TEMPLATE.md'],
-    ['RCA', 'TEMPLATE.md'],
+    ['PROPOSALS', ['TEMPLATE.md']],
+    ['REVIEWS', ['TEMPLATE.md']],
+    ['RCA', ['TEMPLATE.md']],
+    ['GOALS', ['README.md', 'TEMPLATE.md']],
   ];
 
-  for (const [folder, templateFile] of liveRecordFolders) {
+  for (const [folder, allowedFiles] of liveRecordFolders) {
     if (!existsSync(folder)) {
       continue;
     }
 
     const files = readdirSync(folder).filter((name) => name.endsWith('.md'));
-    const nonTemplate = files.filter((name) => name !== templateFile);
+    const nonTemplate = files.filter((name) => !allowedFiles.includes(name));
     if (nonTemplate.length > 0) {
       problems.push(
         `${folder}/ contains non-template records in fresh-template mode: ${nonTemplate.join(', ')}`,

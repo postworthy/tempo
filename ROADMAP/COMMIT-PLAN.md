@@ -4,15 +4,8 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C012 - docs(spec): write v1 product contract
-
-Goal:
-
-- Define first usable `SPEC.md` with project-specific scope and acceptance criteria.
-
-Acceptance:
-
-- `SPEC.md` includes objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, and verification reference.
+None; C023 is complete. Await an explicitly approved merge or publication
+action.
 
 ## Milestone M0 - Foundation and Governance
 
@@ -114,15 +107,17 @@ Acceptance met:
 - `PROJECT-BRIEF.md` now captures inferred-vs-confirmed facts for existing-codebase onboarding.
 - `GETTING_STARTED.md` includes an explicit existing-repo adoption path.
 
-### [TODO] C012 - docs(spec): write v1 product contract
+### [TODO] C012 - docs(spec): define modern Tempo product contract
 
 Goal:
 
-- Define first usable `SPEC.md` with project-specific scope and acceptance criteria.
+- Define Tempo's first complete product contract and modernization execution goal.
 
 Acceptance:
 
-- `SPEC.md` includes objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, and verification reference.
+- `PROJECT-BRIEF.md` and `SPEC.md` include objective, users/workflows, constraints, non-goals, acceptance criteria, risk level, safety boundaries, and verification.
+- The modernization goal is self-contained and resumable.
+- The foundation-repair proposal satisfies Definition of Ready.
 
 ### [DONE] C015 - docs(prompting): align starter prompts with canonical prompt guidance
 
@@ -157,3 +152,181 @@ Acceptance:
 
 - RCA-driven improvements are implemented.
 - Preventive controls added (tests, lint rules, assertions, or observability).
+
+## Milestone M2 - Skills and Goal-Native Tempo
+
+### [DONE] C016 - fix(governance): repair bootstrap and contract validation
+
+Goal:
+
+- Make clean primary-branch verification valid while preserving direct-commit protection, and add structural contract validation.
+
+Acceptance:
+
+- `pnpm verify` passes on clean `main`.
+- The pre-commit hook rejects direct commits on `main`.
+- Malformed contracts, active placeholders, and canonical-command drift fail focused tests.
+
+Evidence:
+
+- `pnpm verify` passed on the compliant feature branch and an isolated clean `main` at commit `8ef1f06` on 2026-07-24.
+- Focused temporary-repository tests cover read-only `main` verification and hook rejection.
+- `./bootstrap --no-verify` completed non-interactively with the frozen lockfile.
+
+### [DONE] C017 - refactor(governance): create concise kernel and goal state
+
+Goal:
+
+- Reduce always-loaded guidance and add a canonical living execution-plan model.
+
+Acceptance:
+
+- `AGENTS.md` is no more than 120 lines unless an evidence-backed exception is recorded.
+- A fresh-context agent can identify and resume the active goal.
+- Authority, pause, evidence, retry, and completion rules are explicit.
+
+Approval boundary:
+
+- T2 proposal: `PROPOSALS/2026-07-24--concise-kernel-living-goals.md`
+- Explicit human approval was recorded on 2026-07-24.
+
+Evidence:
+
+- Constitution 2.1: commit `b425fa2`.
+- 113-line repository kernel: commit `ba97a34`.
+- Living-goal lifecycle, validator, and fixtures: commit `729c304`.
+- Resumption thin slice: `EVALS/2026-07-24--goal-resumption-thin-slice.md`.
+
+### [DONE] C018 - feat(skills): add focused Tempo skill bundle
+
+Goal:
+
+- Ship focused repo-local Agent Skills for onboarding, goal planning and execution, review, and RCA.
+
+Acceptance:
+
+- All skills pass current schema and repository validation.
+- Skills use progressive disclosure with resolved references.
+- Positive and negative trigger cases exist.
+
+Evidence:
+
+- Skill bundle: commit `1291dfe`.
+- Structural and trigger validation: `pnpm check:skills`.
+- Trigger cases and audit: `EVALS/skill-trigger-cases.json` and
+  `EVALS/2026-07-24--skill-trigger-audit.md`.
+
+### [DONE] C019 - feat(bootstrap): add portable Tempo adoption
+
+Goal:
+
+- Preserve the batteries-included greenfield setup and support stack-neutral adoption.
+
+Acceptance:
+
+- One documented public setup command remains canonical.
+- Repeated greenfield bootstrap succeeds.
+- A non-Node fixture adopts Tempo without receiving the TypeScript starter stack.
+
+Evidence:
+
+- Portable installer: commit `13409a6`.
+- Non-Node, repeat, and conflict fixtures: `test/portable-adoption.test.ts`.
+- Two consecutive greenfield bootstrap runs completed non-interactively on
+  2026-07-24.
+
+### [DONE] C020 - test(evals): validate skills and fresh-context goals
+
+Goal:
+
+- Demonstrate that skills and living goals improve real workflows without unacceptable context or interruption cost.
+
+Evidence:
+
+- Harness: commit `8f67342`.
+- Report: `EVALS/2026-07-24--evaluation-report.md`.
+- Result: 7/7 scenarios, 59 assertions, 0 failures; `AGENTS.md` 238→116
+  lines; focused skills 0→5.
+
+Acceptance:
+
+- The seven minimum scenarios in the modernization goal have evidence.
+- Deterministic assertions cover mechanical outcomes.
+- Failures and false triggers become regression cases.
+
+### [DONE] C021 - docs(release): complete migration and review evidence
+
+Goal:
+
+- Align public documentation, migration guidance, decisions, status, and review evidence.
+
+Acceptance:
+
+- Canonical verification and manual evaluations pass.
+- The repository is merge-safe and publication-ready.
+- No remote, push, or publication action has occurred.
+
+Evidence:
+
+- Migration guidance: `MIGRATION.md`.
+- Criterion, safety, rollback, and verification inventory:
+  `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
+- Result: 22 tests, 7/7 evaluation scenarios, 59 assertions, isolated clean
+  bootstrap pass, and all 20 goal criteria complete.
+
+### [DONE] C022 - fix(release): remediate production readiness blockers
+
+Goal:
+
+- Repair the public setup, initialization, portable-containment, dependency, and
+  evidence failures found by the final production sweep.
+
+Acceptance:
+
+- Plain and initialized clean-main bootstrap paths pass.
+- Portable adoption rejects symlinks and known conflicts before mutation.
+- The frozen graph has no unapproved high/critical advisory.
+- Regression and exact-tree evidence return the Review Record to approved.
+
+Proposal:
+
+- `PROPOSALS/2026-07-24--production-readiness-remediation.md`
+
+Evidence:
+
+- Plain and initialized bootstrap replays passed from isolated `main`
+  repositories built from `acdfef0`; plain bootstrap left a clean worktree.
+- Six portable fixtures prove symlink containment, conflict atomicity,
+  stack-neutral operation, preservation, and idempotence.
+- `pnpm verify` passes 27 tests and 7/7 evaluation scenarios with 59 assertions.
+- `pnpm audit --audit-level=high` exits 0 with one low advisory.
+- Final decision:
+  `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
+
+### [DONE] C023 - fix(bootstrap): enforce clean initialized-project boundary
+
+Goal:
+
+- Convert an auditable Tempo source clone into a fresh user project without
+  active Tempo-development decisions, plans, goals, or release evidence.
+
+Acceptance:
+
+- Machine-readable reset/archive/retain/preserve policy is enforced.
+- Initialized state contains neutral project contracts and reusable Tempo
+  capabilities only.
+- Exact source and initialized release paths pass canonical verification.
+
+Proposal:
+
+- `PROPOSALS/2026-07-24--clean-initialized-project-boundary.md`
+
+Evidence:
+
+- `INITIALIZATION-POLICY.json` drives reset, archive, retain, and preserve
+  behavior plus deterministic validation.
+- Exact `9659908` plain and initialized `main` replays pass 27 tests, 7/7
+  evaluation scenarios, 59 assertions, and build.
+- Initialized state archives 17 Tempo-development artifacts, resets five
+  project contracts, preserves reusable policy paths byte-for-byte, and leaves
+  `TEMPLATE_HISTORY/` unchanged.

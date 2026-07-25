@@ -6,8 +6,11 @@ cd "$ROOT_DIR"
 
 RUN_VERIFY=1
 INIT_PROJECT=0
-MODE="auto"
+MODE="greenfield"
+MODE_SOURCE="default"
 RUN_INTAKE_SCAN="auto"
+TARGET=""
+VERIFY_COMMAND=""
 
 while [[ "$#" -gt 0 ]]; do
   case "$1" in
@@ -25,10 +28,12 @@ while [[ "$#" -gt 0 ]]; do
         exit 1
       fi
       MODE="$2"
+      MODE_SOURCE="explicit"
       shift 2
       ;;
     --mode=*)
       MODE="${1#*=}"
+      MODE_SOURCE="explicit"
       shift
       ;;
     --intake-scan)
@@ -39,9 +44,25 @@ while [[ "$#" -gt 0 ]]; do
       RUN_INTAKE_SCAN=0
       shift
       ;;
+    --target)
+      if [[ "$#" -lt 2 ]]; then
+        echo "[bootstrap] Missing value for --target"
+        exit 1
+      fi
+      TARGET="$2"
+      shift 2
+      ;;
+    --verify-command)
+      if [[ "$#" -lt 2 ]]; then
+        echo "[bootstrap] Missing value for --verify-command"
+        exit 1
+      fi
+      VERIFY_COMMAND="$2"
+      shift 2
+      ;;
     --help|-h)
       cat <<'HELP'
-Usage: ./bootstrap [--no-verify] [--init-project] [--mode <auto|greenfield|adopt-existing>] [--intake-scan|--no-intake-scan]
+Usage: ./bootstrap [--no-verify] [--init-project] [--mode <auto|greenfield|adopt-existing>] [--target <repo> --verify-command <command>] [--intake-scan|--no-intake-scan]
 
 Options:
   --no-verify    Skip pnpm verify at the end.
@@ -50,6 +71,10 @@ Options:
   --intake-scan  Force running repository intake scan.
   --no-intake-scan
                  Disable intake scan even in adopt-existing mode.
+  --target       Install portable Tempo into an existing target repository.
+                 Requires --mode adopt-existing and --verify-command.
+  --verify-command
+                 Record the target repository's canonical verification command.
 HELP
       exit 0
       ;;
@@ -66,6 +91,35 @@ if [[ "$MODE" != "auto" && "$MODE" != "greenfield" && "$MODE" != "adopt-existing
   exit 1
 fi
 
+if [[ "$INIT_PROJECT" -eq 1 && -n "$TARGET" ]]; then
+  echo "[bootstrap] --init-project cannot be combined with --target"
+  exit 1
+fi
+
+if [[ "$INIT_PROJECT" -eq 1 && "$MODE" != "greenfield" ]]; then
+  echo "[bootstrap] --init-project requires greenfield mode"
+  exit 1
+fi
+
+if [[ -n "$TARGET" ]]; then
+  if [[ "$MODE" != "adopt-existing" ]]; then
+    echo "[bootstrap] --target requires --mode adopt-existing"
+    exit 1
+  fi
+  if [[ -z "$VERIFY_COMMAND" ]]; then
+    echo "[bootstrap] --target requires --verify-command"
+    exit 1
+  fi
+  exec ./scripts/install-portable.sh \
+    --target "$TARGET" \
+    --verify-command "$VERIFY_COMMAND"
+fi
+
+if [[ -n "$VERIFY_COMMAND" ]]; then
+  echo "[bootstrap] --verify-command is only valid with --target"
+  exit 1
+fi
+
 echo "[bootstrap] Tempo local bootstrap starting..."
 echo "[bootstrap] Assumes repository is already cloned. Installing git is out of scope."
 
@@ -76,7 +130,7 @@ fi
 
 if ! command -v node >/dev/null 2>&1; then
   echo "[bootstrap] Node.js is missing."
-  echo "[bootstrap] Install Node.js 20+ (for example from https://nodejs.org/) and rerun ./bootstrap."
+  echo "[bootstrap] Install Node.js 20.19+ (for example from https://nodejs.org/) and rerun ./bootstrap."
   exit 1
 fi
 
@@ -98,6 +152,8 @@ node scripts/bootstrap-check.mjs
 if [[ "$MODE" == "auto" ]]; then
   MODE="$(node scripts/intake-scan.mjs --mode-only)"
   echo "[bootstrap] Auto-detected onboarding mode: $MODE"
+elif [[ "$MODE_SOURCE" == "default" ]]; then
+  echo "[bootstrap] Onboarding mode: $MODE (default)"
 else
   echo "[bootstrap] Onboarding mode override: $MODE"
 fi
@@ -108,7 +164,7 @@ if [[ "$INIT_PROJECT" -eq 1 ]]; then
 fi
 
 echo "[bootstrap] Installing dependencies..."
-pnpm install
+CI=1 pnpm install --frozen-lockfile
 
 if [[ "$RUN_INTAKE_SCAN" == "1" || ( "$RUN_INTAKE_SCAN" == "auto" && "$MODE" == "adopt-existing" ) ]]; then
   echo "[bootstrap] Running repository intake scan..."

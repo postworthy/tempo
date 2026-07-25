@@ -3,6 +3,9 @@ import { execSync } from 'node:child_process';
 const primaryBranch = process.env.TEMPO_PRIMARY_BRANCH ?? 'main';
 const isCI = process.env.CI === '1' || process.env.CI === 'true';
 const enforceCommitMeta = process.env.TEMPO_ENFORCE_COMMIT_META === '1';
+const requireFeatureBranch =
+  process.argv.includes('--require-feature-branch') ||
+  process.env.TEMPO_REQUIRE_FEATURE_BRANCH === '1';
 
 const problems = [];
 const notes = [];
@@ -29,9 +32,13 @@ const branchPattern = /^(feat|fix|docs|chore|refactor|test|ci|hotfix)\/c[0-9]{3}
 if (branch === 'HEAD') {
   notes.push('Detached HEAD detected; branch naming and local-main checks skipped.');
 } else if (!isCI) {
-  if (branch === primaryBranch && process.env.TEMPO_ALLOW_MAIN !== '1') {
+  if (branch === primaryBranch && requireFeatureBranch) {
     problems.push(
       `Current branch is '${primaryBranch}'. Create/switch to a feature branch before development work.`,
+    );
+  } else if (branch === primaryBranch) {
+    notes.push(
+      `Primary branch '${primaryBranch}' is allowed for read-only verification; repository hooks still block direct commits.`,
     );
   } else if (branch !== primaryBranch && !branchPattern.test(branch)) {
     problems.push(

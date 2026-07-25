@@ -24,6 +24,9 @@ This command runs complete repository checks:
 - lint (`lint`)
 - type checks (`typecheck`)
 - docs consistency checks (`check:docs`)
+- living-goal structure and active-state checks (`check:goal`)
+- initialized-project cleanliness checks (`check:initialized`)
+- Agent Skill structure, reference, and trigger-case checks (`check:skills`)
 - git policy checks (`check:git-policy`)
 - tests (`test`)
 - build (`build`)
@@ -35,6 +38,31 @@ pnpm verify:fast
 ```
 
 Use this for local iteration only. It does not replace `pnpm verify` before merge.
+
+## Agent Workflow Evaluation Gate
+
+```bash
+pnpm eval
+```
+
+This clean-process suite validates the seven required skill, goal, authority,
+RCA, unrelated-trigger, portable-adoption, and clean-bootstrap scenarios. It
+also compares instruction cost and capabilities with the recorded baseline.
+Deterministic evaluation does not replace host-specific forward testing; review
+the dated report under `EVALS/` for limitations.
+
+## Release Dependency Audit
+
+Before a public release or dependency change, run:
+
+```bash
+pnpm audit:high
+```
+
+The release is blocked by any unapproved high or critical advisory. This
+network-backed release check is intentionally separate from `pnpm verify` so
+normal post-clone verification remains available when dependencies are already
+installed but the registry is unavailable.
 
 ## Preferred Logging Pattern
 
@@ -50,6 +78,13 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Static analysis and lint rules pass.
 - Type contracts hold.
 - Governance docs preserve required starter-pack invariants.
+- An unfilled initialized project contains no active Tempo-development
+  decisions, plans, records, or release evidence.
+- At most one active living goal exists and its resumable state is structurally valid.
+- Portable adoption preserves target files, avoids the starter stack, rejects
+  conflicts, and is idempotent in an isolated fixture.
+- The required agent-workflow scenarios and authority matrix pass objective
+  assertions.
 - Automated tests pass for intended scope.
 - Project compiles successfully.
 
@@ -86,10 +121,18 @@ pnpm check:git-policy
 
 This check enforces:
 
-- local branch is not `main` during active development,
+- clean-checkout verification is allowed on `main`,
 - feature branch naming policy,
 - conventional commit subjects,
 - required commit trailers (`Roadmap`, `Proposal`) for commits in scope.
+
+For an explicit active-development preflight, run:
+
+```bash
+pnpm check:git-policy -- --require-feature-branch
+```
+
+Repository hooks remain the enforcement boundary that rejects direct commits to `main`.
 
 ## Change Review Requirement
 
@@ -106,6 +149,6 @@ Hosted CI workflows (for example GitHub/GitLab pipelines) are optional review su
 
 ## Environment Notes
 
-- Node.js 20+
+- Node.js 20.19+
 - pnpm 9+
 - Use `.env.example` as the source template for local environment setup.

@@ -1,0 +1,13 @@
+{
+  "name": "pre-modernization-tempo",
+  "commit": "6590d1a12c083b926eccec7c254d03f4d2491f26",
+  "agents_lines": 238,
+  "focused_skills": 0,
+  "goal_validator": false,
+  "portable_adoption": false,
+  "structural_contract_validation": false,
+  "evidence": [
+    "git show 6590d1a:AGENTS.md | wc -l => 238",
+    "git show 6590d1a:package.json contains no check:goal or check:skills"
+  ]
+}

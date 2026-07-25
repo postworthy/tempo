@@ -180,3 +180,4 @@ dist
 # Tempo local verification and package-manager artifacts
 .pnpm-store/
 .verify.log
+.template-init-backup/

@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "greenfield-vague-idea",
+      "trigger_case_id": "onboard-positive-greenfield",
+      "expected_skill": "tempo-onboard-project",
+      "authority_case": "approved-local-t1",
+      "evidence": [
+        {
+          "path": ".agents/skills/tempo-onboard-project/SKILL.md",
+          "includes": ["Ask at least three", "Confirm the direction", "stop for explicit"]
+        },
+        {
+          "path": "portable/PROJECT-BRIEF.md",
+          "includes": ["Onboarding Mode", "First Version Outcomes", "V1 Done Criteria"]
+        }
+      ]
+    },
+    {
+      "id": "non-node-adopt-existing",
+      "trigger_case_id": "onboard-ambiguous-project-plan",
+      "expected_skill": "tempo-onboard-project",
+      "authority_case": "approved-local-t1",
+      "evidence": [
+        {
+          "path": "test/portable-adoption.test.ts",
+          "includes": ["without invoking Node or pnpm", "is idempotent", "refuses to overwrite"]
+        },
+        {
+          "path": "portable/CONSTITUTION.md",
+          "includes": ["Portable Profile"],
+          "excludes": ["pnpm", "Node.js", "TypeScript"]
+        }
+      ]
+    },
+    {
+      "id": "fresh-state-goal-resume",
+      "trigger_case_id": "execute-positive-resume",
+      "expected_skill": "tempo-execute-goal",
+      "authority_case": "approved-local-t1",
+      "evidence": [
+        {
+          "path": "test/fixtures/goals/valid-active.md",
+          "includes": ["Unit 1 completed", "without repeating work unit 1"]
+        },
+        {
+          "path": "test/fixtures/goals/invalid-completed.md",
+          "includes": ["Status: completed", "Evidence: pending"]
+        }
+      ]
+    },
+    {
+      "id": "reported-failed-fix",
+      "trigger_case_id": "rca-positive-failed-fix",
+      "expected_skill": "tempo-perform-rca",
+      "authority_case": "approved-local-t1",
+      "evidence": [
+        {
+          "path": ".agents/skills/tempo-perform-rca/SKILL.md",
+          "includes": [
+            "Stop corrective implementation",
+            "Reproduce the symptom",
+            "preventive control"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mid-goal-scope-change",
+      "trigger_case_id": "execute-ambiguous-scope-expansion",
+      "expected_skill": "tempo-execute-goal",
+      "authority_case": "scope-expansion",
+      "evidence": [
+        {
+          "path": "GOALS/TEMPLATE.md",
+          "includes": ["Scope expansion"]
+        }
+      ]
+    },
+    {
+      "id": "unrelated-language-question",
+      "trigger_case_id": "onboard-negative-code-question",
+      "expected_skill": null,
+      "authority_case": null,
+      "evidence": [
+        {
+          "path": "EVALS/skill-trigger-cases.json",
+          "includes": ["Explain the difference between a JavaScript Map and Object"]
+        }
+      ]
+    },
+    {
+      "id": "clean-primary-bootstrap",
+      "trigger_case_id": null,
+      "expected_skill": null,
+      "authority_case": null,
+      "evidence": [
+        {
+          "path": "test/release-paths.test.ts",
+          "includes": [
+            "defaults plain bootstrap to greenfield",
+            "expect(result.status).toBe(0)",
+            "expect(result.stdout).toContain('Onboarding mode: greenfield')"
+          ]
+        }
+      ]
+    }
+  ]
+}
