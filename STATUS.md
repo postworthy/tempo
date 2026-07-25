@@ -1,10 +1,11 @@
 ## Current Milestone
 
-Modernization complete; ready for the local Review Boundary
+Modernization implementation complete; release-readiness remediation required
 
 ## Current Next Commit
 
-None. Any local merge or external publication is a separate approved action.
+Define and approve the smallest remediation sequence for the production-review
+findings.
 
 ## Done (High-Level)
 
@@ -28,6 +29,13 @@ None. Any local merge or external publication is a separate approved action.
 
 ## Blockers / Risks
 
+- Plain `./bootstrap` fails from a clean public-template checkout after auto mode
+  generates an unformatted discovery artifact.
+- Portable adoption does not reject all symlink escapes and can leave a partial
+  first-run installation after a conflict.
+- The frozen development dependency graph has one critical and twenty high
+  advisories.
+- `--init-project` does not produce a canonically valid clean project state.
 - Deterministic trigger evaluation cannot prove behavior across every
   probabilistic model or host.
 - Local merge and external publication remain intentionally unexecuted.
@@ -59,12 +67,18 @@ None. Any local merge or external publication is a separate approved action.
   inventory, and approved the branch for its local Review Boundary.
 - Replayed final verification with 22 tests, seven evaluation scenarios, and 59
   assertions, plus an isolated clean `main` bootstrap.
+- Performed a production-readiness sweep against the exact public and
+  initialization commands; canonical branch verification remains green, but
+  release-blocking setup, containment, atomicity, dependency, and coverage gaps
+  were found.
 
 ## Next Planned Changes
 
-- Optionally execute the documented local Review Boundary after separate user
-  direction.
-- Consider independent cross-host skill-trigger testing after publication.
+- Propose remediation for public bootstrap mode selection and initialization.
+- Harden portable installation with preflighted containment and atomic behavior.
+- Refresh the frozen development toolchain and add release-path regressions.
+- Repeat the complete production-readiness review before any merge or
+  publication.
 
 ## Notes
 

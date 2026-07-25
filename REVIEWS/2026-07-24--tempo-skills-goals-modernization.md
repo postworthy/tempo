@@ -17,7 +17,7 @@ Related Proposals:
 
 - Source branch: `docs/c012-tempo-modernization-goal`
 - Target branch: `main`
-- Boundary status: ready; merge not executed
+- Boundary status: not ready; merge and publication must not proceed
 
 ## Commits in Scope
 
@@ -39,9 +39,10 @@ Related Proposals:
 - `e46c199` docs(evals): record modernization evaluation
 - `9146caa` docs(release): approve modernization readiness review
 - `c58d1dd` docs(release): add migration and draft review
+- `0018819` docs(release): complete modernization review
 
-The final administrative review/evidence commit is not implementation scope and
-contains this record, migration guidance, final status, and completion evidence.
+The final administrative review/evidence commit is part of the exact branch
+history under review, although it does not change runtime behavior.
 
 ## Git Conformance Checklist
 
@@ -65,28 +66,28 @@ contains this record, migration guidance, final status, and completion evidence.
 
 ## Acceptance Evidence
 
-| Criterion                        | Evidence                                                        | Review |
-| -------------------------------- | --------------------------------------------------------------- | ------ |
-| Modern product contracts         | `PROJECT-BRIEF.md`, `SPEC.md`, `dbff42b`, contract validator    | pass   |
-| Clean primary bootstrap          | isolated `main` at `ff9efd3`; `EVALS/clean-main-bootstrap.json` | pass   |
-| Clean-main verification          | isolated `main` verification and bootstrap output               | pass   |
-| Direct-main commit block         | pre-commit temporary-repository regression                      | pass   |
-| Concise routing kernel           | 116 lines; `scripts/check-docs.mjs` limit                       | pass   |
-| Distinct state owners            | Constitution 2.1 responsibility map                             | pass   |
-| Living-goal format               | `GOALS/`, validator, positive/negative fixtures                 | pass   |
-| Evidence-driven loop             | active goal history and `pnpm eval` transition                  | pass   |
-| Bounded T0/T1 autonomy           | Constitution, kernel, authority matrix                          | pass   |
-| High-impact approvals            | T2 user approval and seven pause categories                     | pass   |
-| Focused skill bundle             | five upstream-valid skills and `pnpm check:skills`              | pass   |
-| Trigger coverage                 | 16 metadata cases and trigger audit                             | pass   |
-| Fresh-state resumption           | isolated transition preserves AC1 and completes AC2             | pass   |
-| One public setup command         | README and guide use `./bootstrap`                              | pass   |
-| Batteries-included greenfield    | repeated local runs and clean-main full run                     | pass   |
-| Stack-neutral adoption           | non-Node fixtures with Node/pnpm failure wrappers               | pass   |
-| Structural validation            | contract/goal/skill/doc negative regressions                    | pass   |
-| Migration and evidence agreement | `MIGRATION.md`, proposals, roadmap, status, this record         | pass   |
-| Canonical and eval gates         | 22 tests; 7 scenarios; 59 assertions                            | pass   |
-| No external action               | git/decision audit; no external command executed                | pass   |
+| Criterion                        | Evidence                                                          | Review |
+| -------------------------------- | ----------------------------------------------------------------- | ------ |
+| Modern product contracts         | `PROJECT-BRIEF.md`, `SPEC.md`, `dbff42b`, contract validator      | pass   |
+| Clean primary bootstrap          | plain public `./bootstrap` replay at `0018819`                    | fail   |
+| Clean-main verification          | isolated `main` verification and bootstrap output                 | pass   |
+| Direct-main commit block         | pre-commit temporary-repository regression                        | pass   |
+| Concise routing kernel           | 116 lines; `scripts/check-docs.mjs` limit                         | pass   |
+| Distinct state owners            | Constitution 2.1 responsibility map                               | pass   |
+| Living-goal format               | `GOALS/`, validator, positive/negative fixtures                   | pass   |
+| Evidence-driven loop             | active goal history and `pnpm eval` transition                    | pass   |
+| Bounded T0/T1 autonomy           | Constitution, kernel, authority matrix                            | pass   |
+| High-impact approvals            | T2 user approval and seven pause categories                       | pass   |
+| Focused skill bundle             | five upstream-valid skills and `pnpm check:skills`                | pass   |
+| Trigger coverage                 | 16 metadata cases and trigger audit                               | pass   |
+| Fresh-state resumption           | isolated transition preserves AC1 and completes AC2               | pass   |
+| One public setup command         | README command auto-detects `adopt-existing` and fails formatting | fail   |
+| Batteries-included greenfield    | repeated local runs and clean-main full run                       | pass   |
+| Stack-neutral adoption           | normal fixtures pass; symlink containment and atomicity fail      | fail   |
+| Structural validation            | contract/goal/skill/doc negative regressions                      | pass   |
+| Migration and evidence agreement | stale readiness claims and active template-development records    | fail   |
+| Canonical and eval gates         | 22 tests; 7 scenarios; 59 assertions                              | pass   |
+| No external action               | git/decision audit; no external command executed                  | pass   |
 
 ## Verification Evidence
 
@@ -115,6 +116,20 @@ Results:
 - portable non-Node, repeat, and conflict fixtures: pass.
 - final staged-tree feature verification and isolated `main` bootstrap replay:
   pass before the administrative completion commit.
+- exact public command `./bootstrap` from a clean `main` fixture at `0018819`:
+  fail; mode auto-detected as `adopt-existing`, generated
+  `DISCOVERY/PROJECT-INVENTORY.md`, and failed `format:check`.
+- documented `./bootstrap --init-project --no-verify` followed by
+  `pnpm check:docs`: fail; the generated `SPEC.md` omits `./bootstrap`, and
+  modernization proposals and review remain in active project folders.
+- first-run portable conflict fixture: fail; `.tempo/KERNEL.md` was created
+  before a conflicting `.tempo/VERIFY.md` stopped installation.
+- symlinked target `AGENTS.md` fixture: fail; installation returned success and
+  modified the symlink target outside the selected repository.
+- `pnpm audit --prod --audit-level=high`: pass; no runtime dependencies or known
+  production-dependency vulnerabilities.
+- `pnpm audit --audit-level=high`: fail; frozen development graph contains 30
+  advisories (1 critical, 20 high, 8 moderate, 1 low).
 
 ## Safety and Compatibility Review
 
@@ -125,20 +140,44 @@ Results:
 - Authentication/authorization weakening: none.
 - Default starter compatibility: retained and replayed.
 - Non-Node compatibility: isolated fixture passes without Node/pnpm invocation.
-- Existing target files: preserved, backed up, or rejected on conflict.
+- Existing regular target files: preserved, backed up, or rejected on conflict.
+- Target containment: fail; `AGENTS.md` and ancestor-directory symlinks are not
+  rejected before mutation.
+- Transactionality: fail; first-run conflicts can leave a partial installation.
 - Generated evaluation workspaces: temporary and removed.
 - Template history: remains under `TEMPLATE_HISTORY/`.
 
 ## Findings
 
-No blocking finding.
+Blocking:
 
-Known limitation:
+1. High — Portable adoption can write outside the selected repository through a
+   symlinked `AGENTS.md`; parent symlinks under `.tempo/`, `.agents/`, or
+   `GOALS/` are likewise not preflighted. Evidence: disposable fixture changed
+   the hash of an out-of-target file while the installer exited 0.
+2. High — The exact public README command fails from a clean clone. Auto mode
+   selects `adopt-existing`, writes an unformatted discovery artifact, and
+   causes canonical verification to exit 1.
+3. High — The frozen development toolchain has 1 critical and 20 high
+   advisories, including the installed Vitest 3.2.4 vulnerability fixed in
+   3.2.6 or later. The production-only audit is clean because Tempo has no
+   runtime dependencies.
+4. Medium — The documented project-initialization path cannot produce a valid
+   fresh template. Its generated `SPEC.md` fails the canonical-command contract,
+   and Tempo's modernization proposals/review remain in active project folders.
+5. Medium — Portable installation is not atomic: a first-run conflict can leave
+   files created before the conflicting path was encountered.
+6. Medium — Current tests exercise an explicit greenfield mode and an
+   already-installed conflict, but not the plain public command, initialized
+   template verification, first-install atomicity, or symlink containment.
+7. Low — Historical evidence documents disagree on the kernel line count and
+   prior bootstrap commit. This re-review corrects the current boundary state,
+   but the stale evidence should be reconciled during remediation.
 
-- Deterministic trigger evaluation does not prove behavior for every probabilistic
-  model/host. Independent subagent forward-testing remains unavailable without a
-  user instruction allowing subagents; future false triggers become regression
-  cases.
+Known limitation after remediation:
+
+- Deterministic trigger evaluation cannot prove behavior for every probabilistic
+  model/host. Future cross-host false triggers should become regression cases.
 
 ## Rollback Plan
 
@@ -153,11 +192,13 @@ Known limitation:
 - T2 constitutional implementation: explicitly approved by Human Partner on
   2026-07-24.
 - Reviewer: Codex
-- Approval status: approved for local Review Boundary
-- Timestamp: 2026-07-24 19:44 CDT
+- Approval status: rejected pending remediation and a new full replay
+- Timestamp: 2026-07-24 22:02 CDT
 
 ## Follow-Ups
 
+- Do not merge or publish until every blocking finding is fixed and this Review
+  Record returns to an approved state.
 - Actual local merge and external GitHub publication remain intentionally
   unexecuted.
 - Optional plugin packaging and independent cross-host forward tests may be
