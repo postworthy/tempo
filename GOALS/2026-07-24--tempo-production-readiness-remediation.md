@@ -102,6 +102,9 @@ Record is evidence-backed and approved.
 - 2026-07-24: Development dependencies were refreshed coherently; high-threshold
   audit now exits 0 with one low advisory, and canonical verification passes 27
   tests under Vitest 4 and ESLint 10.
+- 2026-07-24: The first exact-tree initialization replay reached canonical
+  verification and exposed template-specific evaluation and test fixtures; the
+  plain bootstrap replay passed and left a clean worktree.
 
 ## Evidence
 
@@ -130,6 +133,9 @@ test/portable-adoption.test.ts` passes eight focused tests.
 - Current ESLint requires Node 20.19 or later; enforcing that coherent minimum is
   safer than retaining a nominal Node 20.0 claim that the installed toolchain
   cannot satisfy.
+- Release checks must remain valid after initialization archives every active
+  Tempo record; reusable checks may depend on templates and synthetic fixtures,
+  but not on a dated repository-development goal.
 
 ## Decisions
 
@@ -142,9 +148,11 @@ test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Retry State
 
-- Current attempt: 0
+- Current attempt: 1
 - Maximum attempts per unchanged failure: 2
-- Last failure: none
+- Last failure: initialized exact tree could not verify because evaluation and
+  test fixtures referenced active records that initialization correctly
+  archived.
 
 ## Next Action
 

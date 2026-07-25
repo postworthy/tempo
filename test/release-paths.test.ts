@@ -30,6 +30,9 @@ function copyTrackedRepository() {
   });
   for (const relative of output.toString('utf8').split('\0').filter(Boolean)) {
     const source = join(repositoryRoot, relative);
+    if (!existsSync(source)) {
+      continue;
+    }
     const destination = join(root, relative);
     mkdirSync(dirname(destination), { recursive: true });
     copyFileSync(source, destination);
@@ -74,6 +77,9 @@ describe('public release paths', () => {
     const root = copyTrackedRepository();
     const historyPath = 'TEMPLATE_HISTORY/PROPOSALS/2026-02-12--public-template-readiness.md';
     const historyBefore = readFileSync(join(root, historyPath), 'utf8');
+    writeFileSync(join(root, 'PROPOSALS/2026-07-24--fixture.md'), '# Fixture proposal\n');
+    writeFileSync(join(root, 'REVIEWS/2026-07-24--fixture.md'), '# Fixture review\n');
+    writeFileSync(join(root, 'GOALS/2026-07-24--fixture.md'), '# Fixture goal\n');
 
     const initialization = spawnSync('bash', ['scripts/init-project.sh'], {
       cwd: root,
@@ -94,16 +100,8 @@ describe('public release paths', () => {
     const backupRoot = join(root, '.template-init-backup');
     const backup = readdirSync(backupRoot);
     expect(backup).toHaveLength(1);
-    expect(
-      existsSync(
-        join(backupRoot, backup[0], 'PROPOSALS/2026-07-24--production-readiness-remediation.md'),
-      ),
-    ).toBe(true);
-    expect(
-      existsSync(
-        join(backupRoot, backup[0], 'GOALS/2026-07-24--tempo-production-readiness-remediation.md'),
-      ),
-    ).toBe(true);
+    expect(existsSync(join(backupRoot, backup[0], 'PROPOSALS/2026-07-24--fixture.md'))).toBe(true);
+    expect(existsSync(join(backupRoot, backup[0], 'GOALS/2026-07-24--fixture.md'))).toBe(true);
 
     const docs = spawnSync(process.execPath, ['scripts/check-docs.mjs'], {
       cwd: root,

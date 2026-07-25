@@ -73,8 +73,8 @@
       "authority_case": "scope-expansion",
       "evidence": [
         {
-          "path": "GOALS/2026-07-24--tempo-skills-goals-modernization.md",
-          "includes": ["Scope expansion beyond the approved proposal or this goal"]
+          "path": "GOALS/TEMPLATE.md",
+          "includes": ["Scope expansion"]
         }
       ]
     },

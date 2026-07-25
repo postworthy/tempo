@@ -1,5 +1,13 @@
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  mkdtempSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -150,10 +158,7 @@ export function runEvaluations(root = process.cwd(), options = {}) {
   const authorityEvidence = [
     readFileSync(join(absoluteRoot, 'CONSTITUTION.md'), 'utf8'),
     readFileSync(join(absoluteRoot, 'AGENTS.md'), 'utf8'),
-    readFileSync(
-      join(absoluteRoot, 'GOALS/2026-07-24--tempo-skills-goals-modernization.md'),
-      'utf8',
-    ),
+    readFileSync(join(absoluteRoot, 'GOALS/TEMPLATE.md'), 'utf8'),
   ].join('\n');
 
   for (const scenario of scenarios.scenarios) {
@@ -241,11 +246,12 @@ export function runEvaluations(root = process.cwd(), options = {}) {
 
   const baseline = loadJson(join(absoluteRoot, 'EVALS/baseline.json'));
   const agentsLines = readFileSync(join(absoluteRoot, 'AGENTS.md'), 'utf8').split('\n').length;
-  const activeGoal = readFileSync(
-    join(absoluteRoot, 'GOALS/2026-07-24--tempo-skills-goals-modernization.md'),
-    'utf8',
-  );
-  const criteria = [...activeGoal.matchAll(/^- \[([ xX])\]\s+AC\d+/gm)];
+  const goalDirectory = join(absoluteRoot, 'GOALS');
+  const goalContents = readdirSync(goalDirectory)
+    .filter((name) => name.endsWith('.md') && !['README.md', 'TEMPLATE.md'].includes(name))
+    .map((name) => readFileSync(join(goalDirectory, name), 'utf8'))
+    .join('\n');
+  const criteria = [...goalContents.matchAll(/^- \[([ xX])\]\s+AC\d+/gm)];
   const completedCriteria = criteria.filter((criterion) => criterion[1].toLowerCase() === 'x');
 
   assertionCount += 4;

@@ -98,7 +98,11 @@ describe('contract validation', () => {
   it('rejects placeholders in an approved product contract', () => {
     const root = createContractFixture();
     const specPath = join(root, 'SPEC.md');
-    writeFileSync(specPath, `${readFileSync(specPath, 'utf8')}\n- <unfinished>\n`);
+    const approvedSpec = readFileSync(specPath, 'utf8').replace(
+      /^Status: .+$/m,
+      'Status: Approved',
+    );
+    writeFileSync(specPath, `${approvedSpec}\n- <unfinished>\n`);
 
     expect(validateContracts(root)).toContain(
       'SPEC.md is approved but still contains an angle-bracket placeholder',
