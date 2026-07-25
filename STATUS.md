@@ -25,7 +25,7 @@ C019 feat(bootstrap): add portable Tempo adoption
 ## In Progress
 
 - Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Preparing stack-neutral Tempo adoption while preserving greenfield setup.
+- Implementing approved stack-neutral Tempo adoption while preserving greenfield setup.
 
 ## Blockers / Risks
 
@@ -56,7 +56,7 @@ C019 feat(bootstrap): add portable Tempo adoption
 
 ## Next Planned Changes
 
-- Create the C019 portable-adoption proposal.
+- Implement the target installer and bootstrap CLI routing.
 - Exercise greenfield, repeat, and non-Node adopt-existing setup in isolated fixtures.
 
 ## Notes

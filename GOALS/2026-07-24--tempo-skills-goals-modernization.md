@@ -4,7 +4,7 @@ Status: active
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
-Proposal: `PROPOSALS/2026-07-24--focused-tempo-skills.md` (current unit)
+Proposal: `PROPOSALS/2026-07-24--portable-tempo-adoption.md` (current unit)
 Review Boundary: merge from `docs/c012-tempo-modernization-goal` into `main` with `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`
 
 ## Outcome
@@ -126,6 +126,8 @@ The detailed research and original phase contract are recorded in
 - 2026-07-24: Five focused skills initialized with the current skill creator,
   filled with direct-reference workflows, and validated by both upstream and
   repository checks.
+- 2026-07-24: C019 portable-adoption proposal approved under the active goal's
+  scoped, reversible T1 authority.
 
 ## Evidence
 
@@ -168,7 +170,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Create and approve the C019 T1 proposal, then implement stack-neutral adopt-existing setup without changing the batteries-included greenfield path.
+- Implement the pure-shell target installer and route target adoption before bootstrap's Node/pnpm checks.
 
 ## Pause Conditions
 
