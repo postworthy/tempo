@@ -49,6 +49,8 @@ command:
 Target adoption does not install Node, pnpm, TypeScript, dependencies, or starter
 application files.
 
+Upgrading an older Tempo clone? Follow [MIGRATION.md](MIGRATION.md).
+
 ## Agent First Command
 
 ```bash

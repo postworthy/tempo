@@ -96,6 +96,8 @@ Follow the exact install instructions printed by `./bootstrap`, then run `./boot
 
 The bootstrap process is idempotent and safe to rerun.
 
+For older Tempo clones and rollback guidance, see `MIGRATION.md`.
+
 ## Push Safety
 
 Tempo blocks `git push` by default using a local pre-push hook.

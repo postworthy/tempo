@@ -13,6 +13,7 @@ const requiredFiles = [
   'PROPOSALS/TEMPLATE.md',
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
+  'MIGRATION.md',
   'bootstrap',
   '.githooks/pre-commit',
   '.githooks/commit-msg',

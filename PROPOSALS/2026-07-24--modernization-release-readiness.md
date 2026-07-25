@@ -6,7 +6,7 @@ Risk Class: T1
 Related Issue/Context: active modernization goal
 Roadmap Item: C021
 Planned Branch: `docs/c012-tempo-modernization-goal`
-Expected Commit Count: 2
+Expected Commit Count: 3
 
 ## Objective
 
@@ -108,12 +108,18 @@ Pass means:
 - Existing branch: `docs/c012-tempo-modernization-goal`
 - Planned commits:
   - `docs(release): approve modernization readiness review`
+  - `docs(release): add migration and draft review`
   - `docs(release): complete modernization review`
 - Required trailers:
   - `Roadmap: ROADMAP/COMMIT-PLAN.md#C021`
   - `Proposal: PROPOSALS/2026-07-24--modernization-release-readiness.md`
 - Planned future merge method: `git merge --no-ff
 docs/c012-tempo-modernization-goal`
+
+The migration/review commit intentionally exceeds the normal line target because
+the user migration contract and requirement-by-requirement Review Record form one
+audit input. The final completion commit remains small and records only evidence
+gathered from replaying that committed input.
 
 ## Decomposition Plan
 
