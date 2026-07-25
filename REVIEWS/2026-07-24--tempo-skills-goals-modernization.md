@@ -234,15 +234,17 @@ Known limitation after remediation:
   “make it so” on 2026-07-24.
 - C023 T2 initialized-project boundary: explicitly approved by Human Partner
   with “do it” on 2026-07-24.
+- One local no-fast-forward merge and one push of `main` to `origin`: explicitly
+  approved by Human Partner with “merge and then push” on 2026-07-24.
 - Reviewer: Codex
 - Approval status: approved for the local Review Boundary
 - Timestamp: 2026-07-24 23:40 CDT
 
 ## Follow-Ups
 
-- Actual local merge and external GitHub publication remain intentionally
-  unexecuted.
-- Merge, push, and publication still require their separately explicit
-  approvals.
+- Execution evidence for the approved merge and push is the resulting merge
+  commit and confirmed remote `main` ref.
+- Tags, releases, deployments, other branches or remotes, and later publication
+  actions remain unapproved.
 - Optional plugin packaging and independent cross-host forward tests may be
   proposed after publication.

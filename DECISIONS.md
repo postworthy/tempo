@@ -277,3 +277,21 @@ Consequences:
 `INITIALIZATION-POLICY.json` defines the behavior, initialization creates one
 recoverable ignored backup, and canonical verification rejects residual
 Tempo-development state in an unfilled project.
+
+## 2026-07-24 - Approve Modernization Merge and GitHub Publication
+
+Decision:
+The Human Partner explicitly approved merging
+`docs/c012-tempo-modernization-goal` into `main` with `--no-ff`, then pushing
+`main` to `origin`.
+
+Rationale:
+The final production-readiness review found no blocking issue. Exact
+minimum-runtime, merge, bootstrap, initialization, portable adoption,
+security/artifact, and dependency gates passed.
+
+Consequences:
+Execute one local no-fast-forward merge and one push of `main` to `origin`.
+This approval does not authorize tags, releases, deployments, other branches,
+remotes, or later publication actions. Verify merged `main` before pushing and
+confirm the remote ref afterward.
