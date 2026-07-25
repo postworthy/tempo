@@ -98,7 +98,7 @@
       "evidence": [
         {
           "path": "EVALS/clean-main-bootstrap.json",
-          "includes": ["\"exit_code\": 0", "canonical verification passed", "18 tests passed"]
+          "includes": ["\"exit_code\": 0", "canonical verification passed", "22 tests passed"]
         }
       ]
     }

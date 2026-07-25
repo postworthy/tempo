@@ -4,17 +4,8 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-### [NEXT] C012 - docs(spec): define modern Tempo product contract
-
-Goal:
-
-- Define Tempo's approved product contract and the self-contained modernization goal.
-
-Acceptance:
-
-- `PROJECT-BRIEF.md` and `SPEC.md` contain approved, placeholder-free product intent.
-- `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md` defines the full execution goal.
-- Foundation repair has an approved T1 proposal.
+None. The modernization goal is complete and ready for its documented local
+Review Boundary. Merge and publication are separate actions.
 
 ## Milestone M0 - Foundation and Governance
 
@@ -263,7 +254,7 @@ Acceptance:
 - Deterministic assertions cover mechanical outcomes.
 - Failures and false triggers become regression cases.
 
-### [TODO] C021 - docs(release): complete migration and review evidence
+### [DONE] C021 - docs(release): complete migration and review evidence
 
 Goal:
 
@@ -274,3 +265,11 @@ Acceptance:
 - Canonical verification and manual evaluations pass.
 - The repository is merge-safe and publication-ready.
 - No remote, push, or publication action has occurred.
+
+Evidence:
+
+- Migration guidance: `MIGRATION.md`.
+- Criterion, safety, rollback, and verification inventory:
+  `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
+- Result: 22 tests, 7/7 evaluation scenarios, 59 assertions, isolated clean
+  bootstrap pass, and all 20 goal criteria complete.

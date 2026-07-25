@@ -38,6 +38,7 @@ Related Proposals:
 - `8f67342` test(evals): add deterministic scenario harness
 - `e46c199` docs(evals): record modernization evaluation
 - `9146caa` docs(release): approve modernization readiness review
+- `c58d1dd` docs(release): add migration and draft review
 
 The final administrative review/evidence commit is not implementation scope and
 contains this record, migration guidance, final status, and completion evidence.
@@ -109,9 +110,11 @@ Isolated executions:
 Results:
 
 - `pnpm verify`: pass; 22 tests, 7/7 eval scenarios, 59 assertions.
-- clean isolated `main` bootstrap at `ff9efd3`: pass.
+- clean isolated `main` bootstrap at `c58d1dd`: pass; 22 tests, seven
+  evaluation scenarios, and 59 assertions.
 - portable non-Node, repeat, and conflict fixtures: pass.
-- final clean-tree replay: pending the administrative review commit.
+- final staged-tree feature verification and isolated `main` bootstrap replay:
+  pass before the administrative completion commit.
 
 ## Safety and Compatibility Review
 
@@ -150,8 +153,8 @@ Known limitation:
 - T2 constitutional implementation: explicitly approved by Human Partner on
   2026-07-24.
 - Reviewer: Codex
-- Approval status: approved for local Review Boundary after final clean replay
-- Timestamp: 2026-07-24 19:24 CDT
+- Approval status: approved for local Review Boundary
+- Timestamp: 2026-07-24 19:44 CDT
 
 ## Follow-Ups
 

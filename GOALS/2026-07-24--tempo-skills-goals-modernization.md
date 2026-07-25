@@ -1,6 +1,6 @@
 # Goal: Modernize Tempo for Skills and Agentic Goals
 
-Status: active
+Status: completed
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
@@ -33,13 +33,13 @@ The detailed research and original phase contract are recorded in
 - [x] AC1 — Tempo's product brief and specification describe the modernized product without placeholders.
   - Evidence: `PROJECT-BRIEF.md`, `SPEC.md`, commit `dbff42b`, and `pnpm check:contracts`
 - [x] AC2 — A clean primary-branch checkout runs the documented canonical bootstrap successfully.
-  - Evidence: isolated `main` at commit `ff9efd3` completed `./bootstrap --mode greenfield`, dependency installation, all 18 tests, and canonical verification on 2026-07-24
+  - Evidence: isolated `main` at commit `c58d1dd` completed `./bootstrap --mode greenfield`, dependency installation, all 22 tests, seven evaluation scenarios, 59 assertions, and canonical verification on 2026-07-24
 - [x] AC3 — Canonical verification passes on a clean primary branch.
   - Evidence: isolated `main` verification at commit `8ef1f06` on 2026-07-24
 - [x] AC4 — Direct development commits to the primary branch remain blocked.
   - Evidence: `test/governance.test.ts` pre-commit fixture
 - [x] AC5 — `AGENTS.md` is concise and routes tasks without requiring all governance files.
-  - Evidence: 113-line kernel, `scripts/check-docs.mjs`, commit `ba97a34`
+  - Evidence: 116-line kernel, `scripts/check-docs.mjs`, commit `ba97a34`
 - [x] AC6 — Durable policy, reusable workflow, active goal state, historical evidence, and executable enforcement have distinct documented owners.
   - Evidence: Constitution 2.1 Article IX responsibility map and commit `b425fa2`
 - [x] AC7 — Tempo provides a self-contained living goal format that supports fresh-context resumption.
@@ -64,12 +64,12 @@ The detailed research and original phase contract are recorded in
   - Evidence: `test/portable-adoption.test.ts` proves target install, repeat install, collision refusal, Node/pnpm non-invocation, and absence of starter-stack files
 - [x] AC17 — Documentation validation detects structural defects and material command inconsistencies.
   - Evidence: `scripts/validate-contracts.mjs` and negative tests in `test/governance.test.ts`
-- [ ] AC18 — Current behavior, migration guidance, rollback, decisions, roadmap, and review evidence agree.
-  - Evidence: pending final review
+- [x] AC18 — Current behavior, migration guidance, rollback, decisions, roadmap, and review evidence agree.
+  - Evidence: `MIGRATION.md`, all six modernization proposals, `ROADMAP/COMMIT-PLAN.md`, `STATUS.md`, `DECISIONS.md`, and `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md` agree with the final committed-tree replay
 - [x] AC19 — Full canonical verification and the documented manual evaluation suite pass.
   - Evidence: `pnpm verify` and `pnpm eval` passed at C020 with 22 tests, seven scenarios, 59 assertions, and the human audit in `EVALS/2026-07-24--evaluation-report.md`
-- [ ] AC20 — No external push, publication, remote change, or production action occurred.
-  - Evidence: pending final git and decision audit
+- [x] AC20 — No external push, publication, remote change, or production action occurred.
+  - Evidence: final git, tracked-artifact, secret-pattern, decision, and remote audits found no external action or remote mutation; the pre-existing `origin` remained unchanged and unused
 
 ## Authority Envelope
 
@@ -105,7 +105,7 @@ The detailed research and original phase contract are recorded in
 | 4. Focused skill bundle                   | completed | Required skills validate and trigger precisely.                              | Skill validator, reference tests, trigger audit.         |
 | 5. Portable setup                         | completed | Greenfield and non-Node adopt-existing paths pass.                           | Isolated bootstrap fixtures and repeated setup.          |
 | 6. Evaluation harness                     | completed | Required scenarios and objective assertions pass.                            | `pnpm eval`; recorded manual evidence.                   |
-| 7. Migration and review                   | pending   | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
+| 7. Migration and review                   | completed | Repository is merge-safe and publication-ready.                              | Clean checkout, full verify, Review Record, final audit. |
 
 ## Progress
 
@@ -139,6 +139,13 @@ The detailed research and original phase contract are recorded in
   verification passed with 22 tests and the human evidence audit was recorded.
 - 2026-07-24: C021 migration and final-review proposal approved under scoped,
   reversible T1 goal authority.
+- 2026-07-24: Final feature-branch verification passed with 22 tests, seven
+  evaluation scenarios, and 59 assertions; all five skills also passed the
+  upstream skill validator.
+- 2026-07-24: Isolated `main` at `c58d1dd` completed the full greenfield
+  bootstrap with a clean resulting worktree.
+- 2026-07-24: Migration, safety, artifact, secret-pattern, remote, commit,
+  rollback, and criterion audits completed with no blocking finding.
 
 ## Evidence
 
@@ -148,6 +155,9 @@ The detailed research and original phase contract are recorded in
   on 2026-07-24.
 - `test/governance.test.ts` covers clean-main policy, direct-commit rejection,
   contract structure, project reset, and goal lifecycle boundaries.
+- Final review evidence is recorded in
+  `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`; the exact final
+  staged tree was replayed once more before its completion commit.
 
 ## Discoveries
 
@@ -184,7 +194,7 @@ The detailed research and original phase contract are recorded in
 
 ## Next Action
 
-- Add migration guidance and draft the exact commit/criterion evidence inventory for final review.
+- Preserve this review-ready branch; any local merge or external publication is a separate approved action.
 
 ## Pause Conditions
 
@@ -201,4 +211,7 @@ The detailed research and original phase contract are recorded in
 - Skills and their deterministic trigger coverage are complete.
 - Portable greenfield and adopt-existing setup are complete.
 - Full clean-process evaluations are complete.
-- Migration and final review are the current active unit.
+- Migration and final review are complete; all 20 acceptance criteria have
+  requirement-matched evidence.
+- The feature branch is ready for the documented local Review Boundary.
+- Local merge and external publication remain intentionally unexecuted.

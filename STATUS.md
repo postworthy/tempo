@@ -1,10 +1,10 @@
 ## Current Milestone
 
-M0 - Foundation and Governance
+Modernization complete; ready for the local Review Boundary
 
 ## Current Next Commit
 
-C021 docs(release): document migration and complete review
+None. Any local merge or external publication is a separate approved action.
 
 ## Done (High-Level)
 
@@ -24,13 +24,13 @@ C021 docs(release): document migration and complete review
 
 ## In Progress
 
-- Executing `ROADMAP/TEMPO-SKILLS-GOALS-MODERNIZATION.md`.
-- Implementing approved migration guidance and final publication-readiness review.
+- None.
 
 ## Blockers / Risks
 
-- Portable adoption must not overwrite existing application or governance files.
-- Skill and goal evaluations must use clean contexts without committing generated workspaces.
+- Deterministic trigger evaluation cannot prove behavior across every
+  probabilistic model or host.
+- Local merge and external publication remain intentionally unexecuted.
 
 ## Recent Changes
 
@@ -55,12 +55,16 @@ C021 docs(release): document migration and complete review
 - Added `pnpm intake:scan` discovery tooling and `adopt-existing` onboarding flow guidance.
 - Added canonical prompt guidance in `PROMPTING.md` and aligned starter/onboarding docs to explicit output contracts and approval-stop behavior.
 - Added lightweight prompt review guidance in `VERIFY.md` and enforcement for `PROMPTING.md` in `pnpm check:docs`.
+- Added migration and rollback guidance, completed the exact criterion evidence
+  inventory, and approved the branch for its local Review Boundary.
+- Replayed final verification with 22 tests, seven evaluation scenarios, and 59
+  assertions, plus an isolated clean `main` bootstrap.
 
 ## Next Planned Changes
 
-- Add migration guidance and draft the Review Record.
-- Audit every remaining goal criterion, public command, rollback, safety boundary,
-  and generated-artifact exclusion.
+- Optionally execute the documented local Review Boundary after separate user
+  direction.
+- Consider independent cross-host skill-trigger testing after publication.
 
 ## Notes
 

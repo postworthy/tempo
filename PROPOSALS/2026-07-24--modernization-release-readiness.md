@@ -52,22 +52,22 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] Migration guidance covers fresh users, old Tempo clones, target adoption,
+- [x] Migration guidance covers fresh users, old Tempo clones, target adoption,
       active-state migration, compatibility, and rollback.
-- [ ] README and guide retain one obvious primary command and plain-language next
+- [x] README and guide retain one obvious primary command and plain-language next
       action.
-- [ ] Review Record lists exact commits, scope, risk, criterion evidence,
+- [x] Review Record lists exact commits, scope, risk, criterion evidence,
       verification, safety audit, rollback, findings, and boundary decision.
-- [ ] Every active-goal criterion has final, requirement-matched evidence.
-- [ ] Final committed tree passes `pnpm verify`.
-- [ ] Final committed tree completes `./bootstrap --mode greenfield` from an
+- [x] Every active-goal criterion has final, requirement-matched evidence.
+- [x] Final committed tree passes `pnpm verify`.
+- [x] Final committed tree completes `./bootstrap --mode greenfield` from an
       isolated clean `main`.
-- [ ] Final committed tree passes the isolated non-Node target path.
-- [ ] Worktree contains no secrets, logs, caches, generated eval workspaces, or
+- [x] Final committed tree passes the isolated non-Node target path.
+- [x] Worktree contains no secrets, logs, caches, generated eval workspaces, or
       unrelated changes.
-- [ ] No external push, publication, remote mutation, deployment, or production
+- [x] No external push, publication, remote mutation, deployment, or production
       action occurred.
-- [ ] Goal status changes to `completed` only after all checks pass.
+- [x] Goal status changes to `completed` only after all checks pass.
 
 ## Verification Plan
 
