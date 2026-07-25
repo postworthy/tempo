@@ -123,6 +123,13 @@ Pass means:
   - `Proposal: PROPOSALS/2026-07-24--focused-tempo-skills.md`
 - Planned merge method: `git merge --no-ff docs/c012-tempo-modernization-goal`
 
+The skill-content commit intentionally exceeds the normal line/file target. Five
+focused skills are one required public bundle, and each initializer produces
+`SKILL.md` plus interface metadata; each workflow also has one directly linked
+reference. Splitting by file would create partially installed public states and
+would not reduce conceptual review complexity. Enforcement and trigger evidence
+remain isolated in the following test commit.
+
 ## Decomposition Plan
 
 1. Record concrete trigger examples and initialize five skill skeletons — Verify

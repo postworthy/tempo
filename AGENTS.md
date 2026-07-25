@@ -40,17 +40,19 @@ contains template history, not active project records.
 Always read `CONSTITUTION.md`, `SPEC.md`, and `VERIFY.md`. Then inspect the active
 goal when one exists and load only the procedure relevant to the task:
 
-| Need                             | Authoritative route      |
-| -------------------------------- | ------------------------ |
-| First-run discovery or adoption  | `BOOTSTRAP.md`           |
-| Prompt/output patterns           | `PROMPTING.md`           |
-| Product acceptance               | `SPEC.md`                |
-| Active execution and next action | one active `GOALS/*`     |
-| Milestone sequencing             | `ROADMAP/COMMIT-PLAN.md` |
-| Approved change scope            | `PROPOSALS/*`            |
-| Failure recovery                 | `RCA/TEMPLATE.md`        |
-| Review boundary                  | `REVIEWS/TEMPLATE.md`    |
-| Human summary                    | `STATUS.md`              |
+| Need                             | Authoritative route           |
+| -------------------------------- | ----------------------------- |
+| First-run discovery or adoption  | skill `tempo-onboard-project` |
+| Create or revise a living goal   | skill `tempo-plan-goal`       |
+| Continue the active goal         | skill `tempo-execute-goal`    |
+| Review boundary readiness        | skill `tempo-review-change`   |
+| Analyze a failed prior fix       | skill `tempo-perform-rca`     |
+| Prompt/output patterns           | `PROMPTING.md`                |
+| Product acceptance               | `SPEC.md`                     |
+| Active execution and next action | one active `GOALS/*`          |
+| Milestone sequencing             | `ROADMAP/COMMIT-PLAN.md`      |
+| Approved change scope            | `PROPOSALS/*`                 |
+| Human summary                    | `STATUS.md`                   |
 
 `PROJECT-BRIEF.md` must be complete before non-trivial project implementation.
 For adopt-existing onboarding, treat repository findings as hypotheses until the
