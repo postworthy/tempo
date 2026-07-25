@@ -39,10 +39,10 @@ Record is evidence-backed and approved.
   - Evidence: the first-install conflict fixture snapshots every non-git path before and after a conflicting `.tempo/VERIFY.md` and observes exact equality
 - [x] AC6 — Normal and repeated portable adoption remain stack-neutral, idempotent, and preserving.
   - Evidence: six focused portable fixtures pass with Node/pnpm failure wrappers, unchanged application content, stable manifest, and one routing block
-- [ ] AC7 — The frozen dependency graph has no unapproved high or critical audit result.
-  - Evidence: pending
-- [ ] AC8 — Regression coverage exercises all reproduced release blockers and meaningful negative paths.
-  - Evidence: pending
+- [x] AC7 — The frozen dependency graph has no unapproved high or critical audit result.
+  - Evidence: `pnpm audit --audit-level=high` exits 0 with one low advisory after the coherent ESLint 10, Vitest 4, Node 20.19, and patched-transitive refresh
+- [x] AC8 — Regression coverage exercises all reproduced release blockers and meaningful negative paths.
+  - Evidence: canonical verification passes 27 tests across public bootstrap, initialization, symlink containment, first-conflict atomicity, normal/repeat adoption, governance, goals, skills, and evaluations
 - [ ] AC9 — Public, migration, verification, status, roadmap, goal, and decision documentation agree with behavior.
   - Evidence: pending
 - [ ] AC10 — The final exact tree passes all feature and isolated release gates, the Review Record is approved, and no external action occurred.
@@ -77,7 +77,7 @@ Record is evidence-backed and approved.
 | 1. Release-path regressions            | completed   | Four reproduced blocker classes have deterministic fixtures.         | Focused Vitest failures on the pre-fix behavior.   |
 | 2. Public bootstrap and initialization | in_progress | Plain and initialized clean-main paths pass and are reversible.      | Isolated bootstrap, docs, goal, and status checks. |
 | 3. Portable containment and preflight  | completed   | Symlinks and known conflicts are rejected before target mutation.    | Hash/inventory negative tests plus normal repeat.  |
-| 4. Dependency remediation              | pending     | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
+| 4. Dependency remediation              | completed   | No unapproved high/critical audit and supported verification passes. | `pnpm audit`; focused and canonical gates.         |
 | 5. Final replay and review             | pending     | All criteria have exact-tree evidence and review is approved.        | `pnpm verify`; isolated commands; final audit.     |
 
 ## Progress
@@ -99,6 +99,9 @@ Record is evidence-backed and approved.
   component and conflict is preflighted before mutation, malformed AGENTS
   routing is rejected, and unexpected failures restore changed AGENTS content
   and remove created files.
+- 2026-07-24: Development dependencies were refreshed coherently; high-threshold
+  audit now exits 0 with one low advisory, and canonical verification passes 27
+  tests under Vitest 4 and ESLint 10.
 
 ## Evidence
 
@@ -111,6 +114,9 @@ Record is evidence-backed and approved.
 - `pnpm exec vitest run test/release-paths.test.ts
 test/portable-adoption.test.ts` passes eight focused tests.
 - `bash -n scripts/install-portable.sh` passes after the containment rewrite.
+- `pnpm audit --audit-level=high` exits 0 with one low advisory.
+- `pnpm verify` passes after the dependency refresh with 27 tests, seven
+  evaluation scenarios, 59 assertions, and a successful build.
 
 ## Discoveries
 
@@ -121,6 +127,9 @@ test/portable-adoption.test.ts` passes eight focused tests.
   active records because it is intentional and can be backed up.
 - A failing-test-only commit would violate Tempo's per-commit completion rules,
   so regression fixtures ship atomically with the corresponding repairs.
+- Current ESLint requires Node 20.19 or later; enforcing that coherent minimum is
+  safer than retaining a nominal Node 20.0 claim that the installed toolchain
+  cannot satisfy.
 
 ## Decisions
 
@@ -139,7 +148,7 @@ test/portable-adoption.test.ts` passes eight focused tests.
 
 ## Next Action
 
-- Refresh the frozen dependency graph and prove that no unapproved high or critical advisory remains.
+- Replay plain and initialized bootstrap from exact isolated staged trees, then reconcile the final Review Record.
 
 ## Pause Conditions
 
@@ -152,4 +161,5 @@ test/portable-adoption.test.ts` passes eight focused tests.
 ## Outcomes
 
 - Production-readiness remediation is approved and active.
-- No implementation unit is complete yet.
+- Release regressions, portable containment, and dependency remediation are
+  implemented; exact-tree integration replay remains.

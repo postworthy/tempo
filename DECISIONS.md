@@ -235,3 +235,22 @@ One public entry point is easier for novice users, but an existing repository mu
 
 Consequences:
 Target adoption runs before Node/pnpm checks, installs a portable Constitution/kernel/goals/skills profile, backs up and marks existing `AGENTS.md`, records the target verification command as data, refuses conflicts, and remains idempotent.
+
+## 2026-07-24 - Audited Development Toolchain Floor
+
+Decision:
+Require Node.js 20.19 or later, upgrade the verification stack to current
+compatible ESLint 10, Vitest 4, TypeScript ESLint 8, and related tools, and pin
+patched transitive versions when upstream dependency ranges otherwise resolve a
+known-vulnerable release.
+
+Rationale:
+Every greenfield Tempo user installs and executes the development toolchain.
+High and critical advisories in that graph are therefore release blockers even
+though Tempo has no runtime production dependencies.
+
+Consequences:
+`.nvmrc`, package engines, bootstrap validation, hosted verification, and
+documentation use Node 20.19 as the minimum. Public release review runs
+`pnpm audit:high`; the network-backed audit remains separate from the offline
+canonical verification gate.

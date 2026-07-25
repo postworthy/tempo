@@ -50,6 +50,19 @@ also compares instruction cost and capabilities with the recorded baseline.
 Deterministic evaluation does not replace host-specific forward testing; review
 the dated report under `EVALS/` for limitations.
 
+## Release Dependency Audit
+
+Before a public release or dependency change, run:
+
+```bash
+pnpm audit:high
+```
+
+The release is blocked by any unapproved high or critical advisory. This
+network-backed release check is intentionally separate from `pnpm verify` so
+normal post-clone verification remains available when dependencies are already
+installed but the registry is unavailable.
+
 ## Preferred Logging Pattern
 
 ```bash
@@ -133,6 +146,6 @@ Hosted CI workflows (for example GitHub/GitLab pipelines) are optional review su
 
 ## Environment Notes
 
-- Node.js 20+
+- Node.js 20.19+
 - pnpm 9+
 - Use `.env.example` as the source template for local environment setup.

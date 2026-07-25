@@ -50,7 +50,7 @@ export function validateScenarioSchema(document) {
 export function evaluateTextAssertions(root, assertions) {
   const problems = [];
   for (const assertion of assertions) {
-    let content = '';
+    let content;
     try {
       content = readFileSync(join(root, assertion.path), 'utf8');
     } catch {

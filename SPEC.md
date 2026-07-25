@@ -51,7 +51,7 @@ Tempo is an opinionated, batteries-included public starter repository. Its porta
 ## 4. Constraints
 
 - Platforms: local git repositories and filesystem-capable agent hosts.
-- Default toolchain: Node.js 20+, pnpm 9, TypeScript, ESLint, Prettier, and Vitest.
+- Default toolchain: Node.js 20.19+, pnpm 9, TypeScript, ESLint, Prettier, and Vitest.
 - Portable kernel: must not depend on the target repository using Node.js or pnpm.
 - Hosted services: optional only; the authoritative workflow remains local-first.
 - Network: not required for normal post-clone execution after dependencies are available.

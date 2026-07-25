@@ -130,7 +130,7 @@ fi
 
 if ! command -v node >/dev/null 2>&1; then
   echo "[bootstrap] Node.js is missing."
-  echo "[bootstrap] Install Node.js 20+ (for example from https://nodejs.org/) and rerun ./bootstrap."
+  echo "[bootstrap] Install Node.js 20.19+ (for example from https://nodejs.org/) and rerun ./bootstrap."
   exit 1
 fi
 

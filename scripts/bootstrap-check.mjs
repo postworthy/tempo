@@ -9,13 +9,25 @@ const requiredPnpmVersion = packageManager.split('@')[1] ?? '9.0.0';
 
 const problems = [];
 
-const getMajor = (version) => Number.parseInt(version.split('.')[0], 10);
+const versionParts = (version) => {
+  const match = version.match(/(\d+)(?:\.(\d+))?(?:\.(\d+))?/);
+  return match
+    ? [Number(match[1]), Number(match[2] ?? 0), Number(match[3] ?? 0)]
+    : [Number.NaN, Number.NaN, Number.NaN];
+};
 
-const requiredNodeMajor = getMajor(
-  requiredNodeRange.replace(/[^0-9.]/g, '').split('.')[0] + '.0.0',
-);
+const compareVersions = (left, right) => {
+  for (let index = 0; index < 3; index += 1) {
+    if (left[index] !== right[index]) {
+      return left[index] - right[index];
+    }
+  }
+  return 0;
+};
+
+const requiredNodeMinimum = versionParts(requiredNodeRange);
 const currentNodeVersion = process.versions.node;
-if (getMajor(currentNodeVersion) < requiredNodeMajor) {
+if (compareVersions(versionParts(currentNodeVersion), requiredNodeMinimum) < 0) {
   problems.push(
     `Node.js ${requiredNodeRange} required, found ${currentNodeVersion}. Update Node.js and rerun bootstrap.`,
   );
@@ -29,7 +41,7 @@ try {
 }
 
 if (currentPnpmVersion) {
-  if (getMajor(currentPnpmVersion) !== getMajor(requiredPnpmVersion)) {
+  if (versionParts(currentPnpmVersion)[0] !== versionParts(requiredPnpmVersion)[0]) {
     problems.push(
       `pnpm major version mismatch. Required ${requiredPnpmVersion}, found ${currentPnpmVersion}.`,
     );

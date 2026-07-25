@@ -120,6 +120,8 @@ const requiredVerifySnippets = [
   'Hosted CI (Optional Surface)',
   './bootstrap --no-verify',
   'Prompt Change Review',
+  'Release Dependency Audit',
+  'pnpm audit:high',
 ];
 
 const requiredConstitutionSnippets = [
@@ -272,6 +274,16 @@ if (existsSync('.github/workflows/verify.yml')) {
   if (!content.includes('Optional hosted review surface.')) {
     problems.push('.github/workflows/verify.yml missing optional-hosted-surface marker comment');
   }
+  for (const required of [
+    'permissions:',
+    'contents: read',
+    'pnpm install --frozen-lockfile',
+    'pnpm audit:high',
+  ]) {
+    if (!content.includes(required)) {
+      problems.push(`.github/workflows/verify.yml missing release hardening: ${required}`);
+    }
+  }
 }
 
 if (existsSync('bootstrap')) {
@@ -334,6 +346,9 @@ if (existsSync('package.json')) {
     }
     if (!pkg.scripts || !pkg.scripts.eval) {
       problems.push('package.json missing required script: eval');
+    }
+    if (!pkg.scripts || !pkg.scripts['audit:high']) {
+      problems.push('package.json missing required script: audit:high');
     }
   } catch {
     problems.push('package.json is invalid JSON');
