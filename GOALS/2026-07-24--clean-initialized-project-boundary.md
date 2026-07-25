@@ -1,6 +1,6 @@
 # Goal: Enforce a Clean Initialized-Project Boundary
 
-Status: active
+Status: completed
 Owner: Human Partner and Codex
 Risk: T2
 Updated: 2026-07-24
@@ -39,15 +39,15 @@ archived and cannot influence the user's project.
 - [x] AC5 — Deterministic validation rejects residual development state in an
       unfilled project.
   - Evidence: `validateInitializedState` accepts the clean fixture and rejects a newly introduced dated evaluation report by exact path
-- [ ] AC6 — Source and initialized trees pass canonical verification and the
+- [x] AC6 — Source and initialized trees pass canonical verification and the
       high-threshold audit has no high/critical finding.
-  - Evidence: pending
-- [ ] AC7 — Exact isolated plain and initialized public paths satisfy the final
+  - Evidence: source and exact initialized `9659908` trees pass 27 tests, 7/7 scenarios, 59 assertions, and build; audit exits 0 at high threshold with one low advisory
+- [x] AC7 — Exact isolated plain and initialized public paths satisfy the final
       policy and documentation.
-  - Evidence: pending
-- [ ] AC8 — Review, roadmap, status, decisions, migration, and public guidance
+  - Evidence: isolated `./bootstrap` passes with an empty worktree diff; isolated `./bootstrap --init-project` reports 5 reset, 17 archived, 21 retained, and 1 preserved, then passes the full gate
+- [x] AC8 — Review, roadmap, status, decisions, migration, and public guidance
       agree; no external action occurred.
-  - Evidence: pending
+  - Evidence: final document checks and Review Record pass; git, artifact, secret-pattern, and command audits show no unrelated, remote, merge, push, publication, tag, deploy, or production action
 
 ## Authority Envelope
 
@@ -74,7 +74,7 @@ archived and cannot influence the user's project.
 | ------------------------------ | --------- | ----------------------------------------------------------- | ------------------------------------ |
 | 1. Policy and regression scope | completed | Every residual-state class has an explicit policy category. | Goal validation and focused fixtures |
 | 2. Initialization enforcement  | completed | Initialized state matches policy and rejects drift.         | Focused tests and initialized verify |
-| 3. Exact replay and review     | pending   | All criteria have evidence and review is approved.          | Full gate, audit, isolated commands  |
+| 3. Exact replay and review     | completed | All criteria have evidence and review is approved.          | Full gate, audit, isolated commands  |
 
 ## Progress
 
@@ -90,6 +90,10 @@ archived and cannot influence the user's project.
 - 2026-07-24: First exact initialized replay passed contracts, docs, goals, and
   initialized-state validation, then exposed a repository-specific nested test
   expectation after the roadmap was correctly archived.
+- 2026-07-24: Template-neutral fixture repair committed at `9659908`; repeated
+  exact initialized replay passed the full canonical gate and policy audit.
+- 2026-07-24: Scope, safety, compatibility, migration, rollback, artifact,
+  secret, history, and prompt-language review found no blocking issue.
 
 ## Evidence
 
@@ -98,6 +102,10 @@ archived and cannot influence the user's project.
 - `pnpm exec vitest run test/governance.test.ts test/release-paths.test.ts`
   passes 16 focused tests.
 - `pnpm verify` and `pnpm audit --audit-level=high` pass after enforcement.
+- Exact `9659908` plain bootstrap passes and leaves an empty worktree diff.
+- Exact `9659908` initialized bootstrap passes; active record directories are
+  template-only, roadmap is starter-only, dated/release evaluation evidence is
+  absent, backup is complete, and `TEMPLATE_HISTORY/` has no diff.
 
 ## Discoveries
 
@@ -119,14 +127,13 @@ archived and cannot influence the user's project.
 
 ## Retry State
 
-- Current attempt: 1
+- Current attempt: 0
 - Maximum attempts per unchanged failure: 2
-- Last failure: release-path fixture expected Tempo's named modernization
-  roadmap even when running inside an already initialized source tree.
+- Last failure: none
 
 ## Next Action
 
-- Commit the template-neutral regression repair, then repeat the exact initialized bootstrap replay.
+- Preserve this approved branch; merge, push, and publication require separate explicit approval.
 
 ## Pause Conditions
 
@@ -136,5 +143,7 @@ archived and cannot influence the user's project.
 
 ## Outcomes
 
-- Policy and enforcement units are implemented and locally verified; exact-tree
-  replay and final review remain.
+- C023 is complete: initialized projects retain reusable Tempo infrastructure
+  and quarantined template history without active Tempo-development state.
+- The branch is ready for the local Review Boundary; no merge or publication
+  action occurred.

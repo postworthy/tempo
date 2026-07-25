@@ -60,18 +60,18 @@ Out of scope:
 
 ## Acceptance Criteria
 
-- [ ] Initialization resets `DECISIONS.md` and every project-owned contract to
+- [x] Initialization resets `DECISIONS.md` and every project-owned contract to
       a neutral starter state.
-- [ ] Tempo-specific roadmap files, dated evaluation reports, clean-release
+- [x] Tempo-specific roadmap files, dated evaluation reports, clean-release
       evidence, and active governance records move into one recoverable backup.
-- [ ] `TEMPLATE_HISTORY/`, reusable skills, validators, evaluation cases, and
+- [x] `TEMPLATE_HISTORY/`, reusable skills, validators, evaluation cases, and
       starter tooling remain unchanged.
-- [ ] A deterministic validator rejects residual Tempo-development state in an
+- [x] A deterministic validator rejects residual Tempo-development state in an
       unfilled initialized project.
-- [ ] The initialized tree passes `pnpm verify` and the dependency audit.
-- [ ] Exact isolated plain and initialized public paths pass; plain remains
+- [x] The initialized tree passes `pnpm verify` and the dependency audit.
+- [x] Exact isolated plain and initialized public paths pass; plain remains
       clean and initialization matches the policy.
-- [ ] Documentation and the Review Record describe the source-to-project
+- [x] Documentation and the Review Record describe the source-to-project
       boundary without implying that cloning alone performs initialization.
 
 ## Verification Plan

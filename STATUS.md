@@ -1,10 +1,10 @@
 ## Current Milestone
 
-Clean initialized-project boundary in progress
+Modernization and clean initialized-project boundary complete
 
 ## Current Next Commit
 
-C023 docs(release): approve clean initialization boundary
+None; awaiting separately approved merge or publication action
 
 ## Done (High-Level)
 
@@ -24,15 +24,13 @@ C023 docs(release): approve clean initialization boundary
 
 ## In Progress
 
-- Executing the explicitly approved C023 T2 initialization-cleanliness change.
+- None.
 
 ## Blockers / Risks
 
 - Deterministic trigger evaluation cannot prove behavior across every
   probabilistic model or host.
 - Local merge and external publication remain intentionally unexecuted.
-- Until C023 completes, initialized projects retain Tempo-specific decisions,
-  roadmap material, and dated evaluation evidence.
 
 ## Recent Changes
 
@@ -72,11 +70,17 @@ C023 docs(release): approve clean initialization boundary
 - Replayed both public commands from isolated exact committed trees; each passed
   27 tests, seven evaluation scenarios, 59 assertions, and the build, while the
   contributor path left a clean worktree.
+- Added a machine-readable initialization policy, neutral decision baseline,
+  transactional archive/reset behavior, and canonical residual-state validator.
+- Replayed the exact initialized tree: Tempo decisions, active records,
+  modernization roadmap, and dated release evidence moved into one ignored
+  backup while reusable capabilities and `TEMPLATE_HISTORY/` remained unchanged.
 
 ## Next Planned Changes
 
-- Define and enforce the initialized-project policy.
-- Replay the exact public initialization path and re-open the Review Record.
+- Obtain explicit approval before any merge, push, or publication.
+- Treat cross-host probabilistic skill evaluation as an optional future
+  improvement, not a release blocker.
 
 ## Notes
 

@@ -13,13 +13,14 @@ Related Proposals:
 - `PROPOSALS/2026-07-24--skill-goal-evaluations.md`
 - `PROPOSALS/2026-07-24--modernization-release-readiness.md`
 - `PROPOSALS/2026-07-24--production-readiness-remediation.md`
+- `PROPOSALS/2026-07-24--clean-initialized-project-boundary.md`
 
 ## Branch
 
 - Source branch: `docs/c012-tempo-modernization-goal`
 - Target branch: `main`
-- Boundary status: not ready while approved C023 initialization-cleanliness work
-  is active
+- Boundary status: ready for an explicitly approved local merge; publication
+  remains a separate approval boundary
 
 ## Commits in Scope
 
@@ -48,6 +49,10 @@ Related Proposals:
 - `1a6da54` fix(bootstrap): contain portable adoption
 - `0b27734` chore(deps): refresh verified toolchain
 - `acdfef0` fix(evals): make initialized checks template neutral
+- `4d952af` docs(review): approve remediated release
+- `c2653f5` docs(release): approve clean initialization boundary
+- `38d3f76` fix(bootstrap): remove template development state
+- `9659908` fix(test): keep initialization regression template neutral
 
 The final administrative review/evidence commit is part of the exact branch
 history under review, although it does not change runtime behavior.
@@ -75,6 +80,10 @@ history under review, although it does not change runtime behavior.
   initialization reversible and canonically verifiable.
 - Made portable adoption containment-safe and atomic for known conflicts.
 - Refreshed the frozen verification toolchain and added release-path regressions.
+- Added a machine-readable initialized-project policy and canonical
+  residual-state validation.
+- Reset project decisions and archived Tempo-only plans and release evidence
+  while preserving reusable capabilities and quarantined template history.
 
 ## Acceptance Evidence
 
@@ -84,6 +93,9 @@ history under review, although it does not change runtime behavior.
 | Plain contributor bootstrap      | isolated exact-tree `./bootstrap`; clean worktree                | pass   |
 | Initialized new-project path     | isolated `./bootstrap --init-project`; full gate                 | pass   |
 | Reversible initialization        | timestamped backup; active folders template-only                 | pass   |
+| Neutral project decisions        | generated starter decision log; original in backup               | pass   |
+| Development-state separation     | roadmap/evaluation/active records archived by policy             | pass   |
+| Reusable capability preservation | recursive hashes for retain/preserve policy paths                | pass   |
 | Direct-main commit block         | pre-commit temporary-repository regression                       | pass   |
 | Concise routing kernel           | 116 lines; deterministic line limit                              | pass   |
 | Living goals and bounded loops   | validator, fixtures, resumption, authority matrix                | pass   |
@@ -132,6 +144,14 @@ Results:
   `TEMPLATE_HISTORY/`.
 - Final staged release tree based on `acdfef0`: both isolated public paths pass
   again with the reconciled documentation and approved Review Record included.
+- Exact committed tree `9659908`, isolated as `main`, plain `./bootstrap`: pass;
+  full canonical gate and empty worktree status/diff.
+- Exact committed tree `9659908`, isolated as `main`,
+  `./bootstrap --init-project`: pass; policy reports 5 reset, 17 archived, 21
+  retained, and 1 preserved; full canonical gate passes with no active goal.
+- Initialized policy audit: template-only active records, starter-only roadmap,
+  no dated or clean-release evaluation evidence, neutral decisions, complete
+  timestamped backup, and no `TEMPLATE_HISTORY/` diff.
 - Six portable fixtures: pass; normal, repeated, and no-Node adoption plus
   first-conflict atomicity, symlinked `AGENTS.md`, and managed-parent symlink
   containment.
@@ -152,13 +172,27 @@ Results:
   are preflighted before mutation, with rollback for unexpected failures.
 - Generated evaluation workspaces: temporary and removed.
 - Template history: remains under `TEMPLATE_HISTORY/`.
+- Initialization recovery: pass; reset originals and archived artifacts share
+  one ignored timestamped backup, and unexpected operations roll back.
+- Initialized authority state: pass; Tempo's decision log, execution records,
+  roadmap, and release evidence cannot govern the new project.
 
 ## Findings
 
 Blocking:
 
-- C023 is changing the initialized-project distribution contract; the prior
-  approval is suspended until exact-tree replay confirms the stronger boundary.
+- None.
+
+Resolved by C023:
+
+1. Medium — Tempo product decisions remained authoritative after project
+   initialization: resolved by a neutral generated `DECISIONS.md` and backup.
+2. Medium — Modernization roadmap and dated release evidence remained visible:
+   resolved by the machine-readable archive policy.
+3. Medium — Cleanliness was convention-only: resolved by
+   `pnpm check:initialized` and negative residual-state coverage.
+4. Low — Initialization regression named source-development artifacts: resolved
+   with synthetic fixtures that also pass from an initialized tree.
 
 Resolved by C022:
 
@@ -188,7 +222,9 @@ Known limitation after remediation:
 2. After a future merge, revert the no-fast-forward merge.
 3. For portable targets, use the installation manifest and AGENTS backup under
    explicit removal approval.
-4. Re-run the applicable canonical verification after rollback.
+4. For initialized projects, restore the single `.template-init-backup/`
+   snapshot containing reset originals and archived artifacts.
+5. Re-run the applicable canonical verification after rollback.
 
 ## Approvals
 
@@ -196,9 +232,11 @@ Known limitation after remediation:
   2026-07-24.
 - C022 T2 production remediation: explicitly approved by Human Partner with
   “make it so” on 2026-07-24.
+- C023 T2 initialized-project boundary: explicitly approved by Human Partner
+  with “do it” on 2026-07-24.
 - Reviewer: Codex
-- Approval status: pending C023 exact-tree replay
-- Timestamp: 2026-07-24 22:35 CDT
+- Approval status: approved for the local Review Boundary
+- Timestamp: 2026-07-24 23:40 CDT
 
 ## Follow-Ups
 

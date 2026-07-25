@@ -4,7 +4,8 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-C023 docs(release): approve clean initialization boundary
+None; C023 is complete. Await an explicitly approved merge or publication
+action.
 
 ## Milestone M0 - Foundation and Governance
 
@@ -302,7 +303,7 @@ Evidence:
 - Final decision:
   `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
 
-### [NEXT] C023 - fix(bootstrap): enforce clean initialized-project boundary
+### [DONE] C023 - fix(bootstrap): enforce clean initialized-project boundary
 
 Goal:
 
@@ -319,3 +320,13 @@ Acceptance:
 Proposal:
 
 - `PROPOSALS/2026-07-24--clean-initialized-project-boundary.md`
+
+Evidence:
+
+- `INITIALIZATION-POLICY.json` drives reset, archive, retain, and preserve
+  behavior plus deterministic validation.
+- Exact `9659908` plain and initialized `main` replays pass 27 tests, 7/7
+  evaluation scenarios, 59 assertions, and build.
+- Initialized state archives 17 Tempo-development artifacts, resets five
+  project contracts, preserves reusable policy paths byte-for-byte, and leaves
+  `TEMPLATE_HISTORY/` unchanged.
