@@ -4,8 +4,7 @@ This plan decomposes work into atomic commits. Update as commits land.
 
 ## Current Next Commit
 
-None; C022 is complete. Await an explicitly approved merge or publication
-action.
+C023 docs(release): approve clean initialization boundary
 
 ## Milestone M0 - Foundation and Governance
 
@@ -302,3 +301,21 @@ Evidence:
 - `pnpm audit --audit-level=high` exits 0 with one low advisory.
 - Final decision:
   `REVIEWS/2026-07-24--tempo-skills-goals-modernization.md`.
+
+### [NEXT] C023 - fix(bootstrap): enforce clean initialized-project boundary
+
+Goal:
+
+- Convert an auditable Tempo source clone into a fresh user project without
+  active Tempo-development decisions, plans, goals, or release evidence.
+
+Acceptance:
+
+- Machine-readable reset/archive/retain/preserve policy is enforced.
+- Initialized state contains neutral project contracts and reusable Tempo
+  capabilities only.
+- Exact source and initialized release paths pass canonical verification.
+
+Proposal:
+
+- `PROPOSALS/2026-07-24--clean-initialized-project-boundary.md`

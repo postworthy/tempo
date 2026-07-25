@@ -18,8 +18,8 @@ Related Proposals:
 
 - Source branch: `docs/c012-tempo-modernization-goal`
 - Target branch: `main`
-- Boundary status: ready for an explicitly approved local merge; publication
-  remains a separate approval boundary
+- Boundary status: not ready while approved C023 initialization-cleanliness work
+  is active
 
 ## Commits in Scope
 
@@ -157,7 +157,8 @@ Results:
 
 Blocking:
 
-- None.
+- C023 is changing the initialized-project distribution contract; the prior
+  approval is suspended until exact-tree replay confirms the stronger boundary.
 
 Resolved by C022:
 
@@ -196,8 +197,8 @@ Known limitation after remediation:
 - C022 T2 production remediation: explicitly approved by Human Partner with
   “make it so” on 2026-07-24.
 - Reviewer: Codex
-- Approval status: approved for the local Review Boundary
-- Timestamp: 2026-07-24 22:30 CDT
+- Approval status: pending C023 exact-tree replay
+- Timestamp: 2026-07-24 22:35 CDT
 
 ## Follow-Ups
 

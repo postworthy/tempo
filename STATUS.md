@@ -1,10 +1,10 @@
 ## Current Milestone
 
-Modernization and production-readiness remediation complete
+Clean initialized-project boundary in progress
 
 ## Current Next Commit
 
-None; awaiting separately approved merge or publication action
+C023 docs(release): approve clean initialization boundary
 
 ## Done (High-Level)
 
@@ -24,13 +24,15 @@ None; awaiting separately approved merge or publication action
 
 ## In Progress
 
-- None.
+- Executing the explicitly approved C023 T2 initialization-cleanliness change.
 
 ## Blockers / Risks
 
 - Deterministic trigger evaluation cannot prove behavior across every
   probabilistic model or host.
 - Local merge and external publication remain intentionally unexecuted.
+- Until C023 completes, initialized projects retain Tempo-specific decisions,
+  roadmap material, and dated evaluation evidence.
 
 ## Recent Changes
 
@@ -73,9 +75,8 @@ None; awaiting separately approved merge or publication action
 
 ## Next Planned Changes
 
-- Obtain explicit approval before any merge, push, or publication.
-- Treat cross-host probabilistic skill evaluation as an optional future
-  improvement, not a release blocker.
+- Define and enforce the initialized-project policy.
+- Replay the exact public initialization path and re-open the Review Record.
 
 ## Notes
 
