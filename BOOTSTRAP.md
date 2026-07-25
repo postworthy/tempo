@@ -7,6 +7,11 @@ The canonical setup entry point is `./bootstrap`. New projects use
 Bootstrap finishes by running the canonical verification command, `pnpm verify`,
 unless the caller explicitly uses `--no-verify`.
 
+For a new project, initialization applies `INITIALIZATION-POLICY.json`.
+Project-owned contracts reset; Tempo-specific decisions, active records,
+roadmaps, and release evidence move into a recoverable ignored backup; reusable
+capabilities and explicitly non-active `TEMPLATE_HISTORY/` remain.
+
 ## Purpose
 
 Ensure project intent is clarified before implementation for both:

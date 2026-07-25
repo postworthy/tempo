@@ -24,21 +24,21 @@ archived and cannot influence the user's project.
 
 ## Acceptance Criteria
 
-- [ ] AC1 — A machine-readable policy defines reset, archive, retain, and
+- [x] AC1 — A machine-readable policy defines reset, archive, retain, and
       preserve categories.
-  - Evidence: pending
-- [ ] AC2 — Initialization resets project contracts and `DECISIONS.md` to
+  - Evidence: `INITIALIZATION-POLICY.json` version 1 is loaded by initialization and validation
+- [x] AC2 — Initialization resets project contracts and `DECISIONS.md` to
       neutral starter state with recoverable originals.
-  - Evidence: pending
-- [ ] AC3 — Tempo-only active records, roadmap documents, dated evaluation
+  - Evidence: focused fixtures compare generated brief, specification, status, decisions, and commit plan with starter documents and find originals in the timestamped backup
+- [x] AC3 — Tempo-only active records, roadmap documents, dated evaluation
       reports, and clean-release evidence are archived.
-  - Evidence: pending
-- [ ] AC4 — Reusable skills, validators, evaluation cases, starter tooling, and
+  - Evidence: release-path fixture observes template-only active folders, only `COMMIT-PLAN.md` under `ROADMAP/`, no dated evaluation report or clean-release artifact, and all corresponding backup files
+- [x] AC4 — Reusable skills, validators, evaluation cases, starter tooling, and
       `TEMPLATE_HISTORY/` remain byte-identical.
-  - Evidence: pending
-- [ ] AC5 — Deterministic validation rejects residual development state in an
+  - Evidence: SHA-256 recursive snapshots for every retain and preserve policy path are identical before and after fixture initialization
+- [x] AC5 — Deterministic validation rejects residual development state in an
       unfilled project.
-  - Evidence: pending
+  - Evidence: `validateInitializedState` accepts the clean fixture and rejects a newly introduced dated evaluation report by exact path
 - [ ] AC6 — Source and initialized trees pass canonical verification and the
       high-threshold audit has no high/critical finding.
   - Evidence: pending
@@ -70,11 +70,11 @@ archived and cannot influence the user's project.
 
 ## Work Units
 
-| Unit                           | Status      | Exit criteria                                               | Verification                         |
-| ------------------------------ | ----------- | ----------------------------------------------------------- | ------------------------------------ |
-| 1. Policy and regression scope | in_progress | Every residual-state class has an explicit policy category. | Goal validation and focused fixtures |
-| 2. Initialization enforcement  | pending     | Initialized state matches policy and rejects drift.         | Focused tests and initialized verify |
-| 3. Exact replay and review     | pending     | All criteria have evidence and review is approved.          | Full gate, audit, isolated commands  |
+| Unit                           | Status    | Exit criteria                                               | Verification                         |
+| ------------------------------ | --------- | ----------------------------------------------------------- | ------------------------------------ |
+| 1. Policy and regression scope | completed | Every residual-state class has an explicit policy category. | Goal validation and focused fixtures |
+| 2. Initialization enforcement  | completed | Initialized state matches policy and rejects drift.         | Focused tests and initialized verify |
+| 3. Exact replay and review     | pending   | All criteria have evidence and review is approved.          | Full gate, audit, isolated commands  |
 
 ## Progress
 
@@ -82,11 +82,19 @@ archived and cannot influence the user's project.
   with “do it.”
 - 2026-07-24: Inspection confirmed residual Tempo development state in
   `DECISIONS.md`, dated `EVALS/` evidence, and the modernization roadmap.
+- 2026-07-24: Versioned policy, transactional initializer, starter documents,
+  initialized-state validator, canonical gate, and reset/archive/retain/preserve
+  regressions implemented.
+- 2026-07-24: Source `pnpm verify` passes 27 tests and 7/7 evaluation scenarios
+  with 59 assertions; high-threshold audit exits 0 with one low advisory.
 
 ## Evidence
 
 - Pre-change `scripts/init-project.sh` resets four contracts and active record
   folders but does not reset decisions or archive roadmap/evaluation evidence.
+- `pnpm exec vitest run test/governance.test.ts test/release-paths.test.ts`
+  passes 16 focused tests.
+- `pnpm verify` and `pnpm audit --audit-level=high` pass after enforcement.
 
 ## Discoveries
 
@@ -94,6 +102,8 @@ archived and cannot influence the user's project.
   separate valid states.
 - `EVALS/scenarios.json` currently depends on clean-release evidence that the
   stronger boundary should archive.
+- Clean-bootstrap evaluation now depends on the reusable release-path regression
+  rather than the archived release evidence.
 
 ## Decisions
 
@@ -101,6 +111,8 @@ archived and cannot influence the user's project.
 - Reset project-owned decisions instead of letting Tempo product decisions
   govern the user's new product.
 - Express the conversion contract as machine-readable policy.
+- Roll back partially applied initialization if an unexpected file operation
+  fails.
 
 ## Retry State
 
@@ -110,7 +122,7 @@ archived and cannot influence the user's project.
 
 ## Next Action
 
-- Add the initialization policy and focused failing fixtures for every reset, archive, retain, and preserve category.
+- Commit the enforcement unit, then replay plain and initialized bootstrap from exact isolated release trees.
 
 ## Pause Conditions
 
@@ -120,4 +132,5 @@ archived and cannot influence the user's project.
 
 ## Outcomes
 
-- C023 is approved and active; policy and implementation remain.
+- Policy and enforcement units are implemented and locally verified; exact-tree
+  replay and final review remain.

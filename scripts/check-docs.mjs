@@ -13,6 +13,7 @@ const requiredFiles = [
   'PROPOSALS/TEMPLATE.md',
   'REVIEWS/TEMPLATE.md',
   'GETTING_STARTED.md',
+  'INITIALIZATION-POLICY.json',
   'MIGRATION.md',
   'bootstrap',
   '.githooks/pre-commit',
@@ -20,6 +21,9 @@ const requiredFiles = [
   '.githooks/pre-push',
   'scripts/check-git-policy.mjs',
   'scripts/install-portable.sh',
+  'scripts/init-project.mjs',
+  'scripts/initialization-policy.mjs',
+  'scripts/validate-initialized-state.mjs',
   'scripts/intake-scan.mjs',
   'DISCOVERY/TEMPLATE.md',
   'EVALS/README.md',
@@ -340,6 +344,9 @@ if (existsSync('package.json')) {
     }
     if (!pkg.scripts || !pkg.scripts['check:goal']) {
       problems.push('package.json missing required script: check:goal');
+    }
+    if (!pkg.scripts || !pkg.scripts['check:initialized']) {
+      problems.push('package.json missing required script: check:initialized');
     }
     if (!pkg.scripts || !pkg.scripts['check:skills']) {
       problems.push('package.json missing required script: check:skills');

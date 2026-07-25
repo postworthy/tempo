@@ -25,6 +25,7 @@ This command runs complete repository checks:
 - type checks (`typecheck`)
 - docs consistency checks (`check:docs`)
 - living-goal structure and active-state checks (`check:goal`)
+- initialized-project cleanliness checks (`check:initialized`)
 - Agent Skill structure, reference, and trigger-case checks (`check:skills`)
 - git policy checks (`check:git-policy`)
 - tests (`test`)
@@ -77,6 +78,8 @@ Review `.verify.log` on failure. Do not commit verification logs.
 - Static analysis and lint rules pass.
 - Type contracts hold.
 - Governance docs preserve required starter-pack invariants.
+- An unfilled initialized project contains no active Tempo-development
+  decisions, plans, records, or release evidence.
 - At most one active living goal exists and its resumable state is structurally valid.
 - Portable adoption preserves target files, avoids the starter stack, rejects
   conflicts, and is idempotent in an isolated fixture.

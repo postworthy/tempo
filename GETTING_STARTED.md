@@ -61,9 +61,16 @@ This resets:
 - `PROJECT-BRIEF.md` to unfilled baseline,
 - `SPEC.md` to a project-ready draft,
 - `STATUS.md` to starter baseline,
-- `ROADMAP/COMMIT-PLAN.md` to starter next-commit plan.
+- `DECISIONS.md` to an empty project decision log,
+- `ROADMAP/COMMIT-PLAN.md` to starter next-commit plan,
 - active proposals, reviews, RCA records, and completed goals to template-only
-  folders.
+  folders,
+- Tempo-specific roadmap documents, dated evaluation reports, discovery
+  inventory, and clean-release evidence into the backup.
+
+`INITIALIZATION-POLICY.json` is the machine-readable source of truth for reset,
+archive, retain, and preserve behavior. Reusable skills, validators, evaluation
+cases, starter tooling, and `TEMPLATE_HISTORY/` remain unchanged.
 
 A recoverable local backup is created under
 `.template-init-backup/<timestamp>/` before changes. The backup directory is
@@ -74,6 +81,9 @@ Then run:
 ```bash
 pnpm verify
 ```
+
+Canonical verification includes `pnpm check:initialized`, which rejects
+residual Tempo-development state whenever `PROJECT-BRIEF.md` is unfilled.
 
 ## Adopt Tempo in an Existing Repository
 

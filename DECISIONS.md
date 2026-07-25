@@ -259,3 +259,21 @@ Consequences:
 documentation use Node 20.19 as the minimum. Public release review runs
 `pnpm audit:high`; the network-backed audit remains separate from the offline
 canonical verification gate.
+
+## 2026-07-24 - Initialized Project as a Distribution Boundary
+
+Decision:
+Treat `./bootstrap --init-project` as the explicit conversion from Tempo's
+auditable source repository into a fresh user project. Reset project-owned
+contracts and decisions, archive Tempo-specific execution and release state,
+retain reusable capabilities, and preserve explicitly quarantined
+`TEMPLATE_HISTORY/`.
+
+Rationale:
+Tempo maintainers need source history and evidence, while novice users must not
+inherit active decisions or plans that appear to govern an unrelated product.
+
+Consequences:
+`INITIALIZATION-POLICY.json` defines the behavior, initialization creates one
+recoverable ignored backup, and canonical verification rejects residual
+Tempo-development state in an unfilled project.

@@ -22,5 +22,6 @@ The suite covers:
 - and the full authority boundary matrix.
 
 `baseline.json` records the pre-modernization comparison point. Static and
-deterministic evaluation cannot prove every host model's probabilistic behavior;
-the dated evaluation report records that limitation and the human audit.
+deterministic evaluation cannot prove every host model's probabilistic behavior.
+Tempo's source repository may contain dated reports; project initialization
+archives them because they are release evidence, not active user-project state.

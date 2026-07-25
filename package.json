@@ -28,6 +28,7 @@
     "check:docs": "node scripts/check-docs.mjs",
     "check:git-policy": "node scripts/check-git-policy.mjs",
     "check:goal": "node scripts/validate-goal.mjs",
+    "check:initialized": "node scripts/validate-initialized-state.mjs",
     "check:skills": "node scripts/validate-skills.mjs",
     "goal:status": "node scripts/validate-goal.mjs",
     "intake:scan": "node scripts/intake-scan.mjs",
@@ -35,7 +36,7 @@
     "test": "vitest run",
     "build": "tsc -p tsconfig.json",
     "verify:fast": "pnpm format:check && pnpm lint && pnpm typecheck",
-    "verify": "pnpm verify:fast && pnpm check:contracts && pnpm check:docs && pnpm check:goal && pnpm check:skills && pnpm check:git-policy && pnpm test && pnpm eval && pnpm build"
+    "verify": "pnpm verify:fast && pnpm check:contracts && pnpm check:docs && pnpm check:goal && pnpm check:initialized && pnpm check:skills && pnpm check:git-policy && pnpm test && pnpm eval && pnpm build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

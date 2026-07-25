@@ -47,6 +47,9 @@ Tempo is an opinionated, batteries-included public starter repository. Its porta
 - FR13: Adopt-existing setup must not require or install the TypeScript starter application stack.
 - FR14: Public documentation must provide one primary setup command and a plain-language next step.
 - FR15: Generated logs, caches, evaluation workspaces, secrets, and local artifacts must not be committed.
+- FR16: Explicit project initialization must reset or archive active
+  Tempo-development decisions, plans, records, and release evidence while
+  preserving reusable capabilities and quarantined template history.
 
 ## 4. Constraints
 
@@ -94,6 +97,8 @@ A release is acceptable when:
 - [ ] Authority-boundary tests show autonomous continuation for approved T0/T1 work and pauses for higher-risk actions.
 - [ ] Public README and `GETTING_STARTED.md` agree on one primary setup command and next action.
 - [ ] Canonical verification, focused regressions, and documented manual evaluations pass.
+- [ ] An initialized project passes canonical verification with neutral project
+      contracts and no active Tempo-development state.
 
 ## 7. Canonical Verification
 

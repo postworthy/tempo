@@ -35,10 +35,12 @@ After cloning the repository to start a new project, run one command:
 ./bootstrap --init-project
 ```
 
-It backs up Tempo's own development records, creates a clean project baseline,
-installs the pinned dependencies, configures local safeguards, and runs
-`pnpm verify`. Then tell your AI agent what you want to build and ask it to
-follow `AGENTS.md`.
+It applies `INITIALIZATION-POLICY.json`: project contracts and decisions reset,
+Tempo's active records, roadmap, and release evidence move into a recoverable
+ignored backup, and reusable skills, validators, starter tooling, and
+`TEMPLATE_HISTORY/` remain. It then installs the pinned dependencies, configures
+local safeguards, and runs `pnpm verify`. Tell your AI agent what you want to
+build and ask it to follow `AGENTS.md`.
 
 Tempo contributors can run plain `./bootstrap` to verify the repository without
 resetting its project records.

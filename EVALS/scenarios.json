@@ -97,8 +97,12 @@
       "authority_case": null,
       "evidence": [
         {
-          "path": "EVALS/clean-main-bootstrap.json",
-          "includes": ["\"exit_code\": 0", "canonical verification passed", "27 tests passed"]
+          "path": "test/release-paths.test.ts",
+          "includes": [
+            "defaults plain bootstrap to greenfield",
+            "expect(result.status).toBe(0)",
+            "expect(result.stdout).toContain('Onboarding mode: greenfield')"
+          ]
         }
       ]
     }

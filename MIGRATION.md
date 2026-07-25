@@ -17,8 +17,9 @@ After cloning Tempo:
 Then tell your agent what you want to build and ask it to follow `AGENTS.md`.
 Tempo retains the pinned TypeScript starter, local hooks, validation, skills, and
 living-goal tooling. Explicit initialization backs up Tempo's own active
-development records under `.template-init-backup/`, preserves
-`TEMPLATE_HISTORY/`, and leaves reusable active folders template-only.
+development decisions, plans, records, and release evidence under
+`.template-init-backup/`, preserves `TEMPLATE_HISTORY/`, and leaves neutral
+project contracts plus reusable Tempo capabilities.
 
 Tempo contributors working on the template itself use plain `./bootstrap`,
 which defaults to the greenfield profile and verifies without initializing
@@ -66,6 +67,10 @@ starter application files.
 
 Tempo does not add remotes, fetch, merge, push, or publish as part of setup.
 
+Do not run `--init-project` over an established project merely to upgrade Tempo:
+it intentionally resets project-owned contracts and decisions. It is the
+source-clone-to-new-project boundary, not an in-place upgrade command.
+
 ## State Ownership Changes
 
 | Old pattern                                      | Current owner                                               |
@@ -106,6 +111,12 @@ ownership.
 - Historical template-development records remain under `TEMPLATE_HISTORY/`.
 
 ## Rollback
+
+### After project initialization
+
+Restore the affected paths from the single timestamped directory under
+`.template-init-backup/`, then run `pnpm verify`. The backup contains every
+reset original and every archived Tempo-development artifact.
 
 ### Before a local merge
 

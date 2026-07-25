@@ -9,7 +9,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
@@ -115,13 +115,18 @@ describe('project initialization', () => {
     const root = mkdtempSync(join(tmpdir(), 'tempo-init-'));
     mkdirSync(join(root, 'scripts'));
     mkdirSync(join(root, 'ROADMAP'));
-    copyFileSync(
-      join(repositoryRoot, 'scripts/init-project.sh'),
-      join(root, 'scripts/init-project.sh'),
-    );
+    for (const file of [
+      'INITIALIZATION-POLICY.json',
+      'scripts/init-project.sh',
+      'scripts/init-project.mjs',
+      'scripts/initialization-policy.mjs',
+    ]) {
+      mkdirSync(dirname(join(root, file)), { recursive: true });
+      copyFileSync(join(repositoryRoot, file), join(root, file));
+    }
     chmodSync(join(root, 'scripts/init-project.sh'), 0o755);
 
-    for (const file of ['PROJECT-BRIEF.md', 'SPEC.md', 'STATUS.md']) {
+    for (const file of ['PROJECT-BRIEF.md', 'SPEC.md', 'STATUS.md', 'DECISIONS.md']) {
       writeFileSync(join(root, file), `original ${file}\n`);
     }
     writeFileSync(join(root, 'ROADMAP/COMMIT-PLAN.md'), 'original roadmap\n');
@@ -131,6 +136,7 @@ describe('project initialization', () => {
     expect(result.status).toBe(0);
     expect(readFileSync(join(root, 'PROJECT-BRIEF.md'), 'utf8')).toContain('Status: UNFILLED');
     expect(readFileSync(join(root, 'SPEC.md'), 'utf8')).toContain('Status: Draft');
+    expect(readFileSync(join(root, 'DECISIONS.md'), 'utf8')).toContain('Status: UNFILLED');
     expect(result.stdout).toContain('Backups saved to: .template-init-backup/');
   });
 });
