@@ -26,7 +26,8 @@ conversation history.
    immediately executable next action.
 8. Ensure at most one goal is active; use `draft` or `approved` until execution
    should begin.
-9. Run `pnpm check:goal` and resolve every structural error.
+9. Run the repository's goal validator (`pnpm check:goal` in Tempo's default
+   starter profile) and resolve every structural error.
 
 Read [goal-quality.md](references/goal-quality.md) when auditing a complex goal or
 deciding whether evidence and decomposition are strong enough.

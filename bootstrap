@@ -8,6 +8,8 @@ RUN_VERIFY=1
 INIT_PROJECT=0
 MODE="auto"
 RUN_INTAKE_SCAN="auto"
+TARGET=""
+VERIFY_COMMAND=""
 
 while [[ "$#" -gt 0 ]]; do
   case "$1" in
@@ -39,9 +41,25 @@ while [[ "$#" -gt 0 ]]; do
       RUN_INTAKE_SCAN=0
       shift
       ;;
+    --target)
+      if [[ "$#" -lt 2 ]]; then
+        echo "[bootstrap] Missing value for --target"
+        exit 1
+      fi
+      TARGET="$2"
+      shift 2
+      ;;
+    --verify-command)
+      if [[ "$#" -lt 2 ]]; then
+        echo "[bootstrap] Missing value for --verify-command"
+        exit 1
+      fi
+      VERIFY_COMMAND="$2"
+      shift 2
+      ;;
     --help|-h)
       cat <<'HELP'
-Usage: ./bootstrap [--no-verify] [--init-project] [--mode <auto|greenfield|adopt-existing>] [--intake-scan|--no-intake-scan]
+Usage: ./bootstrap [--no-verify] [--init-project] [--mode <auto|greenfield|adopt-existing>] [--target <repo> --verify-command <command>] [--intake-scan|--no-intake-scan]
 
 Options:
   --no-verify    Skip pnpm verify at the end.
@@ -50,6 +68,10 @@ Options:
   --intake-scan  Force running repository intake scan.
   --no-intake-scan
                  Disable intake scan even in adopt-existing mode.
+  --target       Install portable Tempo into an existing target repository.
+                 Requires --mode adopt-existing and --verify-command.
+  --verify-command
+                 Record the target repository's canonical verification command.
 HELP
       exit 0
       ;;
@@ -63,6 +85,25 @@ done
 
 if [[ "$MODE" != "auto" && "$MODE" != "greenfield" && "$MODE" != "adopt-existing" ]]; then
   echo "[bootstrap] Invalid mode '$MODE' (expected: auto|greenfield|adopt-existing)"
+  exit 1
+fi
+
+if [[ -n "$TARGET" ]]; then
+  if [[ "$MODE" != "adopt-existing" ]]; then
+    echo "[bootstrap] --target requires --mode adopt-existing"
+    exit 1
+  fi
+  if [[ -z "$VERIFY_COMMAND" ]]; then
+    echo "[bootstrap] --target requires --verify-command"
+    exit 1
+  fi
+  exec ./scripts/install-portable.sh \
+    --target "$TARGET" \
+    --verify-command "$VERIFY_COMMAND"
+fi
+
+if [[ -n "$VERIFY_COMMAND" ]]; then
+  echo "[bootstrap] --verify-command is only valid with --target"
   exit 1
 fi
 

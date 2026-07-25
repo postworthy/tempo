@@ -10,7 +10,8 @@ green narrow test.
 
 ## Orient
 
-1. Run repository preflight and `pnpm goal:status`.
+1. Run repository preflight and the available goal-status command
+   (`pnpm goal:status` in Tempo's default starter profile).
 2. Read `CONSTITUTION.md`, `SPEC.md`, the selected goal, its current proposal,
    and only the procedure needed for the next unit.
 3. Reconcile the goal with the worktree and recent commits. Repository evidence

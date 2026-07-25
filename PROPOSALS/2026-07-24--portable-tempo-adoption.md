@@ -128,6 +128,12 @@ Pass means:
   - `Proposal: PROPOSALS/2026-07-24--portable-tempo-adoption.md`
 - Planned merge method: `git merge --no-ff docs/c012-tempo-modernization-goal`
 
+The installer commit intentionally exceeds the normal line target because the
+bootstrap route, pure-shell installer, portable kernel/contracts, and two
+portability corrections in skills form one executable profile. Splitting the
+templates from their installer would leave a commit that cannot perform the
+approved target adoption or prove its rollback boundary.
+
 ## Decomposition Plan
 
 1. Define portable file ownership, collision behavior, and CLI contract — Verify
